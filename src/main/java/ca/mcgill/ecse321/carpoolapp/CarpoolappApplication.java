@@ -1,20 +1,13 @@
 package ca.mcgill.ecse321.carpoolapp;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@RestController
 @SpringBootApplication
-public class CarpoolappApplication{
+public class CarpoolappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarpoolappApplication.class, args);
 	}
 
-  @RequestMapping("/")
-  public String greeting(){
-    return "Hello world!";
-  }
 }
