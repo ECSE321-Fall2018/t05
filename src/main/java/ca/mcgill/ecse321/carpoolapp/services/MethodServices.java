@@ -132,15 +132,59 @@ public class MethodServices
 	
 	}
 	
-	//distance AHB
+	//distance AHB-done
 	public ArrayList<Driver> getTopDrivers(){
-		return null;	
+		ArrayList<Driver> sortedList = new ArrayList<Driver>();
+		sortedList = (ArrayList<Driver>) cm.getDrivers();
+		
+		Driver temp;
+		int max = 0;
+		int minIndex = 0;
+		
+		//sortedList.size()-1 because else j will be out of bounds
+		for (int i = 0; i < sortedList.size() -1; i++) {
+			//will compare current element with next elements
+			max = sortedList.get(i).getTotalDistance();
+			for (int j = i+1; j < sortedList.size(); j++) {
+				if (max < sortedList.get(j).getTotalDistance()) {
+					max = sortedList.get(j).getTotalDistance(); //set the new min
+					minIndex = j; //set the index in list of smallest value up to now
+				}
+			}
+			//swap elements
+			temp = sortedList.get(i);
+			sortedList.set(i, sortedList.get(minIndex));
+			sortedList.set(minIndex, temp);
+		}
+		return sortedList;
 	}
 	
-	//distance AHB
+	//distance AHB-done
 	public ArrayList<Passenger> getTopPassengers()
 	{
-		return null;
+		ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
+		sortedList = (ArrayList<Passenger>) cm.getPassengers();
+		
+		Passenger temp;
+		int max = 0;
+		int minIndex = 0;
+		
+		//sortedList.size()-1 because else j will be out of bounds
+		for (int i = 0; i < sortedList.size() -1; i++) {
+			//will compare current element with next elements
+			max = sortedList.get(i).getTotalDistance();
+			for (int j = i+1; j < sortedList.size(); j++) {
+				if (max < sortedList.get(j).getTotalDistance()) {
+					max = sortedList.get(j).getTotalDistance(); //set the new min
+					minIndex = j; //set the index in list of smallest value up to now
+				}
+			}
+			//swap elements
+			temp = sortedList.get(i);
+			sortedList.set(i, sortedList.get(minIndex));
+			sortedList.set(minIndex, temp);
+		}
+		return sortedList;
 	}
 	
 	//AHB-done
