@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.*;
 
-// line 17 "../../../../../../../../ump/tmp588129/model.ump"
-// line 89 "../../../../../../../../ump/tmp588129/model.ump"
+// line 4 "../../../../../../../ump/tmp788046/model.ump"
+// line 79 "../../../../../../../ump/tmp788046/model.ump"
 public class User
 {
 
@@ -19,21 +19,21 @@ public class User
 
   //User Associations
   private List<UserRole> userRoles;
-  private CarpoolManager carpoolManager;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public User(int aId, String aName, CarpoolManager aCarpoolManager)
+  public User(int aId, String aName, CarPoolManager aCarPoolManager)
   {
     id = aId;
     name = aName;
     userRoles = new ArrayList<UserRole>();
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create user due to carpoolManager");
+      throw new RuntimeException("Unable to create user due to carPoolManager");
     }
   }
 
@@ -97,9 +97,9 @@ public class User
     return index;
   }
   /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
+  public CarPoolManager getCarPoolManager()
   {
-    return carpoolManager;
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfUserRoles()
@@ -181,21 +181,21 @@ public class User
     return wasAdded;
   }
   /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
   {
     boolean wasSet = false;
-    if (aCarpoolManager == null)
+    if (aCarPoolManager == null)
     {
       return wasSet;
     }
 
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
-      existingCarpoolManager.removeUser(this);
+      existingCarPoolManager.removeUser(this);
     }
-    carpoolManager.addUser(this);
+    carPoolManager.addUser(this);
     wasSet = true;
     return wasSet;
   }
@@ -207,11 +207,11 @@ public class User
       UserRole aUserRole = userRoles.get(i - 1);
       aUserRole.delete();
     }
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
     {
-      placeholderCarpoolManager.removeUser(this);
+      placeholderCarPoolManager.removeUser(this);
     }
   }
 
@@ -221,6 +221,6 @@ public class User
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
             "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "carpoolManager = "+(getCarpoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarpoolManager())):"null");
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

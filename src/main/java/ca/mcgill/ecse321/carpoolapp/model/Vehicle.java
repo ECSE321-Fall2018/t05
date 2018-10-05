@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.*;
 
-// line 59 "../../../../../../../../ump/tmp588129/model.ump"
-// line 120 "../../../../../../../../ump/tmp588129/model.ump"
+// line 47 "../../../../../../../ump/tmp788046/model.ump"
+// line 113 "../../../../../../../ump/tmp788046/model.ump"
 public class Vehicle
 {
 
@@ -16,34 +16,33 @@ public class Vehicle
   //Vehicle Attributes
   private int year;
   private String brand;
-  private int plateNumber;
+  private String plateNumber;
   private int availableSeat;
 
   //Vehicle Associations
-  private Ad ad;
-  private CarpoolManager carpoolManager;
   private List<Driver> drivers;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Vehicle(int aYear, String aBrand, int aPlateNumber, int aAvailableSeat, CarpoolManager aCarpoolManager, Driver... allDrivers)
+  public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat, CarPoolManager aCarPoolManager, Driver... allDrivers)
   {
     year = aYear;
     brand = aBrand;
     plateNumber = aPlateNumber;
     availableSeat = aAvailableSeat;
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
-    {
-      throw new RuntimeException("Unable to create vehicle due to carpoolManager");
-    }
     drivers = new ArrayList<Driver>();
     boolean didAddDrivers = setDrivers(allDrivers);
     if (!didAddDrivers)
     {
       throw new RuntimeException("Unable to create Vehicle, must have at least 1 drivers");
+    }
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
+    {
+      throw new RuntimeException("Unable to create vehicle due to carPoolManager");
     }
   }
 
@@ -67,7 +66,7 @@ public class Vehicle
     return wasSet;
   }
 
-  public boolean setPlateNumber(int aPlateNumber)
+  public boolean setPlateNumber(String aPlateNumber)
   {
     boolean wasSet = false;
     plateNumber = aPlateNumber;
@@ -93,7 +92,7 @@ public class Vehicle
     return brand;
   }
 
-  public int getPlateNumber()
+  public String getPlateNumber()
   {
     return plateNumber;
   }
@@ -101,22 +100,6 @@ public class Vehicle
   public int getAvailableSeat()
   {
     return availableSeat;
-  }
-  /* Code from template association_GetOne */
-  public Ad getAd()
-  {
-    return ad;
-  }
-
-  public boolean hasAd()
-  {
-    boolean has = ad != null;
-    return has;
-  }
-  /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
-  {
-    return carpoolManager;
   }
   /* Code from template association_GetMany */
   public Driver getDriver(int index)
@@ -148,51 +131,10 @@ public class Vehicle
     int index = drivers.indexOf(aDriver);
     return index;
   }
-  /* Code from template association_SetOptionalOneToOne */
-  public boolean setAd(Ad aNewAd)
+  /* Code from template association_GetOne */
+  public CarPoolManager getCarPoolManager()
   {
-    boolean wasSet = false;
-    if (ad != null && !ad.equals(aNewAd) && equals(ad.getVehicle()))
-    {
-      //Unable to setAd, as existing ad would become an orphan
-      return wasSet;
-    }
-
-    ad = aNewAd;
-    Vehicle anOldVehicle = aNewAd != null ? aNewAd.getVehicle() : null;
-
-    if (!this.equals(anOldVehicle))
-    {
-      if (anOldVehicle != null)
-      {
-        anOldVehicle.ad = null;
-      }
-      if (ad != null)
-      {
-        ad.setVehicle(this);
-      }
-    }
-    wasSet = true;
-    return wasSet;
-  }
-  /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
-  {
-    boolean wasSet = false;
-    if (aCarpoolManager == null)
-    {
-      return wasSet;
-    }
-
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
-    {
-      existingCarpoolManager.removeVehicle(this);
-    }
-    carpoolManager.addVehicle(this);
-    wasSet = true;
-    return wasSet;
+    return carPoolManager;
   }
   /* Code from template association_IsNumberOfValidMethod */
   public boolean isNumberOfDriversValid()
@@ -328,26 +270,39 @@ public class Vehicle
     }
     return wasAdded;
   }
+  /* Code from template association_SetOneToMany */
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
+  {
+    boolean wasSet = false;
+    if (aCarPoolManager == null)
+    {
+      return wasSet;
+    }
+
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
+    {
+      existingCarPoolManager.removeVehicle(this);
+    }
+    carPoolManager.addVehicle(this);
+    wasSet = true;
+    return wasSet;
+  }
 
   public void delete()
   {
-    Ad existingAd = ad;
-    ad = null;
-    if (existingAd != null)
-    {
-      existingAd.delete();
-    }
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
-    {
-      placeholderCarpoolManager.removeVehicle(this);
-    }
     ArrayList<Driver> copyOfDrivers = new ArrayList<Driver>(drivers);
     drivers.clear();
     for(Driver aDriver : copyOfDrivers)
     {
       aDriver.removeVehicle(this);
+    }
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
+    {
+      placeholderCarPoolManager.removeVehicle(this);
     }
   }
 
@@ -359,7 +314,6 @@ public class Vehicle
             "brand" + ":" + getBrand()+ "," +
             "plateNumber" + ":" + getPlateNumber()+ "," +
             "availableSeat" + ":" + getAvailableSeat()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "ad = "+(getAd()!=null?Integer.toHexString(System.identityHashCode(getAd())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "carpoolManager = "+(getCarpoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarpoolManager())):"null");
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

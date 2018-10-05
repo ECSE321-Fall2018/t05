@@ -6,8 +6,8 @@ import java.util.*;
 import java.sql.Time;
 import java.sql.Date;
 
-// line 51 "../../../../../../../../ump/tmp588129/model.ump"
-// line 115 "../../../../../../../../ump/tmp588129/model.ump"
+// line 38 "../../../../../../../ump/tmp788046/model.ump"
+// line 107 "../../../../../../../ump/tmp788046/model.ump"
 public class Ad
 {
 
@@ -17,44 +17,42 @@ public class Ad
 
   //Ad Attributes
   private int id;
+  private double price;
   private boolean isActive;
   private boolean isCompleted;
-  private double price;
 
   //Ad Associations
   private List<Stop> stops;
-  private CarpoolManager carpoolManager;
   private Driver driver;
   private List<Passenger> passengers;
   private Vehicle vehicle;
-  
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Ad(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Driver aDriver, Vehicle aVehicle, double price)
+  public Ad(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Driver aDriver, Vehicle aVehicle, CarPoolManager aCarPoolManager)
   {
     id = aId;
-    this.price = price;
+    price = aPrice;
     isActive = aIsActive;
     isCompleted = aIsCompleted;
     stops = new ArrayList<Stop>();
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
-    {
-      throw new RuntimeException("Unable to create ad due to carpoolManager");
-    }
     boolean didAddDriver = setDriver(aDriver);
     if (!didAddDriver)
     {
       throw new RuntimeException("Unable to create ad due to driver");
     }
     passengers = new ArrayList<Passenger>();
-    boolean didAddVehicle = setVehicle(aVehicle);
-    if (!didAddVehicle)
+    if (!setVehicle(aVehicle))
     {
-      throw new RuntimeException("Unable to create ad due to vehicle");
+      throw new RuntimeException("Unable to create Ad due to aVehicle");
+    }
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
+    {
+      throw new RuntimeException("Unable to create ad due to carPoolManager");
     }
   }
 
@@ -66,6 +64,14 @@ public class Ad
   {
     boolean wasSet = false;
     id = aId;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setPrice(double aPrice)
+  {
+    boolean wasSet = false;
+    price = aPrice;
     wasSet = true;
     return wasSet;
   }
@@ -91,15 +97,16 @@ public class Ad
     return id;
   }
 
+  public double getPrice()
+  {
+    return price;
+  }
+
   public boolean getIsActive()
   {
     return isActive;
   }
 
-  public double getPrice() {
-	  return price;
-  }
-  
   public boolean getIsCompleted()
   {
     return isCompleted;
@@ -117,7 +124,7 @@ public class Ad
     return newStops;
   }
 
-  public int getNumberOfStops()
+  public int numberOfStops()
   {
     int number = stops.size();
     return number;
@@ -133,11 +140,6 @@ public class Ad
   {
     int index = stops.indexOf(aStop);
     return index;
-  }
-  /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
-  {
-    return carpoolManager;
   }
   /* Code from template association_GetOne */
   public Driver getDriver()
@@ -179,22 +181,20 @@ public class Ad
   {
     return vehicle;
   }
-  /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfStopsValid()
+  /* Code from template association_GetOne */
+  public CarPoolManager getCarPoolManager()
   {
-    boolean isValid = getNumberOfStops() >= minimumNumberOfStops();
-    return isValid;
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfStops()
   {
-    return 1;
+    return 0;
   }
-  /* Code from template association_AddMandatoryManyToOne */
-  public Stop addStop(Time aTime, Date aDate, int aNbOfAvailableSeat, Adress aAdress)
+  /* Code from template association_AddManyToOne */
+  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, CarPoolManager aCarPoolManager)
   {
-    Stop aNewStop = new Stop(aTime, aDate, aNbOfAvailableSeat, aAdress, this);
-    return aNewStop;
+    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, this, aCarPoolManager);
   }
 
   public boolean addStop(Stop aStop)
@@ -203,11 +203,6 @@ public class Ad
     if (stops.contains(aStop)) { return false; }
     Ad existingAd = aStop.getAd();
     boolean isNewAd = existingAd != null && !this.equals(existingAd);
-
-    if (isNewAd && existingAd.getNumberOfStops() <= minimumNumberOfStops())
-    {
-      return wasAdded;
-    }
     if (isNewAd)
     {
       aStop.setAd(this);
@@ -224,19 +219,11 @@ public class Ad
   {
     boolean wasRemoved = false;
     //Unable to remove aStop, as it must always have a ad
-    if (this.equals(aStop.getAd()))
+    if (!this.equals(aStop.getAd()))
     {
-      return wasRemoved;
+      stops.remove(aStop);
+      wasRemoved = true;
     }
-
-    //ad already at minimum (1)
-    if (getNumberOfStops() <= minimumNumberOfStops())
-    {
-      return wasRemoved;
-    }
-
-    stops.remove(aStop);
-    wasRemoved = true;
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
@@ -246,7 +233,7 @@ public class Ad
     if(addStop(aStop))
     {
       if(index < 0 ) { index = 0; }
-      if(index > getNumberOfStops()) { index = getNumberOfStops() - 1; }
+      if(index > numberOfStops()) { index = numberOfStops() - 1; }
       stops.remove(aStop);
       stops.add(index, aStop);
       wasAdded = true;
@@ -260,7 +247,7 @@ public class Ad
     if(stops.contains(aStop))
     {
       if(index < 0 ) { index = 0; }
-      if(index > getNumberOfStops()) { index = getNumberOfStops() - 1; }
+      if(index > numberOfStops()) { index = numberOfStops() - 1; }
       stops.remove(aStop);
       stops.add(index, aStop);
       wasAdded = true;
@@ -270,25 +257,6 @@ public class Ad
       wasAdded = addStopAt(aStop, index);
     }
     return wasAdded;
-  }
-  /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
-  {
-    boolean wasSet = false;
-    if (aCarpoolManager == null)
-    {
-      return wasSet;
-    }
-
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
-    {
-      existingCarpoolManager.removeAd(this);
-    }
-    carpoolManager.addAd(this);
-    wasSet = true;
-    return wasSet;
   }
   /* Code from template association_SetOneToMany */
   public boolean setDriver(Driver aDriver)
@@ -391,31 +359,33 @@ public class Ad
     }
     return wasAdded;
   }
-  /* Code from template association_SetOneToOptionalOne */
+  /* Code from template association_SetUnidirectionalOne */
   public boolean setVehicle(Vehicle aNewVehicle)
   {
     boolean wasSet = false;
-    if (aNewVehicle == null)
+    if (aNewVehicle != null)
     {
-      //Unable to setVehicle to null, as ad must always be associated to a vehicle
+      vehicle = aNewVehicle;
+      wasSet = true;
+    }
+    return wasSet;
+  }
+  /* Code from template association_SetOneToMany */
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
+  {
+    boolean wasSet = false;
+    if (aCarPoolManager == null)
+    {
       return wasSet;
     }
-    
-    Ad existingAd = aNewVehicle.getAd();
-    if (existingAd != null && !equals(existingAd))
-    {
-      //Unable to setVehicle, the current vehicle already has a ad, which would be orphaned if it were re-assigned
-      return wasSet;
-    }
-    
-    Vehicle anOldVehicle = vehicle;
-    vehicle = aNewVehicle;
-    vehicle.setAd(this);
 
-    if (anOldVehicle != null)
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
-      anOldVehicle.setAd(null);
+      existingCarPoolManager.removeAd(this);
     }
+    carPoolManager.addAd(this);
     wasSet = true;
     return wasSet;
   }
@@ -429,12 +399,6 @@ public class Ad
       stops.remove(aStop);
     }
     
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
-    {
-      placeholderCarpoolManager.removeAd(this);
-    }
     Driver placeholderDriver = driver;
     this.driver = null;
     if(placeholderDriver != null)
@@ -447,11 +411,12 @@ public class Ad
     {
       aPassenger.removeAd(this);
     }
-    Vehicle existingVehicle = vehicle;
     vehicle = null;
-    if (existingVehicle != null)
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
     {
-      existingVehicle.setAd(null);
+      placeholderCarPoolManager.removeAd(this);
     }
   }
 
@@ -460,10 +425,11 @@ public class Ad
   {
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
+            "price" + ":" + getPrice()+ "," +
             "isActive" + ":" + getIsActive()+ "," +
             "isCompleted" + ":" + getIsCompleted()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "carpoolManager = "+(getCarpoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarpoolManager())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "driver = "+(getDriver()!=null?Integer.toHexString(System.identityHashCode(getDriver())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "vehicle = "+(getVehicle()!=null?Integer.toHexString(System.identityHashCode(getVehicle())):"null");
+            "  " + "vehicle = "+(getVehicle()!=null?Integer.toHexString(System.identityHashCode(getVehicle())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

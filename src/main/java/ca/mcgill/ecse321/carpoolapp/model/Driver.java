@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.*;
 
-// line 28 "../../../../../../../../ump/tmp588129/model.ump"
-// line 100 "../../../../../../../../ump/tmp588129/model.ump"
+// line 15 "../../../../../../../ump/tmp788046/model.ump"
+// line 89 "../../../../../../../ump/tmp788046/model.ump"
 public class Driver extends UserRole
 {
 
@@ -20,23 +20,23 @@ public class Driver extends UserRole
   //Driver Associations
   private List<Vehicle> vehicles;
   private List<Ad> ads;
-  private CarpoolManager carpoolManager;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Driver(User aUser, int aAverageCostPerKm, int aTotalDistance, CarpoolManager aCarpoolManager)
+  public Driver(User aUser, int aAverageCostPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     averageCostPerKm = aAverageCostPerKm;
     totalDistance = aTotalDistance;
     vehicles = new ArrayList<Vehicle>();
     ads = new ArrayList<Ad>();
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create driver due to carpoolManager");
+      throw new RuntimeException("Unable to create driver due to carPoolManager");
     }
   }
 
@@ -130,9 +130,9 @@ public class Driver extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
+  public CarPoolManager getCarPoolManager()
   {
-    return carpoolManager;
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfVehicles()
@@ -222,9 +222,9 @@ public class Driver extends UserRole
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Ad addAd(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Vehicle aVehicle, double price)
+  public Ad addAd(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Vehicle aVehicle, CarPoolManager aCarPoolManager)
   {
-    return new Ad(aId, aIsActive, aIsCompleted, aCarpoolManager, this, aVehicle, price);
+    return new Ad(aId, aPrice, aIsActive, aIsCompleted, this, aVehicle, aCarPoolManager);
   }
 
   public boolean addAd(Ad aAd)
@@ -289,21 +289,21 @@ public class Driver extends UserRole
     return wasAdded;
   }
   /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
   {
     boolean wasSet = false;
-    if (aCarpoolManager == null)
+    if (aCarPoolManager == null)
     {
       return wasSet;
     }
 
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
-      existingCarpoolManager.removeDriver(this);
+      existingCarPoolManager.removeDriver(this);
     }
-    carpoolManager.addDriver(this);
+    carPoolManager.addDriver(this);
     wasSet = true;
     return wasSet;
   }
@@ -330,11 +330,11 @@ public class Driver extends UserRole
       ads.remove(aAd);
     }
     
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
     {
-      placeholderCarpoolManager.removeDriver(this);
+      placeholderCarPoolManager.removeDriver(this);
     }
     super.delete();
   }
@@ -345,6 +345,6 @@ public class Driver extends UserRole
     return super.toString() + "["+
             "averageCostPerKm" + ":" + getAverageCostPerKm()+ "," +
             "totalDistance" + ":" + getTotalDistance()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "carpoolManager = "+(getCarpoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarpoolManager())):"null");
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

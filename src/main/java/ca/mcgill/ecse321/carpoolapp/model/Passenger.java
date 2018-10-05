@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.*;
 
-// line 38 "../../../../../../../../ump/tmp588129/model.ump"
-// line 105 "../../../../../../../../ump/tmp588129/model.ump"
+// line 25 "../../../../../../../ump/tmp788046/model.ump"
+// line 96 "../../../../../../../ump/tmp788046/model.ump"
 public class Passenger extends UserRole
 {
 
@@ -19,22 +19,24 @@ public class Passenger extends UserRole
 
   //Passenger Associations
   private List<Ad> ads;
-  private CarpoolManager carpoolManager;
+  private List<Stop> stops;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Passenger(User aUser, int aAveragePaidPerKm, int aTotalDistance, CarpoolManager aCarpoolManager)
+  public Passenger(User aUser, int aAveragePaidPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     averagePaidPerKm = aAveragePaidPerKm;
     totalDistance = aTotalDistance;
     ads = new ArrayList<Ad>();
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
+    stops = new ArrayList<Stop>();
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create passenger due to carpoolManager");
+      throw new RuntimeException("Unable to create passenger due to carPoolManager");
     }
   }
 
@@ -97,10 +99,40 @@ public class Passenger extends UserRole
     int index = ads.indexOf(aAd);
     return index;
   }
-  /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
+  /* Code from template association_GetMany */
+  public Stop getStop(int index)
   {
-    return carpoolManager;
+    Stop aStop = stops.get(index);
+    return aStop;
+  }
+
+  public List<Stop> getStops()
+  {
+    List<Stop> newStops = Collections.unmodifiableList(stops);
+    return newStops;
+  }
+
+  public int numberOfStops()
+  {
+    int number = stops.size();
+    return number;
+  }
+
+  public boolean hasStops()
+  {
+    boolean has = stops.size() > 0;
+    return has;
+  }
+
+  public int indexOfStop(Stop aStop)
+  {
+    int index = stops.indexOf(aStop);
+    return index;
+  }
+  /* Code from template association_GetOne */
+  public CarPoolManager getCarPoolManager()
+  {
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfAds()
@@ -184,22 +216,104 @@ public class Passenger extends UserRole
     }
     return wasAdded;
   }
+  /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfStops()
+  {
+    return 0;
+  }
+  /* Code from template association_AddManyToManyMethod */
+  public boolean addStop(Stop aStop)
+  {
+    boolean wasAdded = false;
+    if (stops.contains(aStop)) { return false; }
+    stops.add(aStop);
+    if (aStop.indexOfPassenger(this) != -1)
+    {
+      wasAdded = true;
+    }
+    else
+    {
+      wasAdded = aStop.addPassenger(this);
+      if (!wasAdded)
+      {
+        stops.remove(aStop);
+      }
+    }
+    return wasAdded;
+  }
+  /* Code from template association_RemoveMany */
+  public boolean removeStop(Stop aStop)
+  {
+    boolean wasRemoved = false;
+    if (!stops.contains(aStop))
+    {
+      return wasRemoved;
+    }
+
+    int oldIndex = stops.indexOf(aStop);
+    stops.remove(oldIndex);
+    if (aStop.indexOfPassenger(this) == -1)
+    {
+      wasRemoved = true;
+    }
+    else
+    {
+      wasRemoved = aStop.removePassenger(this);
+      if (!wasRemoved)
+      {
+        stops.add(oldIndex,aStop);
+      }
+    }
+    return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addStopAt(Stop aStop, int index)
+  {  
+    boolean wasAdded = false;
+    if(addStop(aStop))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStops()) { index = numberOfStops() - 1; }
+      stops.remove(aStop);
+      stops.add(index, aStop);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveStopAt(Stop aStop, int index)
+  {
+    boolean wasAdded = false;
+    if(stops.contains(aStop))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStops()) { index = numberOfStops() - 1; }
+      stops.remove(aStop);
+      stops.add(index, aStop);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addStopAt(aStop, index);
+    }
+    return wasAdded;
+  }
   /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
   {
     boolean wasSet = false;
-    if (aCarpoolManager == null)
+    if (aCarPoolManager == null)
     {
       return wasSet;
     }
 
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
-      existingCarpoolManager.removePassenger(this);
+      existingCarPoolManager.removePassenger(this);
     }
-    carpoolManager.addPassenger(this);
+    carPoolManager.addPassenger(this);
     wasSet = true;
     return wasSet;
   }
@@ -212,11 +326,17 @@ public class Passenger extends UserRole
     {
       aAd.removePassenger(this);
     }
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
+    ArrayList<Stop> copyOfStops = new ArrayList<Stop>(stops);
+    stops.clear();
+    for(Stop aStop : copyOfStops)
     {
-      placeholderCarpoolManager.removePassenger(this);
+      aStop.removePassenger(this);
+    }
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
+    {
+      placeholderCarPoolManager.removePassenger(this);
     }
     super.delete();
   }
@@ -227,6 +347,6 @@ public class Passenger extends UserRole
     return super.toString() + "["+
             "averagePaidPerKm" + ":" + getAveragePaidPerKm()+ "," +
             "totalDistance" + ":" + getTotalDistance()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "carpoolManager = "+(getCarpoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarpoolManager())):"null");
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

@@ -3,8 +3,8 @@
 
 package ca.mcgill.ecse321.carpoolapp.model;
 
-// line 24 "../../../../../../../../ump/tmp588129/model.ump"
-// line 95 "../../../../../../../../ump/tmp588129/model.ump"
+// line 11 "../../../../../../../ump/tmp788046/model.ump"
+// line 84 "../../../../../../../ump/tmp788046/model.ump"
 public abstract class UserRole
 {
 
