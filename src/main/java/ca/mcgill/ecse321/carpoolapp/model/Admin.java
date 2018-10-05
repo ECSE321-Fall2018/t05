@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.*;
 
-// line 46 "../../../../../../../../ump/tmp588129/model.ump"
-// line 110 "../../../../../../../../ump/tmp588129/model.ump"
+// line 33 "../../../../../../../ump/tmp788046/model.ump"
+// line 102 "../../../../../../../ump/tmp788046/model.ump"
 public class Admin extends UserRole
 {
 
@@ -15,20 +15,20 @@ public class Admin extends UserRole
 
   //Admin Associations
   private List<Ad> ads;
-  private CarpoolManager carpoolManager;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Admin(User aUser, CarpoolManager aCarpoolManager)
+  public Admin(User aUser, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     ads = new ArrayList<Ad>();
-    boolean didAddCarpoolManager = setCarpoolManager(aCarpoolManager);
-    if (!didAddCarpoolManager)
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create admin due to carpoolManager");
+      throw new RuntimeException("Unable to create admin due to carPoolManager");
     }
   }
 
@@ -66,9 +66,9 @@ public class Admin extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
-  public CarpoolManager getCarpoolManager()
+  public CarPoolManager getCarPoolManager()
   {
-    return carpoolManager;
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfAds()
@@ -128,21 +128,21 @@ public class Admin extends UserRole
     return wasAdded;
   }
   /* Code from template association_SetOneToMany */
-  public boolean setCarpoolManager(CarpoolManager aCarpoolManager)
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
   {
     boolean wasSet = false;
-    if (aCarpoolManager == null)
+    if (aCarPoolManager == null)
     {
       return wasSet;
     }
 
-    CarpoolManager existingCarpoolManager = carpoolManager;
-    carpoolManager = aCarpoolManager;
-    if (existingCarpoolManager != null && !existingCarpoolManager.equals(aCarpoolManager))
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
-      existingCarpoolManager.removeAdmin(this);
+      existingCarPoolManager.removeAdmin(this);
     }
-    carpoolManager.addAdmin(this);
+    carPoolManager.addAdmin(this);
     wasSet = true;
     return wasSet;
   }
@@ -150,11 +150,11 @@ public class Admin extends UserRole
   public void delete()
   {
     ads.clear();
-    CarpoolManager placeholderCarpoolManager = carpoolManager;
-    this.carpoolManager = null;
-    if(placeholderCarpoolManager != null)
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
     {
-      placeholderCarpoolManager.removeAdmin(this);
+      placeholderCarPoolManager.removeAdmin(this);
     }
     super.delete();
   }

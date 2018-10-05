@@ -1,12 +1,13 @@
 package ca.mcgill.ecse321.carpoolapp.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.tomcat.jni.Address;
 
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
 import ca.mcgill.ecse321.carpoolapp.model.Admin;
-import ca.mcgill.ecse321.carpoolapp.model.CarpoolManager;
+import ca.mcgill.ecse321.carpoolapp.model.CarPoolManager;
 import ca.mcgill.ecse321.carpoolapp.model.Driver;
 import ca.mcgill.ecse321.carpoolapp.model.Passenger;
 import ca.mcgill.ecse321.carpoolapp.model.Stop;
@@ -15,15 +16,16 @@ import ca.mcgill.ecse321.carpoolapp.model.Vehicle;
 
 public class MethodServices 
 {
-	private CarpoolManager cm;
+	private CarPoolManager cm;
 	
-	public MethodServices(CarpoolManager cm) {
+	public MethodServices(CarPoolManager cm) {
 		this.cm = cm;
 	}
 	
 	//AKC
 	public User createUser()
 	{
+		
 		return null;
 		
 	}
@@ -53,42 +55,80 @@ public class MethodServices
 	public Address createAddress()
 	{
 		return null;
-		
 	}
 	
 	
 	//AKC
 	public Stop createStop()
 	{
-		return null;
 		
+		return null;
 	}
 	
 	//AKC
-	public Ad createAd()
+	public Ad createAd(Driver driver, int id, boolean isCompleted, boolean isActive, double price, Vehicle vehicle)
 	{
-		return null;
+//		Ad(id, isActive, isCompleted, cm, driver, vehicle, price);
+//		cm.
 		
+		return null;	
 	}
 	
 	//AKC
 	public Vehicle createVehicle()
 	{
-		return null;
 		
+		return null;
 	}
 
-	//AKC
+	//AKC-done
 	public ArrayList<Driver> getActiveDrivers()
 	{
-		return null;
-		
+		Ad curAd;
+		Driver curDriver;
+		ArrayList<Driver> activeDrivers = new ArrayList<Driver>();
+		ArrayList<Ad> activeAds = getActiveAds();
+	
+		//get all ads if they are active add driver to the list
+		//if driver is already on list do not add
+		for(int i = 0; i < activeAds.size(); i++)
+		{
+			curAd = activeAds.get(i);
+			curDriver = curAd.getDriver();
+			
+			if(activeDrivers.contains(curDriver) == false)
+			{
+				activeDrivers.add(curDriver);
+			}
+		}
+		return activeDrivers;
 	}
 	
-	//AKC
+	//AKC-done
 	public ArrayList<Passenger> getActivePassengers()
 	{
-		return null;
+		Ad curAd;
+		List<Passenger> curPassengers;
+		ArrayList<Passenger> activePassengers = new ArrayList<Passenger>();
+		ArrayList<Ad> activeAds = getActiveAds();
+		
+		//get activeAds
+		//get their passenger, look if each passenger is already in the list
+		for(int i = 0; i < activeAds.size(); i++)
+		{
+			curAd = activeAds.get(i);
+			curPassengers = curAd.getPassengers();
+			
+			for(int j = 0; j < curPassengers.size(); j++)
+			{
+				if(activePassengers.contains(curPassengers.get(j)) == false)
+				{
+					activePassengers.add(curPassengers.get(j));
+				}
+			}
+		}
+		
+		return activePassengers;
 	
 	}
 	
@@ -119,7 +159,7 @@ public class MethodServices
 		//for each ad
 		for (int i = 0; i < list.size(); i++) {
 			//for each stop of the current ad
-			for (int j = 0; j < list.get(i).getNumberOfStops(); j++) {
+			for (int j = 0; j < list.get(i).getStops().size(); j++) {
 				//if the current stop equals the desired starting stop of the customer, register its index in the itinerary
 				if (list.get(i).getStop(j).equals(start))
 					startIndex = j;
@@ -135,18 +175,49 @@ public class MethodServices
 		
 	}
 	
-	//AKC
-	public ArrayList<Ad> getActiveAds(ArrayList<Ad> allAds)
+	//AKC-done
+	public ArrayList<Ad> getActiveAds()
 	{
-		return allAds;
+		ArrayList<Ad> activeAds = new ArrayList<Ad>();
+		List<Ad> allAds = cm.getAds();
 		
+		for(Ad curAd: allAds)
+		{
+			if(curAd.getIsActive() == true)
+			{
+				activeAds.add(curAd);
+			}
+		}
+		
+		return activeAds;
 	}
 	
-	//AKC
+	//AKC-done
 	public double getDistOfAd(Ad ad)
 	{
-		return 0;
+		double distance = 0;
+		List<Stop> stops = ad.getStops();
 		
+		for(int i = 0; i < stops.size()-1; i++)
+		{
+			distance += getDistBetweenStops(stops.get(i), stops.get(i+1));
+		}
+		
+		return distance;	
+	}
+	
+	public double getDistBetweenStops(Stop first, Stop next)
+	{
+		double yNext = next.getY();
+		double xNext = next.getX();
+		double yFirst = first.getY();
+		double xFirst = first.getX();
+		
+		double distance;
+		
+		distance = Math.hypot(xNext-xFirst, yNext-yFirst);
+		
+		return distance;
 	}
 	
 	//AHB-done

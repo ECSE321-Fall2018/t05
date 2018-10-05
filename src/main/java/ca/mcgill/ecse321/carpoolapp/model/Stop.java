@@ -4,9 +4,10 @@
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.sql.Time;
 import java.sql.Date;
+import java.util.*;
 
-// line 69 "../../../../../../../../ump/tmp588129/model.ump"
-// line 125 "../../../../../../../../ump/tmp588129/model.ump"
+// line 57 "../../../../../../../ump/tmp788046/model.ump"
+// line 119 "../../../../../../../ump/tmp788046/model.ump"
 public class Stop
 {
 
@@ -17,43 +18,36 @@ public class Stop
   //Stop Attributes
   private Time time;
   private Date date;
+  private int x;
+  private int y;
   private int nbOfAvailableSeat;
 
   //Stop Associations
-  private Adress adress;
+  private List<Passenger> passengers;
   private Ad ad;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Stop(Time aTime, Date aDate, int aNbOfAvailableSeat, Adress aAdress, Ad aAd)
+  public Stop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, CarPoolManager aCarPoolManager)
   {
     time = aTime;
     date = aDate;
+    x = aX;
+    y = aY;
     nbOfAvailableSeat = aNbOfAvailableSeat;
-    if (aAdress == null || aAdress.getStop() != null)
-    {
-      throw new RuntimeException("Unable to create Stop due to aAdress");
-    }
-    adress = aAdress;
+    passengers = new ArrayList<Passenger>();
     boolean didAddAd = setAd(aAd);
     if (!didAddAd)
     {
       throw new RuntimeException("Unable to create stop due to ad");
     }
-  }
-
-  public Stop(Time aTime, Date aDate, int aNbOfAvailableSeat, String aStreetForAdress, String aCityForAdress, String aProvincelForAdress, String aPostalCodeForAdress, int aXForAdress, int aYForAdress, CarpoolManager aCarpoolManagerForAdress, Ad aAd)
-  {
-    time = aTime;
-    date = aDate;
-    nbOfAvailableSeat = aNbOfAvailableSeat;
-    adress = new Adress(aStreetForAdress, aCityForAdress, aProvincelForAdress, aPostalCodeForAdress, aXForAdress, aYForAdress, aCarpoolManagerForAdress, this);
-    boolean didAddAd = setAd(aAd);
-    if (!didAddAd)
+    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create stop due to ad");
+      throw new RuntimeException("Unable to create stop due to carPoolManager");
     }
   }
 
@@ -77,6 +71,22 @@ public class Stop
     return wasSet;
   }
 
+  public boolean setX(int aX)
+  {
+    boolean wasSet = false;
+    x = aX;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setY(int aY)
+  {
+    boolean wasSet = false;
+    y = aY;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setNbOfAvailableSeat(int aNbOfAvailableSeat)
   {
     boolean wasSet = false;
@@ -95,31 +105,147 @@ public class Stop
     return date;
   }
 
+  public int getX()
+  {
+    return x;
+  }
+
+  public int getY()
+  {
+    return y;
+  }
+
   public int getNbOfAvailableSeat()
   {
     return nbOfAvailableSeat;
   }
-  /* Code from template association_GetOne */
-  public Adress getAdress()
+  /* Code from template association_GetMany */
+  public Passenger getPassenger(int index)
   {
-    return adress;
+    Passenger aPassenger = passengers.get(index);
+    return aPassenger;
+  }
+
+  public List<Passenger> getPassengers()
+  {
+    List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
+    return newPassengers;
+  }
+
+  public int numberOfPassengers()
+  {
+    int number = passengers.size();
+    return number;
+  }
+
+  public boolean hasPassengers()
+  {
+    boolean has = passengers.size() > 0;
+    return has;
+  }
+
+  public int indexOfPassenger(Passenger aPassenger)
+  {
+    int index = passengers.indexOf(aPassenger);
+    return index;
   }
   /* Code from template association_GetOne */
   public Ad getAd()
   {
     return ad;
   }
-  /* Code from template association_SetOneToMandatoryMany */
+  /* Code from template association_GetOne */
+  public CarPoolManager getCarPoolManager()
+  {
+    return carPoolManager;
+  }
+  /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfPassengers()
+  {
+    return 0;
+  }
+  /* Code from template association_AddManyToManyMethod */
+  public boolean addPassenger(Passenger aPassenger)
+  {
+    boolean wasAdded = false;
+    if (passengers.contains(aPassenger)) { return false; }
+    passengers.add(aPassenger);
+    if (aPassenger.indexOfStop(this) != -1)
+    {
+      wasAdded = true;
+    }
+    else
+    {
+      wasAdded = aPassenger.addStop(this);
+      if (!wasAdded)
+      {
+        passengers.remove(aPassenger);
+      }
+    }
+    return wasAdded;
+  }
+  /* Code from template association_RemoveMany */
+  public boolean removePassenger(Passenger aPassenger)
+  {
+    boolean wasRemoved = false;
+    if (!passengers.contains(aPassenger))
+    {
+      return wasRemoved;
+    }
+
+    int oldIndex = passengers.indexOf(aPassenger);
+    passengers.remove(oldIndex);
+    if (aPassenger.indexOfStop(this) == -1)
+    {
+      wasRemoved = true;
+    }
+    else
+    {
+      wasRemoved = aPassenger.removeStop(this);
+      if (!wasRemoved)
+      {
+        passengers.add(oldIndex,aPassenger);
+      }
+    }
+    return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addPassengerAt(Passenger aPassenger, int index)
+  {  
+    boolean wasAdded = false;
+    if(addPassenger(aPassenger))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfPassengers()) { index = numberOfPassengers() - 1; }
+      passengers.remove(aPassenger);
+      passengers.add(index, aPassenger);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMovePassengerAt(Passenger aPassenger, int index)
+  {
+    boolean wasAdded = false;
+    if(passengers.contains(aPassenger))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfPassengers()) { index = numberOfPassengers() - 1; }
+      passengers.remove(aPassenger);
+      passengers.add(index, aPassenger);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addPassengerAt(aPassenger, index);
+    }
+    return wasAdded;
+  }
+  /* Code from template association_SetOneToMany */
   public boolean setAd(Ad aAd)
   {
     boolean wasSet = false;
-    //Must provide ad to stop
     if (aAd == null)
-    {
-      return wasSet;
-    }
-
-    if (ad != null && ad.getNumberOfStops() <= Ad.minimumNumberOfStops())
     {
       return wasSet;
     }
@@ -128,25 +254,39 @@ public class Stop
     ad = aAd;
     if (existingAd != null && !existingAd.equals(aAd))
     {
-      boolean didRemove = existingAd.removeStop(this);
-      if (!didRemove)
-      {
-        ad = existingAd;
-        return wasSet;
-      }
+      existingAd.removeStop(this);
     }
     ad.addStop(this);
+    wasSet = true;
+    return wasSet;
+  }
+  /* Code from template association_SetOneToMany */
+  public boolean setCarPoolManager(CarPoolManager aCarPoolManager)
+  {
+    boolean wasSet = false;
+    if (aCarPoolManager == null)
+    {
+      return wasSet;
+    }
+
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
+    if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
+    {
+      existingCarPoolManager.removeStop(this);
+    }
+    carPoolManager.addStop(this);
     wasSet = true;
     return wasSet;
   }
 
   public void delete()
   {
-    Adress existingAdress = adress;
-    adress = null;
-    if (existingAdress != null)
+    ArrayList<Passenger> copyOfPassengers = new ArrayList<Passenger>(passengers);
+    passengers.clear();
+    for(Passenger aPassenger : copyOfPassengers)
     {
-      existingAdress.delete();
+      aPassenger.removeStop(this);
     }
     Ad placeholderAd = ad;
     this.ad = null;
@@ -154,17 +294,24 @@ public class Stop
     {
       placeholderAd.removeStop(this);
     }
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
+    if(placeholderCarPoolManager != null)
+    {
+      placeholderCarPoolManager.removeStop(this);
+    }
   }
 
 
   public String toString()
   {
     return super.toString() + "["+
+            "x" + ":" + getX()+ "," +
+            "y" + ":" + getY()+ "," +
             "nbOfAvailableSeat" + ":" + getNbOfAvailableSeat()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "time" + "=" + (getTime() != null ? !getTime().equals(this)  ? getTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "adress = "+(getAdress()!=null?Integer.toHexString(System.identityHashCode(getAdress())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "ad = "+(getAd()!=null?Integer.toHexString(System.identityHashCode(getAd())):"null");
-  }  
-
+            "  " + "ad = "+(getAd()!=null?Integer.toHexString(System.identityHashCode(getAd())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
+  }
 }
