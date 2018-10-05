@@ -633,9 +633,9 @@ public class CarpoolManager
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Ad addAd(int aId, boolean aIsActive, boolean aIsCompleted, Driver aDriver, Vehicle aVehicle)
+  public Ad addAd(int aId, boolean aIsActive, boolean aIsCompleted, Driver aDriver, Vehicle aVehicle, double price)
   {
-    return new Ad(aId, aIsActive, aIsCompleted, this, aDriver, aVehicle);
+    return new Ad(aId, aIsActive, aIsCompleted, this, aDriver, aVehicle, price);
   }
 
   public boolean addAd(Ad aAd)

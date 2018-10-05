@@ -119,7 +119,7 @@ public class Stop
       return wasSet;
     }
 
-    if (ad != null && ad.numberOfStops() <= Ad.minimumNumberOfStops())
+    if (ad != null && ad.getNumberOfStops() <= Ad.minimumNumberOfStops())
     {
       return wasSet;
     }

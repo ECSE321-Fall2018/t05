@@ -19,6 +19,7 @@ public class Ad
   private int id;
   private boolean isActive;
   private boolean isCompleted;
+  private double price;
 
   //Ad Associations
   private List<Stop> stops;
@@ -26,14 +27,16 @@ public class Ad
   private Driver driver;
   private List<Passenger> passengers;
   private Vehicle vehicle;
+  
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Ad(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Driver aDriver, Vehicle aVehicle)
+  public Ad(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Driver aDriver, Vehicle aVehicle, double price)
   {
     id = aId;
+    this.price = price;
     isActive = aIsActive;
     isCompleted = aIsCompleted;
     stops = new ArrayList<Stop>();
@@ -93,6 +96,10 @@ public class Ad
     return isActive;
   }
 
+  public double getPrice() {
+	  return price;
+  }
+  
   public boolean getIsCompleted()
   {
     return isCompleted;
@@ -110,7 +117,7 @@ public class Ad
     return newStops;
   }
 
-  public int numberOfStops()
+  public int getNumberOfStops()
   {
     int number = stops.size();
     return number;
@@ -175,7 +182,7 @@ public class Ad
   /* Code from template association_IsNumberOfValidMethod */
   public boolean isNumberOfStopsValid()
   {
-    boolean isValid = numberOfStops() >= minimumNumberOfStops();
+    boolean isValid = getNumberOfStops() >= minimumNumberOfStops();
     return isValid;
   }
   /* Code from template association_MinimumNumberOfMethod */
@@ -197,7 +204,7 @@ public class Ad
     Ad existingAd = aStop.getAd();
     boolean isNewAd = existingAd != null && !this.equals(existingAd);
 
-    if (isNewAd && existingAd.numberOfStops() <= minimumNumberOfStops())
+    if (isNewAd && existingAd.getNumberOfStops() <= minimumNumberOfStops())
     {
       return wasAdded;
     }
@@ -223,7 +230,7 @@ public class Ad
     }
 
     //ad already at minimum (1)
-    if (numberOfStops() <= minimumNumberOfStops())
+    if (getNumberOfStops() <= minimumNumberOfStops())
     {
       return wasRemoved;
     }
@@ -239,7 +246,7 @@ public class Ad
     if(addStop(aStop))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfStops()) { index = numberOfStops() - 1; }
+      if(index > getNumberOfStops()) { index = getNumberOfStops() - 1; }
       stops.remove(aStop);
       stops.add(index, aStop);
       wasAdded = true;
@@ -253,7 +260,7 @@ public class Ad
     if(stops.contains(aStop))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfStops()) { index = numberOfStops() - 1; }
+      if(index > getNumberOfStops()) { index = getNumberOfStops() - 1; }
       stops.remove(aStop);
       stops.add(index, aStop);
       wasAdded = true;

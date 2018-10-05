@@ -222,9 +222,9 @@ public class Driver extends UserRole
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Ad addAd(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Vehicle aVehicle)
+  public Ad addAd(int aId, boolean aIsActive, boolean aIsCompleted, CarpoolManager aCarpoolManager, Vehicle aVehicle, double price)
   {
-    return new Ad(aId, aIsActive, aIsCompleted, aCarpoolManager, this, aVehicle);
+    return new Ad(aId, aIsActive, aIsCompleted, aCarpoolManager, this, aVehicle, price);
   }
 
   public boolean addAd(Ad aAd)
