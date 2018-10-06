@@ -35,6 +35,7 @@ public class MethodServices
 	//AKC
 	public Driver createDriver()
 	{
+		
 		return null;
 		
 	}
@@ -256,6 +257,7 @@ public class MethodServices
 		return distance;	
 	}
 	
+	
 	public double getDistBetweenStops(Stop first, Stop next)
 	{
 		double yNext = next.getY();
@@ -430,26 +432,35 @@ public class MethodServices
 		return;
 	}
 	
-	//AKC
+	//AHB-done
 	public void completeAd(Ad ad)
 	{
 		Driver driver = ad.getDriver();
 		double adDistance = getDistOfAd(ad);
+		
 		
 		//update driver avg price
 		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
 		totalMoney += adDistance*ad.getPrice();
 		int newAvgPrice = (int) (totalMoney/(adDistance+driver.getTotalDistance()));
 		
-		//update totalDIstance
+		//update totalDIstance of driver
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
 		
+		//Create an arraylist of passengers for each stop
+		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		
+		//update totalDistance of passengers
+		for (int i = 0; i < ad.numberOfStops(); i++) {
+			passengers = (ArrayList<Passenger>) ad.getStop(i).getPassengers(); //get passengers for current stop
+			for (int j = 0; j < passengers.size(); j++) {
+				//add distance between current stop and next stop to each passengers
+				passengers.get(j).setTotalDistance((int)(passengers.get(j).getTotalDistance() + getDistBetweenStops(ad.getStop(i), ad.getStop(i+1))));
+			}
+		}
 		//turn off activity of ad
 		ad.setIsCompleted(true);
 		ad.setIsActive(false);
-		
-		
-		return;
 	}
 	
 }
