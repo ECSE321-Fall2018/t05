@@ -51,12 +51,6 @@ public class MethodServices
 		
 	}
 	
-	//AKC
-	public Address createAddress()
-	{
-		return null;
-	}
-	
 	
 	//AKC
 	public Stop createStop()
