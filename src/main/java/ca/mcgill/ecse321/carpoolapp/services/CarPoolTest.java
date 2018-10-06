@@ -145,11 +145,34 @@ class CarPoolTest
 		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
 		
 		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
+		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
 		
 		ArrayList<Driver> activeDrivers = service.getActiveDrivers();
 		
-		assertEquals(1, activeDrivers.size());
-		
+		assertEquals(2, activeDrivers.size());
+		assertEquals(driver1, activeDrivers.get(0));
+		assertEquals(driver2, activeDrivers.get(1));	
 	}
 
+	@Test
+	void getActivePassengers() 
+	{
+		User user1 = service.createUser(101, "user1");
+		User user2 = service.createUser(102, "user2");
+		
+		Driver driver1 = service.createDriver(user1);
+		Driver driver2 = service.createDriver(user2);
+		
+		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
+		
+		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
+		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
+		
+		ArrayList<Driver> activeDrivers = service.getActiveDrivers();
+		
+		assertEquals(2, activeDrivers.size());
+		assertEquals(driver1, activeDrivers.get(0));
+		assertEquals(driver2, activeDrivers.get(1));	
+	}
 }
