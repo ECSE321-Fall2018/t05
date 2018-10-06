@@ -12,44 +12,69 @@ import ca.mcgill.ecse321.carpoolapp.model.Driver;
 import ca.mcgill.ecse321.carpoolapp.model.Passenger;
 import ca.mcgill.ecse321.carpoolapp.model.Stop;
 import ca.mcgill.ecse321.carpoolapp.model.User;
+import ca.mcgill.ecse321.carpoolapp.model.UserRole;
 import ca.mcgill.ecse321.carpoolapp.model.Vehicle;
 
 public class MethodServices 
 {
 	private CarPoolManager cm;
+	private UserRole Driver;
+	private UserRole Passenger;
+	private UserRole Admin;
 	
 	public MethodServices(CarPoolManager cm) {
 		this.cm = cm;
 	}
 	
 	//AKC
-	public User createUser()
+	public User createUser(int id, String name)
 	{
+		//to-do, filter bad input
+		List<User> allUser = cm.getUsers();
+		
+		for(User curUser: allUser)
+		{
+			if(id == curUser.getId())
+			{
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		User newUser = cm.addUser(id, name);
+		return newUser;
+		
+	}
+	
+	//AKC
+	public Driver createDriver(User user)
+	{
+		//filtering
+		
+		user.addUserRole(Driver);
+		Driver newDriver = cm.addDriver(user, 0, 0);
+		
+//		newDriver.getUser().getId();
+		
+		return newDriver;
+	}
+	
+	//AKC
+	public Passenger createPassenger(User user)
+	{
+		user.addUserRole(Passenger);
+		cm.addPassenger(user, 0, 0);
 		
 		return null;
 		
 	}
 	
 	//AKC
-	public Driver createDriver()
+	public Admin createAdmin(User user)
 	{
+		user.addUserRole(Admin);
+		cm.addAdmin(user);
 		
-		return null;
-		
-	}
-	
-	//AKC
-	public Passenger createPassenger()
-	{
-		return null;
-		
-	}
-	
-	//AKC
-	public Admin createAdmin()
-	{
-		return null;
-		
+		return null;	
 	}
 	
 	
