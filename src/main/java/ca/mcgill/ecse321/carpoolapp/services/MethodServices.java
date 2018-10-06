@@ -18,9 +18,9 @@ import ca.mcgill.ecse321.carpoolapp.model.Vehicle;
 public class MethodServices 
 {
 	private CarPoolManager cm;
-	private UserRole Driver;
-	private UserRole Passenger;
-	private UserRole Admin;
+//	private UserRole Driver;
+//	private UserRole Passenger;
+//	private UserRole Admin;
 	
 	public MethodServices(CarPoolManager cm) {
 		this.cm = cm;
@@ -36,7 +36,7 @@ public class MethodServices
 		{
 			if(id == curUser.getId())
 			{
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("User ID not unique!");
 			}
 		}
 		
@@ -50,9 +50,8 @@ public class MethodServices
 	{
 		//filtering
 		
-		user.addUserRole(Driver);
+//		user.addUserRole(Driver);
 		Driver newDriver = cm.addDriver(user, 0, 0);
-		
 //		newDriver.getUser().getId();
 		
 		return newDriver;
@@ -61,28 +60,29 @@ public class MethodServices
 	//AKC
 	public Passenger createPassenger(User user)
 	{
-		user.addUserRole(Passenger);
-		cm.addPassenger(user, 0, 0);
+//		user.addUserRole(Passenger);
+		Passenger newPassenger = cm.addPassenger(user, 0, 0);
 		
-		return null;
+		return newPassenger;
 		
 	}
 	
 	//AKC
 	public Admin createAdmin(User user)
 	{
-		user.addUserRole(Admin);
-		cm.addAdmin(user);
+//		user.addUserRole(Admin);
+		Admin newAdmin = cm.addAdmin(user);
 		
-		return null;	
+		return newAdmin;	
 	}
 	
 	
 	//AKC-done
-	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int nbOfAvailableSeat, int id)
+	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int id)
 
 	//AKC
 	{
+		int nbOfAvailableSeat = ad.getVehicle().getAvailableSeat();
 		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
 		return newStop;
 	}
