@@ -451,7 +451,7 @@ public class MethodServices
 		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
 		
 		//update totalDistance of passengers
-		for (int i = 0; i < ad.numberOfStops(); i++) {
+		for (int i = 0; i < ad.numberOfStops() - 1; i++) {
 			passengers = (ArrayList<Passenger>) ad.getStop(i).getPassengers(); //get passengers for current stop
 			for (int j = 0; j < passengers.size(); j++) {
 				//add distance between current stop and next stop to each passengers
