@@ -20,7 +20,7 @@ import ca.mcgill.ecse321.carpoolapp.services.*;
 import ca.mcgill.ecse321.carpoolapp.model.User;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
