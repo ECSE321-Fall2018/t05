@@ -2,10 +2,19 @@
 /*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 // line 25 "../../../../../../../ump/tmp788046/model.ump"
 // line 96 "../../../../../../../ump/tmp788046/model.ump"
+@Entity
+@Table(name="passenger")
 public class Passenger extends UserRole
 {
 
@@ -14,7 +23,14 @@ public class Passenger extends UserRole
   //------------------------
 
   //Passenger Attributes
+  @Id
+  @Column(name="id")
+  private int id;
+  @Column(name="name")
+  private String name;
+  @Column(name="average_paid_per_km")
   private int averagePaidPerKm;
+  @Column(name="total_distance")
   private int totalDistance;
 
   //Passenger Associations
@@ -34,6 +50,8 @@ public class Passenger extends UserRole
     ads = new ArrayList<Ad>();
     stops = new ArrayList<Stop>();
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    this.id = aUser.getId();
+    this.name = aUser.getName();
     if (!didAddCarPoolManager)
     {
       throw new RuntimeException("Unable to create passenger due to carPoolManager");
@@ -349,4 +367,15 @@ public class Passenger extends UserRole
             "totalDistance" + ":" + getTotalDistance()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
+  
+  //----------------
+  //Methods for data base
+  //Added by Roger Zhang
+  //----------------
+  
+  @Column(name="carpool_manager_id")
+  public int getCarpoolManagerId() {
+	  return this.getCarPoolManager().getId();
+  }
+  
 }
