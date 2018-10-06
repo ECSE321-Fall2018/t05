@@ -163,6 +163,7 @@ public class MethodServices
 		int max = 0;
 		int minIndex = 0;
 		
+		
 		//sortedList.size()-1 because else j will be out of bounds
 		for (int i = 0; i < sortedList.size() -1; i++) {
 			//will compare current element with next elements
