@@ -2,17 +2,32 @@
 /*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 // line 33 "../../../../../../../ump/tmp788046/model.ump"
 // line 102 "../../../../../../../ump/tmp788046/model.ump"
+@Entity
+@Table(name="admin")
 public class Admin extends UserRole
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
-
+  
+  @Id
+  @Column(name="id")
+  private int id;
+  @Column(name="name")
+  private String name;
+	
   //Admin Associations
   private List<Ad> ads;
   private CarPoolManager carPoolManager;
@@ -26,6 +41,8 @@ public class Admin extends UserRole
     super(aUser);
     ads = new ArrayList<Ad>();
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+    this.id = aUser.getId();
+    this.name = aUser.getName();
     if (!didAddCarPoolManager)
     {
       throw new RuntimeException("Unable to create admin due to carPoolManager");
@@ -157,6 +174,16 @@ public class Admin extends UserRole
       placeholderCarPoolManager.removeAdmin(this);
     }
     super.delete();
+  }
+  
+  //----------------
+  //Methods for data base
+  //Added by Roger Zhang
+  //----------------
+  
+  @Column(name="carpool_manager_id")
+  public int getCarpoolManagerId() {
+	  return this.getCarPoolManager().getId();
   }
 
 }

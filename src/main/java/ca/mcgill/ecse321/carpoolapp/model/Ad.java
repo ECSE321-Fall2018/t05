@@ -2,12 +2,21 @@
 /*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
-import java.sql.Time;
 import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 // line 38 "../../../../../../../ump/tmp788046/model.ump"
 // line 107 "../../../../../../../ump/tmp788046/model.ump"
+@Entity
+@Table(name="ad")
 public class Ad
 {
 
@@ -16,9 +25,14 @@ public class Ad
   //------------------------
 
   //Ad Attributes
+  @Id
+  @Column(name="id")
   private int id;
+  @Column(name="price")
   private double price;
+  @Column(name="is_active")
   private boolean isActive;
+  @Column(name="is_completed")
   private boolean isCompleted;
 
   //Ad Associations
@@ -432,4 +446,26 @@ public class Ad
             "  " + "vehicle = "+(getVehicle()!=null?Integer.toHexString(System.identityHashCode(getVehicle())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
+  
+  //----------------
+  //Methods for data base
+  //Added by Roger Zhang
+  //----------------
+  
+  @Column(name="driver_id")
+  public int getDriverId() {
+	  return this.driver.getUser().getId();
+  }
+  
+  @Column(name="vehicle_plate_number")
+  public String getVehicleId() {
+	  return this.getVehicle().getPlateNumber();
+  }
+  
+  @Column(name="carpool_manager_id")
+  public int getCarpoolManagerId() {
+	  return this.getCarPoolManager().getId();
+  }
+  
+  
 }

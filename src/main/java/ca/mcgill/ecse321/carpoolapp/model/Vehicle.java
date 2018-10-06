@@ -2,10 +2,19 @@
 /*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 // line 47 "../../../../../../../ump/tmp788046/model.ump"
 // line 113 "../../../../../../../ump/tmp788046/model.ump"
+@Entity
+@Table(name="vehicle")
 public class Vehicle
 {
 
@@ -14,9 +23,14 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
+  @Column(name="year")
   private int year;
+  @Column(name="brand")
   private String brand;
+  @Id
+  @Column(name="plate_number")
   private String plateNumber;
+  @Column(name="available_seats")
   private int availableSeat;
 
   //Vehicle Associations
@@ -315,5 +329,15 @@ public class Vehicle
             "plateNumber" + ":" + getPlateNumber()+ "," +
             "availableSeat" + ":" + getAvailableSeat()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
+  }
+  
+  //----------------
+  //Methods for data base
+  //Added by Roger Zhang
+  //----------------
+  
+  @Column(name="carpool_manager_id")
+  public int getCarpoolManagerId() {
+	  return this.getCarPoolManager().getId();
   }
 }
