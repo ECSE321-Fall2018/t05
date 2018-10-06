@@ -707,9 +707,9 @@ public class CarPoolManager
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd)
+  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, int aId)
   {
-    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, aAd, this);
+    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, aAd, this, aId);
   }
 
   public boolean addStop(Stop aStop)

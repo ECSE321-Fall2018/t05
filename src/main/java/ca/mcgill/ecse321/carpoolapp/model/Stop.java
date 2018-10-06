@@ -21,8 +21,18 @@ public class Stop
   private int x;
   private int y;
   private int nbOfAvailableSeat;
+  private int id;
 
-  //Stop Associations
+  public int getId() {
+	return id;
+}
+
+  public void setId(int id) {
+	this.id = id;
+}
+
+
+//Stop Associations
   private List<Passenger> passengers;
   private Ad ad;
   private CarPoolManager carPoolManager;
@@ -31,8 +41,9 @@ public class Stop
   // CONSTRUCTOR
   //------------------------
 
-  public Stop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, CarPoolManager aCarPoolManager)
+  public Stop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, CarPoolManager aCarPoolManager, int aId)
   {
+	id  = aId;
     time = aTime;
     date = aDate;
     x = aX;

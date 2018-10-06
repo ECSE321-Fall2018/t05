@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.carpoolapp.services;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,34 +53,36 @@ public class MethodServices
 		
 	}
 	
-	//AKC
-	public Address createAddress()
+	
+	//AKC-done
+	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int nbOfAvailableSeat, int id)
 	{
-		return null;
+		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
+		return newStop;
 	}
 	
-	
-	//AKC
-	public Stop createStop()
+	//AKC-done
+	public Ad createAd(Driver driver, int id, double price, Vehicle vehicle)
 	{
+		if(price < 0)
+		{
+			throw new IllegalArgumentException();
+		}
 		
-		return null;
+		Ad newAd = cm.addAd(id, price, true, false, driver, vehicle);
+		
+		return newAd;	
 	}
 	
-	//AKC
-	public Ad createAd(Driver driver, int id, boolean isCompleted, boolean isActive, double price, Vehicle vehicle)
+	//AKC-done
+	public Vehicle createVehicle(int year, String brand, String plateNumber, int availableSeat, Driver driver)
 	{
-//		Ad(id, isActive, isCompleted, cm, driver, vehicle, price);
-//		cm.
-		
-		return null;	
-	}
-	
-	//AKC
-	public Vehicle createVehicle()
-	{
-		
-		return null;
+		if(year < 0)
+		{
+			throw new IllegalArgumentException();
+		}
+		Vehicle newVehicle = cm.addVehicle(year, brand, plateNumber, availableSeat, driver);
+		return newVehicle;
 	}
 
 	//AKC-done
@@ -307,21 +311,99 @@ public class MethodServices
 		
 	}
 	
-	//AKC
-	public void reserveASeat(Passenger passenger, Ad ad, Stop start, Stop end)
+	//AKC-done
+	//true if done false if not done
+	public boolean reserveASeat(Passenger passenger, Ad ad, Stop start, Stop end)
 	{
-		return;
+		int startIndex = 0;
+		int endIndex = 0;
+		
+		//get index of start and end stop
+		for(int i = 0; i < ad.getStops().size(); i++)
+		{
+			if(ad.getStop(i).getId() == start.getId())
+			{
+				startIndex = i;
+			}
+			if(ad.getStop(i).getId() == end.getId())
+			{
+				endIndex = i;
+			}
+		}
+		
+		//check if there's place
+		Stop curStop;
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			
+			int nbOfAvailableSeats = curStop.getNbOfAvailableSeat();
+			if(nbOfAvailableSeats < 1)
+			{
+				return false;
+			}
+		}
+		
+		//enough place, add passenger and reduce seating
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			
+			curStop.addPassenger(passenger);
+			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()-1);
+		}
+		
+		return true;
 	}
 	
-	//AKC
+	//AKC-done
 	public void cancelReservation(Passenger passenger, Ad ad, Stop start, Stop end)
 	{
+		int startIndex = 0;
+		int endIndex = 0;
+		
+		//get index of start and end stop
+		for(int i = 0; i < ad.getStops().size(); i++)
+		{
+			if(ad.getStop(i).getId() == start.getId())
+			{
+				startIndex = i;
+			}
+			if(ad.getStop(i).getId() == end.getId())
+			{
+				endIndex = i;
+			}
+		}
+		//for all stops remove passenger and increase seating
+		Stop curStop;
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			curStop.removePassenger(passenger);
+			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()+1);
+		}
 		return;
 	}
 	
 	//AKC
 	public void completeAd(Ad ad)
 	{
+		Driver driver = ad.getDriver();
+		double adDistance = getDistOfAd(ad);
+		
+		//update driver avg price
+		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
+		totalMoney += adDistance*ad.getPrice();
+		int newAvgPrice = (int) (totalMoney/(adDistance+driver.getTotalDistance()));
+		
+		//update totalDIstance
+		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
+		
+		//turn off activity of ad
+		ad.setIsCompleted(true);
+		ad.setIsActive(false);
+		
+		
 		return;
 	}
 	
