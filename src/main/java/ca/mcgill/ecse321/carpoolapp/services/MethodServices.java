@@ -50,12 +50,17 @@ public class MethodServices
 	//AKC
 	public Driver createDriver(User user)
 	{
+<<<<<<< HEAD
 		//filtering
 		
 		user.addUserRole(Driver);
 		Driver newDriver = cm.addDriver(user, 0, 0);
 		
 //		newDriver.getUser().getId();
+=======
+		
+		return null;
+>>>>>>> e9dbc33c016fed85667213c73cc0ad6a42f198f3
 		
 		return newDriver;
 	}
@@ -201,7 +206,6 @@ public class MethodServices
 		int max = 0;
 		int minIndex = 0;
 		
-		
 		//sortedList.size()-1 because else j will be out of bounds
 		for (int i = 0; i < sortedList.size() -1; i++) {
 			//will compare current element with next elements
@@ -282,6 +286,7 @@ public class MethodServices
 		
 		return distance;	
 	}
+	
 	
 	public double getDistBetweenStops(Stop first, Stop next)
 	{
@@ -457,27 +462,39 @@ public class MethodServices
 		return;
 	}
 	
-	//AKC
+	//AHB-done
 	public void completeAd(Ad ad)
 	{
 		Driver driver = ad.getDriver();
 		double adDistance = getDistOfAd(ad);
+		
 		
 		//update driver avg price
 		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
 		totalMoney += adDistance*ad.getPrice();
 		int newAvgPrice = (int) (totalMoney/(adDistance+driver.getTotalDistance()));
 		
-		//update totalDIstance
+		//update totalDIstance of driver
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
 		
+<<<<<<< HEAD
 		
+=======
+		//Create an arraylist of passengers for each stop
+		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		
+		//update totalDistance of passengers
+		for (int i = 0; i < ad.numberOfStops() - 1; i++) {
+			passengers = (ArrayList<Passenger>) ad.getStop(i).getPassengers(); //get passengers for current stop
+			for (int j = 0; j < passengers.size(); j++) {
+				//add distance between current stop and next stop to each passengers
+				passengers.get(j).setTotalDistance((int)(passengers.get(j).getTotalDistance() + getDistBetweenStops(ad.getStop(i), ad.getStop(i+1))));
+			}
+		}
+>>>>>>> e9dbc33c016fed85667213c73cc0ad6a42f198f3
 		//turn off activity of ad
 		ad.setIsCompleted(true);
 		ad.setIsActive(false);
-		
-		
-		return;
 	}
 	
 }
