@@ -440,7 +440,7 @@ public class MethodServices
 		//update driver avg price
 		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
 		totalMoney += adDistance*ad.getPrice();
-		driver.setAverageCostPerKm((int) (totalMoney/(adDistance+driver.getTotalDistance())));
+		driver.setAverageCostPerKm((int) (totalMoney/(adDistance+driver.getTotalDistance()))); 
 		
 		//update totalDIstance of driver
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
