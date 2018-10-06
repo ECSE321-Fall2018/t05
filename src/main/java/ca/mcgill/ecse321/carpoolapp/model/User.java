@@ -19,7 +19,7 @@ public class User
 
   //User Associations
   private List<UserRole> userRoles;
-  private CarPoolManager carPoolManager;
+  private CarPoolManager CarPoolManager;
 
   //------------------------
   // CONSTRUCTOR
@@ -33,7 +33,7 @@ public class User
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
     if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create user due to carPoolManager");
+      throw new RuntimeException("Unable to create user due to CarPoolManager");
     }
   }
 
@@ -99,7 +99,7 @@ public class User
   /* Code from template association_GetOne */
   public CarPoolManager getCarPoolManager()
   {
-    return carPoolManager;
+    return CarPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfUserRoles()
@@ -189,13 +189,13 @@ public class User
       return wasSet;
     }
 
-    CarPoolManager existingCarPoolManager = carPoolManager;
-    carPoolManager = aCarPoolManager;
+    CarPoolManager existingCarPoolManager = CarPoolManager;
+    CarPoolManager = aCarPoolManager;
     if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
       existingCarPoolManager.removeUser(this);
     }
-    carPoolManager.addUser(this);
+    CarPoolManager.addUser(this);
     wasSet = true;
     return wasSet;
   }
@@ -207,8 +207,8 @@ public class User
       UserRole aUserRole = userRoles.get(i - 1);
       aUserRole.delete();
     }
-    CarPoolManager placeholderCarPoolManager = carPoolManager;
-    this.carPoolManager = null;
+    CarPoolManager placeholderCarPoolManager = CarPoolManager;
+    this.CarPoolManager = null;
     if(placeholderCarPoolManager != null)
     {
       placeholderCarPoolManager.removeUser(this);
@@ -221,6 +221,6 @@ public class User
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
             "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
+            "  " + "CarPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

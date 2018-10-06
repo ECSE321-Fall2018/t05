@@ -301,7 +301,7 @@ public class CarPoolManager
   public boolean removeUser(User aUser)
   {
     boolean wasRemoved = false;
-    //Unable to remove aUser, as it must always have a carPoolManager
+    //Unable to remove aUser, as it must always have a CarPoolManager
     if (!this.equals(aUser.getCarPoolManager()))
     {
       users.remove(aUser);
@@ -373,7 +373,7 @@ public class CarPoolManager
   public boolean removeDriver(Driver aDriver)
   {
     boolean wasRemoved = false;
-    //Unable to remove aDriver, as it must always have a carPoolManager
+    //Unable to remove aDriver, as it must always have a CarPoolManager
     if (!this.equals(aDriver.getCarPoolManager()))
     {
       drivers.remove(aDriver);
@@ -445,7 +445,7 @@ public class CarPoolManager
   public boolean removePassenger(Passenger aPassenger)
   {
     boolean wasRemoved = false;
-    //Unable to remove aPassenger, as it must always have a carPoolManager
+    //Unable to remove aPassenger, as it must always have a CarPoolManager
     if (!this.equals(aPassenger.getCarPoolManager()))
     {
       passengers.remove(aPassenger);
@@ -517,7 +517,7 @@ public class CarPoolManager
   public boolean removeAd(Ad aAd)
   {
     boolean wasRemoved = false;
-    //Unable to remove aAd, as it must always have a carPoolManager
+    //Unable to remove aAd, as it must always have a CarPoolManager
     if (!this.equals(aAd.getCarPoolManager()))
     {
       ads.remove(aAd);
@@ -589,7 +589,7 @@ public class CarPoolManager
   public boolean removeVehicle(Vehicle aVehicle)
   {
     boolean wasRemoved = false;
-    //Unable to remove aVehicle, as it must always have a carPoolManager
+    //Unable to remove aVehicle, as it must always have a CarPoolManager
     if (!this.equals(aVehicle.getCarPoolManager()))
     {
       vehicles.remove(aVehicle);
@@ -661,7 +661,7 @@ public class CarPoolManager
   public boolean removeAdmin(Admin aAdmin)
   {
     boolean wasRemoved = false;
-    //Unable to remove aAdmin, as it must always have a carPoolManager
+    //Unable to remove aAdmin, as it must always have a CarPoolManager
     if (!this.equals(aAdmin.getCarPoolManager()))
     {
       admins.remove(aAdmin);
@@ -707,9 +707,9 @@ public class CarPoolManager
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd)
+  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, int aId)
   {
-    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, aAd, this);
+    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, aAd, this, aId);
   }
 
   public boolean addStop(Stop aStop)
@@ -733,7 +733,7 @@ public class CarPoolManager
   public boolean removeStop(Stop aStop)
   {
     boolean wasRemoved = false;
-    //Unable to remove aStop, as it must always have a carPoolManager
+    //Unable to remove aStop, as it must always have a CarPoolManager
     if (!this.equals(aStop.getCarPoolManager()))
     {
       stops.remove(aStop);

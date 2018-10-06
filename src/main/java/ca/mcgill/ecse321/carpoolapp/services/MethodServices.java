@@ -1,9 +1,9 @@
 package ca.mcgill.ecse321.carpoolapp.services;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.tomcat.jni.Address;
 
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
 import ca.mcgill.ecse321.carpoolapp.model.Admin;
@@ -12,73 +12,103 @@ import ca.mcgill.ecse321.carpoolapp.model.Driver;
 import ca.mcgill.ecse321.carpoolapp.model.Passenger;
 import ca.mcgill.ecse321.carpoolapp.model.Stop;
 import ca.mcgill.ecse321.carpoolapp.model.User;
+import ca.mcgill.ecse321.carpoolapp.model.UserRole;
 import ca.mcgill.ecse321.carpoolapp.model.Vehicle;
 
 public class MethodServices 
 {
 	private CarPoolManager cm;
+	private UserRole Driver;
+	private UserRole Passenger;
+	private UserRole Admin;
 	
 	public MethodServices(CarPoolManager cm) {
 		this.cm = cm;
 	}
 	
 	//AKC
-	public User createUser()
+	public User createUser(int id, String name)
 	{
+		//to-do, filter bad input
+		List<User> allUser = cm.getUsers();
+		
+		for(User curUser: allUser)
+		{
+			if(id == curUser.getId())
+			{
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		User newUser = cm.addUser(id, name);
+		return newUser;
+		
+	}
+	
+	//AKC
+	public Driver createDriver(User user)
+	{
+		//filtering
+		
+		user.addUserRole(Driver);
+		Driver newDriver = cm.addDriver(user, 0, 0);
+		
+//		newDriver.getUser().getId();
+		
+		return newDriver;
+	}
+	
+	//AKC
+	public Passenger createPassenger(User user)
+	{
+		user.addUserRole(Passenger);
+		cm.addPassenger(user, 0, 0);
 		
 		return null;
 		
 	}
 	
 	//AKC
-	public Driver createDriver()
+	public Admin createAdmin(User user)
 	{
-		return null;
-		
-	}
-	
-	//AKC
-	public Passenger createPassenger()
-	{
-		return null;
-		
-	}
-	
-	//AKC
-	public Admin createAdmin()
-	{
-		return null;
-		
-	}
-	
-	//AKC
-	public Address createAddress()
-	{
-		return null;
-	}
-	
-	
-	//AKC
-	public Stop createStop()
-	{
-		
-		return null;
-	}
-	
-	//AKC
-	public Ad createAd(Driver driver, int id, boolean isCompleted, boolean isActive, double price, Vehicle vehicle)
-	{
-//		Ad(id, isActive, isCompleted, cm, driver, vehicle, price);
-//		cm.
+		user.addUserRole(Admin);
+		cm.addAdmin(user);
 		
 		return null;	
 	}
 	
+	
+	//AKC-done
+	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int nbOfAvailableSeat, int id)
+
 	//AKC
-	public Vehicle createVehicle()
 	{
+		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
+		return newStop;
+	}
+	
+	//AKC-done
+	public Ad createAd(Driver driver, int id, double price, Vehicle vehicle)
+	{
+		if(price < 0)
+		{
+			throw new IllegalArgumentException();
+		}
 		
-		return null;
+		Ad newAd = cm.addAd(id, price, true, false, driver, vehicle);
+		
+		return newAd;	
+	}
+	
+	//AKC-done
+	public Vehicle createVehicle(int year, String brand, String plateNumber, int availableSeat, Driver driver)
+	{
+		if(year < 0)
+		{
+			throw new IllegalArgumentException();
+		}
+		Vehicle newVehicle = cm.addVehicle(year, brand, plateNumber, availableSeat, driver);
+		return newVehicle;
 	}
 
 	//AKC-done
@@ -132,16 +162,59 @@ public class MethodServices
 	
 	}
 	
-	//distance AHB
+	//distance AHB-done
 	public ArrayList<Driver> getTopDrivers(){
-		return null;	
+		ArrayList<Driver> sortedList = new ArrayList<Driver>();
+		sortedList = (ArrayList<Driver>) cm.getDrivers();
+		
+		Driver temp;
+		int max = 0;
+		int minIndex = 0;
+		
+		//sortedList.size()-1 because else j will be out of bounds
+		for (int i = 0; i < sortedList.size() -1; i++) {
+			//will compare current element with next elements
+			max = sortedList.get(i).getTotalDistance();
+			for (int j = i+1; j < sortedList.size(); j++) {
+				if (max < sortedList.get(j).getTotalDistance()) {
+					max = sortedList.get(j).getTotalDistance(); //set the new min
+					minIndex = j; //set the index in list of smallest value up to now
+				}
+			}
+			//swap elements
+			temp = sortedList.get(i);
+			sortedList.set(i, sortedList.get(minIndex));
+			sortedList.set(minIndex, temp);
+		}
+		return sortedList;
 	}
 	
-	//distance AHB
+	//distance AHB-done
 	public ArrayList<Passenger> getTopPassengers()
 	{
-		return null;
-	
+		ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
+		sortedList = (ArrayList<Passenger>) cm.getPassengers();
+		
+		Passenger temp;
+		int max = 0;
+		int minIndex = 0;
+		
+		//sortedList.size()-1 because else j will be out of bounds
+		for (int i = 0; i < sortedList.size() -1; i++) {
+			//will compare current element with next elements
+			max = sortedList.get(i).getTotalDistance();
+			for (int j = i+1; j < sortedList.size(); j++) {
+				if (max < sortedList.get(j).getTotalDistance()) {
+					max = sortedList.get(j).getTotalDistance(); //set the new min
+					minIndex = j; //set the index in list of smallest value up to now
+				}
+			}
+			//swap elements
+			temp = sortedList.get(i);
+			sortedList.set(i, sortedList.get(minIndex));
+			sortedList.set(minIndex, temp);
+		}
+		return sortedList;
 	}
 	
 	//AHB-done
@@ -206,6 +279,7 @@ public class MethodServices
 		
 		return distance;	
 	}
+	
 	
 	public double getDistBetweenStops(Stop first, Stop next)
 	{
@@ -307,22 +381,109 @@ public class MethodServices
 		
 	}
 	
-	//AKC
-	public void reserveASeat(Passenger passenger, Ad ad, Stop start, Stop end)
+	//AKC-done
+	//true if done false if not done
+	public boolean reserveASeat(Passenger passenger, Ad ad, Stop start, Stop end)
 	{
-		return;
+		int startIndex = 0;
+		int endIndex = 0;
+		
+		//get index of start and end stop
+		for(int i = 0; i < ad.getStops().size(); i++)
+		{
+			if(ad.getStop(i).getId() == start.getId())
+			{
+				startIndex = i;
+			}
+			if(ad.getStop(i).getId() == end.getId())
+			{
+				endIndex = i;
+			}
+		}
+		
+		//check if there's place
+		Stop curStop;
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			
+			int nbOfAvailableSeats = curStop.getNbOfAvailableSeat();
+			if(nbOfAvailableSeats < 1)
+			{
+				return false;
+			}
+		}
+		
+		//enough place, add passenger and reduce seating
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			
+			curStop.addPassenger(passenger);
+			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()-1);
+		}
+		
+		return true;
 	}
 	
-	//AKC
+	//AKC-done
 	public void cancelReservation(Passenger passenger, Ad ad, Stop start, Stop end)
 	{
+		int startIndex = 0;
+		int endIndex = 0;
+		
+		//get index of start and end stop
+		for(int i = 0; i < ad.getStops().size(); i++)
+		{
+			if(ad.getStop(i).getId() == start.getId())
+			{
+				startIndex = i;
+			}
+			if(ad.getStop(i).getId() == end.getId())
+			{
+				endIndex = i;
+			}
+		}
+		//for all stops remove passenger and increase seating
+		Stop curStop;
+		for(int j = startIndex; j < endIndex; j++)
+		{
+			curStop = ad.getStop(j);
+			curStop.removePassenger(passenger);
+			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()+1);
+		}
 		return;
 	}
 	
-	//AKC
+	//AHB-done
 	public void completeAd(Ad ad)
 	{
-		return;
+		Driver driver = ad.getDriver();
+		double adDistance = getDistOfAd(ad);
+		
+		
+		//update driver avg price
+		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
+		totalMoney += adDistance*ad.getPrice();
+		driver.setAverageCostPerKm((int) (totalMoney/(adDistance+driver.getTotalDistance()))); 
+		
+		//update totalDIstance of driver
+		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
+		
+		//Create an arraylist of passengers for each stop
+		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		
+		//update totalDistance of passengers
+		for (int i = 0; i < ad.numberOfStops() - 1; i++) {
+			passengers = (ArrayList<Passenger>) ad.getStop(i).getPassengers(); //get passengers for current stop
+			for (int j = 0; j < passengers.size(); j++) {
+				//add distance between current stop and next stop to each passengers
+				passengers.get(j).setTotalDistance((int)(passengers.get(j).getTotalDistance() + getDistBetweenStops(ad.getStop(i), ad.getStop(i+1))));
+			}
+		}
+		//turn off activity of ad
+		ad.setIsCompleted(true);
+		ad.setIsActive(false);
 	}
 	
 }
