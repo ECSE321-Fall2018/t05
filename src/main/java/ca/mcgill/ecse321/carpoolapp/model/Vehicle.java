@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,9 +29,12 @@ public class Vehicle
   private int year;
   @Column(name="brand")
   private String brand;
+  
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="plate_number")
   private String plateNumber;
+  
   @Column(name="available_seats")
   private int availableSeat;
 
