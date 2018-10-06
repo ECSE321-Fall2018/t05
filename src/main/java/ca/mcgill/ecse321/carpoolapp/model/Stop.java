@@ -2,12 +2,21 @@
 /*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.sql.Time;
 import java.sql.Date;
-import java.util.*;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 // line 57 "../../../../../../../ump/tmp788046/model.ump"
 // line 119 "../../../../../../../ump/tmp788046/model.ump"
+@Entity
+@Table(name="stop")
 public class Stop
 {
 
@@ -16,11 +25,18 @@ public class Stop
   //------------------------
 
   //Stop Attributes
+  @Column(name="time")
   private Time time;
+  @Column(name="date")
   private Date date;
+  @Column(name="x_coordinate")
   private int x;
+  @Column(name="y_coordinate")
   private int y;
+  @Column(name="nb_available_seat")
   private int nbOfAvailableSeat;
+  @Id
+  @Column(name="id")
   private int id;
 
   public int getId() {
@@ -324,5 +340,32 @@ public class Stop
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "ad = "+(getAd()!=null?Integer.toHexString(System.identityHashCode(getAd())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
+  }
+  
+  //----------------
+  //Methods for data base
+  //Added by Roger Zhang
+  //----------------
+  
+  @Column(name="carpool_manager_id")
+  public int getCarpoolManagerId() {
+	  return this.getCarPoolManager().getId();
+  }
+  
+  @Column(name="ad_id")
+  public int getAdId() {
+	  return this.getAd().getId();
+  }
+  
+  @Column(name="passenger_ids")
+  public int[] getPassengerIds() {
+	  int nbOfPassengers = this.passengers.size();
+	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  
+	  for(int i = 0; i < nbOfPassengers; i++) {
+		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+	  }
+	  
+	  return arrayOfPassengerIds;
   }
 }

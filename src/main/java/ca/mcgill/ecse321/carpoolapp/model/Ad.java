@@ -470,5 +470,27 @@ public class Ad
 	  return this.getCarPoolManager().getId();
   }
   
+  @Column(name="stop_ids")
+  public int[] getStopIds() {
+	  int nbOfStops = this.stops.size();
+	  int[] arrayOfStopIds = new int[nbOfStops];
+	  
+	  for(int i = 0; i < nbOfStops; i++) {
+		  arrayOfStopIds[i] = this.stops.get(i).getId();
+	  }
+	  
+	  return arrayOfStopIds;
+  }
   
+  @Column(name="stop_ids")
+  public int[] getPassengerIds() {
+	  int nbOfPassengers = this.passengers.size();
+	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  
+	  for(int i = 0; i < nbOfPassengers; i++) {
+		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+	  }
+	  
+	  return arrayOfPassengerIds;
+  }
 }

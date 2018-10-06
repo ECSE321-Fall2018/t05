@@ -345,4 +345,16 @@ public class Vehicle
   public int getCarpoolManagerId() {
 	  return this.getCarPoolManager().getId();
   }
+  
+  @Column(name="drivers")
+  public int[] getDriverIds() {
+	  int nbOfDrivers = this.drivers.size();
+	  int[] arrayOfDriverIds = new int[nbOfDrivers];
+	  
+	  for(int i = 0; i < nbOfDrivers; i++) {
+		  arrayOfDriverIds[i] = this.drivers.get(i).getUser().getId();
+	  }
+	  
+	  return arrayOfDriverIds;
+  }
 }

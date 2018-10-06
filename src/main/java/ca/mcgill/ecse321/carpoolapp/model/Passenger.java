@@ -381,4 +381,16 @@ public class Passenger extends UserRole
 	  return this.getCarPoolManager().getId();
   }
   
+  @Column(name="ads_id")
+  public int[] getAdIds() {
+	  int nbOfAds = this.ads.size();
+	  int[] arrayOfAdIds = new int[nbOfAds];
+	  
+	  for(int i = 0; i < nbOfAds; i++) {
+		  arrayOfAdIds[i] = this.ads.get(i).getId();
+	  }
+	  
+	  return arrayOfAdIds;
+  }
+  
 }
