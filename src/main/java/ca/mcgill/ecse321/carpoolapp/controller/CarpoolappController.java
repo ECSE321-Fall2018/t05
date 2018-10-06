@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.carpoolapp.model.Admin;
+import ca.mcgill.ecse321.carpoolapp.model.Driver;
+import ca.mcgill.ecse321.carpoolapp.model.Passenger;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
 @RestController
@@ -15,11 +18,61 @@ public class CarpoolappController {
 	@Autowired
 	CarpoolappRepository repository;
 
-	@RequestMapping("/")
-	public String greeting() {
-		return "Hello world!";
+	@PostMapping("/admin/{id}")
+	public String createAdmin(@PathVariable("id") int id, String name) 
+	{
+		Admin admin = repository.createAdmin(id, name);
+		return admin.getUser().getName();
 	}
 
+	@GetMapping("/admin/{id}")
+	public String queryAdmin(@PathVariable("id") int id)
+	{
+		Admin admin = repository.getAdmin(id);
+		if (admin == null) {
+			return "NOT FOUND";
+		}
+		return admin.getUser().getName();
+	}
+	
+	@PostMapping("/driver/{id}")
+	public String createDriver(@PathVariable("id") int id, String name)
+	{
+		Driver driver = repository.createDriver(id, name);
+		return driver.getUser().getName();
+	}
+	
+	@GetMapping("/admin/{id}")
+	public String queryDrvier(@PathVariable("id") int id)
+	{
+		Driver driver = repository.getDriver(id);
+		if (driver == null) {
+			return "NOT FOUND";
+		}
+		return driver.getUser().getName();
+	}
+	
+	@PostMapping("/passenger/{id}")
+	public String createPassenger(@PathVariable("id") int id, String name)
+	{
+		Passenger passenger = repository.createPassenger(id, name);
+		return passenger.getUser().getName();
+	}
+	
+	@GetMapping("/passenger/{id}")
+	public String queryPassenger(@PathVariable("id") int id)
+	{
+		Passenger passenger = repository.getPassenger(id);
+		if (passenger == null) {
+			return "NOT FOUND";
+		}
+		return passenger.getUser().getName();
+	}
+	
+	
+	
+	
+	
 //	@PostMapping("/participants/{name}")
 //	public String createParticipant(@PathVariable("name") String name) {
 //		Participant participant = repository.createParticipant(name);
