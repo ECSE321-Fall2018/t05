@@ -50,17 +50,12 @@ public class MethodServices
 	//AKC
 	public Driver createDriver(User user)
 	{
-<<<<<<< HEAD
 		//filtering
 		
 		user.addUserRole(Driver);
 		Driver newDriver = cm.addDriver(user, 0, 0);
 		
 //		newDriver.getUser().getId();
-=======
-		
-		return null;
->>>>>>> e9dbc33c016fed85667213c73cc0ad6a42f198f3
 		
 		return newDriver;
 	}
@@ -477,9 +472,6 @@ public class MethodServices
 		//update totalDIstance of driver
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
 		
-<<<<<<< HEAD
-		
-=======
 		//Create an arraylist of passengers for each stop
 		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
 		
@@ -491,7 +483,6 @@ public class MethodServices
 				passengers.get(j).setTotalDistance((int)(passengers.get(j).getTotalDistance() + getDistBetweenStops(ad.getStop(i), ad.getStop(i+1))));
 			}
 		}
->>>>>>> e9dbc33c016fed85667213c73cc0ad6a42f198f3
 		//turn off activity of ad
 		ad.setIsCompleted(true);
 		ad.setIsActive(false);
