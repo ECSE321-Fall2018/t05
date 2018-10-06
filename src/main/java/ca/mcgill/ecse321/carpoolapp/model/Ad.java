@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,6 +28,7 @@ public class Ad
 
   //Ad Attributes
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
   private int id;
   @Column(name="price")
@@ -467,5 +470,27 @@ public class Ad
 	  return this.getCarPoolManager().getId();
   }
   
+  @Column(name="stop_ids")
+  public int[] getStopIds() {
+	  int nbOfStops = this.stops.size();
+	  int[] arrayOfStopIds = new int[nbOfStops];
+	  
+	  for(int i = 0; i < nbOfStops; i++) {
+		  arrayOfStopIds[i] = this.stops.get(i).getId();
+	  }
+	  
+	  return arrayOfStopIds;
+  }
   
+  @Column(name="stop_ids")
+  public int[] getPassengerIds() {
+	  int nbOfPassengers = this.passengers.size();
+	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  
+	  for(int i = 0; i < nbOfPassengers; i++) {
+		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+	  }
+	  
+	  return arrayOfPassengerIds;
+  }
 }

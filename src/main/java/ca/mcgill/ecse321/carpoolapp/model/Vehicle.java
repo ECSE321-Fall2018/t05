@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,9 +29,12 @@ public class Vehicle
   private int year;
   @Column(name="brand")
   private String brand;
+  
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="plate_number")
   private String plateNumber;
+  
   @Column(name="available_seats")
   private int availableSeat;
 
@@ -339,5 +344,17 @@ public class Vehicle
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
 	  return this.getCarPoolManager().getId();
+  }
+  
+  @Column(name="drivers")
+  public int[] getDriverIds() {
+	  int nbOfDrivers = this.drivers.size();
+	  int[] arrayOfDriverIds = new int[nbOfDrivers];
+	  
+	  for(int i = 0; i < nbOfDrivers; i++) {
+		  arrayOfDriverIds[i] = this.drivers.get(i).getUser().getId();
+	  }
+	  
+	  return arrayOfDriverIds;
   }
 }

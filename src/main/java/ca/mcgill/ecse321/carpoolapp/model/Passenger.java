@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -24,6 +26,7 @@ public class Passenger extends UserRole
 
   //Passenger Attributes
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
   private int id;
   @Column(name="name")
@@ -376,6 +379,18 @@ public class Passenger extends UserRole
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
 	  return this.getCarPoolManager().getId();
+  }
+  
+  @Column(name="ads_id")
+  public int[] getAdIds() {
+	  int nbOfAds = this.ads.size();
+	  int[] arrayOfAdIds = new int[nbOfAds];
+	  
+	  for(int i = 0; i < nbOfAds; i++) {
+		  arrayOfAdIds[i] = this.ads.get(i).getId();
+	  }
+	  
+	  return arrayOfAdIds;
   }
   
 }

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -28,9 +30,12 @@ public class Driver extends UserRole
   private int averageCostPerKm;
   @Column(name="total_distance")
   private int totalDistance;
+  
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
   private int id;
+  
   @Column(name="name")
   private String name;
 
@@ -376,7 +381,29 @@ public class Driver extends UserRole
 	  return this.getCarPoolManager().getId();
   }
   
+  @Column(name="vehicle_plate_number")
+  public String[] getVehiclePlateNbs() {
+	  int nbOfVehicles = this.vehicles.size();
+	  String[] arrayOfVehicles = new String[nbOfVehicles];
+	  
+	  for(int i = 0; i < nbOfVehicles; i++) {
+		 arrayOfVehicles[i] = this.vehicles.get(i).getPlateNumber();
+	  }
+	  
+	  return arrayOfVehicles;
+  }
   
+  @Column(name="ad_ids")
+  public int[] getAdIds() {
+	  int nbOfAds = this.ads.size();
+	  int[] arrayOfAdIds = new int[nbOfAds];
+	  
+	  for(int i = 0; i < nbOfAds; i++) {
+		  arrayOfAdIds[i] = this.ads.get(i).getId();
+	  }
+	  
+	  return arrayOfAdIds;
+  }
   
   
   
