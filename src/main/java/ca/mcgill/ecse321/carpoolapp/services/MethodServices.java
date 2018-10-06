@@ -54,13 +54,10 @@ public class MethodServices
 	}
 	
 	
-<<<<<<< HEAD
 	//AKC-done
 	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int nbOfAvailableSeat, int id)
-=======
+
 	//AKC
-	public Stop createStop()
->>>>>>> a3821ec7439c1ab90533fe8a17425dcd1fbe505b
 	{
 		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
 		return newStop;
