@@ -5,8 +5,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.jni.Address;
-
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
 import ca.mcgill.ecse321.carpoolapp.model.Admin;
 import ca.mcgill.ecse321.carpoolapp.model.CarPoolManager;
@@ -442,7 +440,7 @@ public class MethodServices
 		//update driver avg price
 		int totalMoney = driver.getAverageCostPerKm()*driver.getTotalDistance();
 		totalMoney += adDistance*ad.getPrice();
-		int newAvgPrice = (int) (totalMoney/(adDistance+driver.getTotalDistance()));
+		driver.setAverageCostPerKm((int) (totalMoney/(adDistance+driver.getTotalDistance())));
 		
 		//update totalDIstance of driver
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
