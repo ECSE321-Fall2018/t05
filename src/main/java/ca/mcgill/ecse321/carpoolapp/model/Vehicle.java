@@ -25,16 +25,14 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
-  @Column(name="year")
-  private int year;
-  @Column(name="brand")
-  private String brand;
-  
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="plate_number")
   private String plateNumber;
-  
+  @Column(name="year")
+  private int year;
+  @Column(name="brand")
+  private String brand;
   @Column(name="available_seats")
   private int availableSeat;
 

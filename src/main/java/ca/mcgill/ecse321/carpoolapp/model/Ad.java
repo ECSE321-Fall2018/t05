@@ -482,7 +482,7 @@ public class Ad
 	  return arrayOfStopIds;
   }
   
-  @Column(name="stop_ids")
+  @Column(name="passenger_ids")
   public int[] getPassengerIds() {
 	  int nbOfPassengers = this.passengers.size();
 	  int[] arrayOfPassengerIds = new int[nbOfPassengers];

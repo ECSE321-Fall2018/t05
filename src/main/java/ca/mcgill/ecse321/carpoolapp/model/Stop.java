@@ -27,6 +27,10 @@ public class Stop
   //------------------------
 
   //Stop Attributes
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  private int id;
   @Column(name="time")
   private Time time;
   @Column(name="date")
@@ -37,10 +41,6 @@ public class Stop
   private int y;
   @Column(name="nb_available_seat")
   private int nbOfAvailableSeat;
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
-  private int id;
 
   public int getId() {
 	return id;
