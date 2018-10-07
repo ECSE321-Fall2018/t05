@@ -27,15 +27,10 @@ public class Ad
   //------------------------
 
   //Ad Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+
   private int id;
-  @Column(name="price")
   private double price;
-  @Column(name="is_active")
   private boolean isActive;
-  @Column(name="is_completed")
   private boolean isCompleted;
 
   //Ad Associations
@@ -109,21 +104,24 @@ public class Ad
     return wasSet;
   }
 
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   public int getId()
   {
     return id;
   }
-
+  @Column(name="price")
   public double getPrice()
   {
     return price;
   }
-
+  @Column(name="is_active")
   public boolean getIsActive()
   {
     return isActive;
   }
-
+  @Column(name="is_completed")
   public boolean getIsCompleted()
   {
     return isCompleted;

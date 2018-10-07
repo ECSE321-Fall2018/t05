@@ -25,15 +25,9 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="plate_number")
   private String plateNumber;
-  @Column(name="year")
   private int year;
-  @Column(name="brand")
   private String brand;
-  @Column(name="available_seats")
   private int availableSeat;
 
   //Vehicle Associations
@@ -98,22 +92,24 @@ public class Vehicle
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="year")
   public int getYear()
   {
     return year;
   }
-
+  @Column(name="brand")
   public String getBrand()
   {
     return brand;
   }
-
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="plate_number")
   public String getPlateNumber()
   {
     return plateNumber;
   }
-
+  @Column(name="available_seats")
   public int getAvailableSeat()
   {
     return availableSeat;

@@ -25,15 +25,9 @@ public class Passenger extends UserRole
   //------------------------
 
   //Passenger Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
   private int id;
-  @Column(name="name")
   private String name;
-  @Column(name="average_paid_per_km")
   private int averagePaidPerKm;
-  @Column(name="total_distance")
   private int totalDistance;
 
   //Passenger Associations
@@ -80,12 +74,12 @@ public class Passenger extends UserRole
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="average_paid_per_km")
   public int getAveragePaidPerKm()
   {
     return averagePaidPerKm;
   }
-
+  @Column(name="total_distance")
   public int getTotalDistance()
   {
     return totalDistance;
@@ -375,6 +369,24 @@ public class Passenger extends UserRole
   //Methods for data base
   //Added by Roger Zhang
   //----------------
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+@Column(name="name")
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {

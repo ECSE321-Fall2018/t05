@@ -26,15 +26,10 @@ public class Driver extends UserRole
   //------------------------
 
   //Driver Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+
   private int id;	
-  @Column(name="average_cost_per_km")
   private int averageCostPerKm;
-  @Column(name="total_distance")
   private int totalDistance; 
-  @Column(name="name")
   private String name;
 
   //Driver Associations
@@ -81,12 +76,12 @@ public class Driver extends UserRole
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="average_cost_per_km")
   public int getAverageCostPerKm()
   {
     return averageCostPerKm;
   }
-
+  @Column(name="total_distance")
   public int getTotalDistance()
   {
     return totalDistance;
@@ -373,7 +368,25 @@ public class Driver extends UserRole
   //Methods for data base
   //Added by Roger Zhang
   //----------------
-  
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	@Column(name="name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
 	  return this.getCarPoolManager().getId();
