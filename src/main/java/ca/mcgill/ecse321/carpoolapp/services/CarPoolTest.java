@@ -458,4 +458,58 @@ class CarPoolTest
 		
 	}
 	
+	@Test
+	void getTopDrivers() 
+	{
+		User user1 = service.createUser(101, "user1");
+		User user2 = service.createUser(102, "user2");
+		User user3 = service.createUser(103, "user3");
+		
+		Driver driver1 = service.createDriver(user1);
+		Driver driver2 = service.createDriver(user2);
+		Driver driver3 = service.createDriver(user3);
+		
+		driver1.setTotalDistance(50);
+		driver2.setTotalDistance(100);
+		driver3.setTotalDistance(10);
+		
+		ArrayList<Driver> sortedList = service.getTopDrivers();
+
+		
+		assertEquals(3, sortedList.size());
+		assertEquals(driver1, sortedList.get(1));
+		assertEquals(driver2, sortedList.get(0));	
+		assertEquals(driver3, sortedList.get(2));	
+	}
+	
+	
+
+	@Test
+	void getTopPassengers() 
+	{
+		User user1 = service.createUser(101, "user1");
+		User user2 = service.createUser(102, "user2");
+		User user3 = service.createUser(103, "user3");
+		
+		Passenger passenger1 = service.createPassenger(user1);
+		Passenger passenger2 = service.createPassenger(user2);
+		Passenger passenger3 = service.createPassenger(user3);
+		
+		passenger1.setTotalDistance(50);
+		passenger2.setTotalDistance(100);
+		passenger3.setTotalDistance(10);
+		
+		ArrayList<Passenger> sortedList = service.getTopPassengers();
+		
+		assertEquals(3, sortedList.size());
+		assertEquals(passenger1, sortedList.get(1));
+		assertEquals(passenger2, sortedList.get(0));	
+		assertEquals(passenger3, sortedList.get(2));	
+	}
+	
+	@Test
+	void listAdsByStops() {
+		
+	}
+	
 }
