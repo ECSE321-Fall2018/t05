@@ -469,16 +469,16 @@ class CarPoolTest
         Driver driver2 = service.createDriver(user2);
         Driver driver3 = service.createDriver(user3);
         
-        driver1.setTotalDistance(50);
+        driver1.setTotalDistance(8000);
         driver2.setTotalDistance(100);
-        driver3.setTotalDistance(10);
+        driver3.setTotalDistance(80);
         
         ArrayList<Driver> sortedList = service.getTopDrivers();
 
         
         assertEquals(3, sortedList.size());
-        assertEquals(driver1, sortedList.get(1));
-        assertEquals(driver2, sortedList.get(0));    
+        assertEquals(driver1, sortedList.get(0));
+        assertEquals(driver2, sortedList.get(1));    
         assertEquals(driver3, sortedList.get(2));    
     }
     
@@ -509,10 +509,38 @@ class CarPoolTest
     
     @Test
     void listAdsByStops() {
-        
+    	
+    }
+    
+//    @Test
+//    void sortAdsByPrice() {
+//    	User user1 = service.createUser(101, "user1");
+//		User user2 = service.createUser(102, "user2");
+//		User user3 = service.createUser(103, "user3");
+//		User user4 = service.createUser(104, "user4");
+//		
+//		Driver driver1 = service.createDriver(user1);
+//		Driver driver2 = service.createDriver(user2);
+//		Driver driver3 = service.createDriver(user3);
+//		Driver driver4 = service.createDriver(user4);
+//		
+//		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+//		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+//		Vehicle vehicle3 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+//		Vehicle vehicle4 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+//
+//
+//	Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
+//		
+//		Time time = new Time(3, 3, 3);
+//		Date date = new Date(4, 4, 4);
+//		
+//		Stop stop1 = service.createStop(ad1, time, date, 0, 0, 101);
+//		Stop stop2 = service.createStop(ad1, time, date, 3, 4, 102);
+//		Stop stop3 = service.createStop(ad1, time, date, -3, -4, 103);
     }
 
 	
 	
 	
-}
+

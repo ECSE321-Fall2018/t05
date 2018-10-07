@@ -219,7 +219,9 @@ public class MethodServices
         for (int i = 0; i < sortedList.size() -1; i++) {
             //will compare current element with next elements
             max = sortedList.get(i).getTotalDistance();
+            minIndex = i;
             for (int j = i+1; j < sortedList.size(); j++) {
+            	
                 if (max < sortedList.get(j).getTotalDistance()) {
                     max = sortedList.get(j).getTotalDistance(); //set the new max distance
                     minIndex = j; //set the index in list of driver with most distance
@@ -250,6 +252,7 @@ public class MethodServices
         for (int i = 0; i < sortedList.size() -1; i++) {
             //will compare current element with next elements
             max = sortedList.get(i).getTotalDistance();
+            minIndex = i;
             for (int j = i+1; j < sortedList.size(); j++) {
                 if (max < sortedList.get(j).getTotalDistance()) {
                     max = sortedList.get(j).getTotalDistance(); //set the new max distance
@@ -275,12 +278,14 @@ public class MethodServices
         //Create a sorted list
         ArrayList<Ad> sortedList = new ArrayList<Ad>();
         
-        int startIndex = 0;
-        int endIndex = 0;
+        int startIndex;
+        int endIndex;
         
         //for each ad
         for (int i = 0; i < list.size(); i++) {
             //for each stop of the current ad
+        	startIndex = i;
+        	endIndex = i;
             for (int j = 0; j < list.get(i).getStops().size(); j++) {
                 //if the current stop equals the desired starting stop of the customer, register its index in the itinerary
                 if (list.get(i).getStop(j).equals(start))
@@ -346,10 +351,10 @@ public class MethodServices
 	}
 	
 	//AHB-done
-	public ArrayList<Ad> sortAdsDistance(ArrayList<Ad> activeAds)
+	public ArrayList<Ad> sortAdsDistance()
 	{
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
 		
 		Ad temp;
 		double min = 0;
@@ -359,6 +364,7 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size() -1; i++) {
 			//will compare current element with next elements
 			min = getDistOfAd(sortedList.get(i));
+			minIndex = i;
 			for (int j = i+1; j < sortedList.size(); j++) {
 				if (min > getDistOfAd(sortedList.get(j))) {
 					min = getDistOfAd(sortedList.get(j)); //set the new min
@@ -374,9 +380,9 @@ public class MethodServices
 	}
 	
 	//AHB-done
-	public ArrayList<Ad> sortAdsPrice(ArrayList<Ad> activeAds){
+	public ArrayList<Ad> sortAdsPrice(){
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
 		
 		Ad temp;
 		double min = 0;
@@ -386,6 +392,7 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size()-1; i++) {
 			//will compare current element with next elements
 			min = sortedList.get(i).getPrice();
+			minIndex = i;
 			for (int j = i+1; j < sortedList.size(); j++) {
 				if (min > sortedList.get(j).getPrice()) {
 					min = sortedList.get(j).getPrice(); //set the new min
@@ -402,10 +409,10 @@ public class MethodServices
 	
 	
 	//AHB-done
-	public ArrayList<Ad> sortAdsCarType(ArrayList<Ad> activeAds)
+	public ArrayList<Ad> sortAdsCarType()
 	{
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
 		
 		Ad temp;
 		String name = "";
@@ -506,7 +513,7 @@ public class MethodServices
 		return;
 	}
 	
-	//AHB-done
+	//AKC-done
 	public void completeAd(Ad ad)
 	{
 		Driver driver = ad.getDriver();
