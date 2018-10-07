@@ -27,28 +27,14 @@ public class Stop
   //------------------------
 
   //Stop Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+
   private int id;
-  @Column(name="time")
   private Time time;
-  @Column(name="date")
   private Date date;
-  @Column(name="x_coordinate")
   private int x;
-  @Column(name="y_coordinate")
   private int y;
-  @Column(name="nb_available_seat")
   private int nbOfAvailableSeat;
 
-  public int getId() {
-	return id;
-}
-
-  public void setId(int id) {
-	this.id = id;
-}
 
 
 //Stop Associations
@@ -124,27 +110,27 @@ public class Stop
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="time")
   public Time getTime()
   {
     return time;
   }
-
+  @Column(name="date")
   public Date getDate()
   {
     return date;
   }
-
+  @Column(name="x_coordinate")
   public int getX()
   {
     return x;
   }
-
+  @Column(name="y_coordinate")
   public int getY()
   {
     return y;
   }
-
+  @Column(name="nb_available_seat")
   public int getNbOfAvailableSeat()
   {
     return nbOfAvailableSeat;
@@ -349,6 +335,16 @@ public class Stop
   //Methods for data base
   //Added by Roger Zhang
   //----------------
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  public int getId() {
+	return id;
+}
+
+  public void setId(int id) {
+	this.id = id;
+}
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {

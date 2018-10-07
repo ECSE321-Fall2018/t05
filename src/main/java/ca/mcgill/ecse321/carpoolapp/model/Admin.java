@@ -24,11 +24,7 @@ public class Admin extends UserRole
   // MEMBER VARIABLES
   //------------------------
   
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
   private int id;
-  @Column(name="name")
   private String name;
 	
   //Admin Associations
@@ -183,6 +179,26 @@ public class Admin extends UserRole
   //Methods for data base
   //Added by Roger Zhang
   //----------------
+  
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Column(name="name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {

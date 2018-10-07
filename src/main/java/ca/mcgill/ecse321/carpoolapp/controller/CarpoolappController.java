@@ -42,7 +42,7 @@ public class CarpoolappController {
 		return driver.getUser().getName();
 	}
 	
-	@GetMapping("/admin/{id}")
+	@GetMapping("/driver/{id}")
 	public String queryDrvier(@PathVariable("id") int id)
 	{
 		Driver driver = repository.getDriver(id);
