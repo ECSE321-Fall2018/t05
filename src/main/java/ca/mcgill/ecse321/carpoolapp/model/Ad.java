@@ -8,17 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 38 "../../../../../../../ump/tmp788046/model.ump"
 // line 107 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="ad")
+@Access(AccessType.FIELD)
 public class Ad
 {
 
@@ -27,17 +31,24 @@ public class Ad
   //------------------------
 
   //Ad Attributes
-
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   private int id;
   private double price;
   private boolean isActive;
   private boolean isCompleted;
 
   //Ad Associations
+  @Transient
   private List<Stop> stops;
+  @Transient
   private Driver driver;
+  @Transient
   private List<Passenger> passengers;
+  @Transient
   private Vehicle vehicle;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------

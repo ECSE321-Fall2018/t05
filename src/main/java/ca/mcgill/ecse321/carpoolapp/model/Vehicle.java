@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 47 "../../../../../../../ump/tmp788046/model.ump"
 // line 113 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="vehicle")
+@Access(AccessType.FIELD)
 public class Vehicle
 {
 
@@ -25,13 +29,17 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
+  @Id
+  @Column(name="plate_number")
   private String plateNumber;
   private int year;
   private String brand;
   private int availableSeat;
 
   //Vehicle Associations
+  @Transient
   private List<Driver> drivers;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------

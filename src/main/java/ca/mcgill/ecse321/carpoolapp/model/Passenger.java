@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 25 "../../../../../../../ump/tmp788046/model.ump"
 // line 96 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="passenger")
+@Access(AccessType.FIELD)
 public class Passenger extends UserRole
 {
 
@@ -25,14 +29,20 @@ public class Passenger extends UserRole
   //------------------------
 
   //Passenger Attributes
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   private int id;
   private String name;
   private int averagePaidPerKm;
   private int totalDistance;
 
   //Passenger Associations
+  @Transient
   private List<Ad> ads;
+  @Transient
   private List<Stop> stops;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -369,9 +379,7 @@ public class Passenger extends UserRole
   //Methods for data base
   //Added by Roger Zhang
   //----------------
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+
   public int getId() {
 	return id;
 }

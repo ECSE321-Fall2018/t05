@@ -8,17 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 57 "../../../../../../../ump/tmp788046/model.ump"
 // line 119 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="stop")
+@Access(AccessType.FIELD)
 public class Stop
 {
 
@@ -28,6 +32,9 @@ public class Stop
 
   //Stop Attributes
 
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   private int id;
   private Time time;
   private Date date;
@@ -38,8 +45,11 @@ public class Stop
 
 
 //Stop Associations
+  @Transient
   private List<Passenger> passengers;
+  @Transient
   private Ad ad;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -335,9 +345,7 @@ public class Stop
   //Methods for data base
   //Added by Roger Zhang
   //----------------
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+  
   public int getId() {
 	return id;
 }

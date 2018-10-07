@@ -6,17 +6,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 33 "../../../../../../../ump/tmp788046/model.ump"
 // line 102 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="admin")
+@Access(AccessType.FIELD)
 public class Admin extends UserRole
 {
 
@@ -24,11 +31,18 @@ public class Admin extends UserRole
   // MEMBER VARIABLES
   //------------------------
   
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   private int id;
   private String name;
 	
   //Admin Associations
+  
+  //@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Transient
   private List<Ad> ads;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -52,12 +66,14 @@ public class Admin extends UserRole
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
+  @Transient
   public Ad getAd(int index)
   {
     Ad aAd = ads.get(index);
     return aAd;
   }
 
+  @Transient
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);
@@ -82,6 +98,7 @@ public class Admin extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
+  @Transient
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -180,9 +197,7 @@ public class Admin extends UserRole
   //Added by Roger Zhang
   //----------------
   
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
+  
   public int getId() {
 		return id;
 	}
@@ -200,10 +215,13 @@ public class Admin extends UserRole
 		this.name = name;
 	}
   
+
+
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
 	  return this.getCarPoolManager().getId();
   }
+  
   
   @Column(name="ads_id")
   public int[] getAdIds() {
