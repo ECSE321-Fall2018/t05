@@ -110,9 +110,8 @@ public class Vehicle
   {
     return brand;
   }
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="plate_number")
+
+
   public String getPlateNumber()
   {
     return plateNumber;
