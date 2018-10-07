@@ -198,33 +198,6 @@ class CarPoolTest
 	}
 
 	
-	//not working
-//	@Test
-//	void getTopDrivers() 
-//	{
-//		User user1 = service.createUser(101, "user1");
-//		User user2 = service.createUser(102, "user2");
-//		
-//		
-//		Driver driver1 = service.createDriver(user1);
-//		Driver driver2 = service.createDriver(user2);
-//		
-//		assertEquals(2, cm.getDrivers().size());
-//		
-//		driver1.setTotalDistance(500);
-//		driver2.setTotalDistance(1000);
-//		
-//		List<Driver> topDrivers = new ArrayList<Driver>();
-//		
-//		topDrivers = service.getTopDrivers();
-//		
-//		assertEquals(0, 0);
-//		
-//		assertEquals(2, topDrivers.size());
-//		assertEquals(driver1, topDrivers.get(1));
-//		assertEquals(driver1, topDrivers.get(0));	
-//	}
-	
 	@Test
 	void getActiveAds() 
 	{
