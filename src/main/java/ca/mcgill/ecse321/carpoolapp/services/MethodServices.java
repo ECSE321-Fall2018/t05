@@ -3,6 +3,8 @@ package ca.mcgill.ecse321.carpoolapp.services;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
@@ -27,6 +29,7 @@ public class MethodServices
 	}
 	
 	//AKC
+	//tested
 	public User createUser(int id, String name)
 	{
 		//to-do, filter bad input
@@ -46,6 +49,7 @@ public class MethodServices
 	}
 	
 	//AKC
+	//tested
 	public Driver createDriver(User user)
 	{
 		//filtering
@@ -58,6 +62,7 @@ public class MethodServices
 	}
 	
 	//AKC
+	//tested
 	public Passenger createPassenger(User user)
 	{
 //		user.addUserRole(Passenger);
@@ -68,6 +73,7 @@ public class MethodServices
 	}
 	
 	//AKC
+	//tested
 	public Admin createAdmin(User user)
 	{
 //		user.addUserRole(Admin);
@@ -78,18 +84,39 @@ public class MethodServices
 	
 	
 	//AKC-done
-	public Stop createStop(Ad ad, Time time,Date date, int x, int y, int id)
+	//tested
+	public Stop createStop(Ad ad, Time time, Date date, int x, int y, int id) {
 
-	//AKC
-	{
+		List<Stop> allStop = cm.getStops();
+
+		for (Stop curStop : allStop) 
+		{
+			if (id == curStop.getId()) 
+			{
+				throw new IllegalArgumentException("ID not unique!");
+			}
+		}
+
 		int nbOfAvailableSeat = ad.getVehicle().getAvailableSeat();
 		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
 		return newStop;
 	}
 	
 	//AKC-done
+	//tested
 	public Ad createAd(Driver driver, int id, double price, Vehicle vehicle)
 	{
+		
+		List<Ad> allAd = cm.getAds();
+
+		for (Ad curAd : allAd) 
+		{
+			if (id == curAd.getId()) 
+			{
+				throw new IllegalArgumentException("ID not unique!");
+			}
+		}
+		
 		if(price < 0)
 		{
 			throw new IllegalArgumentException();
@@ -101,8 +128,20 @@ public class MethodServices
 	}
 	
 	//AKC-done
+	//tested
 	public Vehicle createVehicle(int year, String brand, String plateNumber, int availableSeat, Driver driver)
 	{
+		
+		List<Vehicle> allVehicle = cm.getVehicles();
+
+		for (Vehicle curVehicle : allVehicle) 
+		{
+			if (plateNumber.equals(curVehicle.getPlateNumber())) 
+			{
+				throw new IllegalArgumentException("PlateNumber not unique!");
+			}
+		}
+		
 		if(year < 0)
 		{
 			throw new IllegalArgumentException();
@@ -112,6 +151,7 @@ public class MethodServices
 	}
 
 	//AKC-done
+	//tested
 	public ArrayList<Driver> getActiveDrivers()
 	{
 		Ad curAd;
@@ -163,30 +203,12 @@ public class MethodServices
 	}
 	
 	//distance AHB-done
-	public ArrayList<Driver> getTopDrivers(){
-		ArrayList<Driver> sortedList = new ArrayList<Driver>();
-		sortedList = (ArrayList<Driver>) cm.getDrivers();
+	public List<Driver> getTopDrivers(){
+		List<Driver> allDrivers = cm.getDrivers();
 		
-		Driver temp;
-		int max = 0;
-		int minIndex = 0;
+		allDrivers.sort(Comparator.comparing(Driver::getTotalDistance).reversed());
 		
-		//sortedList.size()-1 because else j will be out of bounds
-		for (int i = 0; i < sortedList.size() -1; i++) {
-			//will compare current element with next elements
-			max = sortedList.get(i).getTotalDistance();
-			for (int j = i+1; j < sortedList.size(); j++) {
-				if (max < sortedList.get(j).getTotalDistance()) {
-					max = sortedList.get(j).getTotalDistance(); //set the new min
-					minIndex = j; //set the index in list of smallest value up to now
-				}
-			}
-			//swap elements
-			temp = sortedList.get(i);
-			sortedList.set(i, sortedList.get(minIndex));
-			sortedList.set(minIndex, temp);
-		}
-		return sortedList;
+		return allDrivers;
 	}
 	
 	//distance AHB-done
@@ -250,6 +272,7 @@ public class MethodServices
 	}
 	
 	//AKC-done
+	//tested
 	public ArrayList<Ad> getActiveAds()
 	{
 		ArrayList<Ad> activeAds = new ArrayList<Ad>();
@@ -267,6 +290,7 @@ public class MethodServices
 	}
 	
 	//AKC-done
+	//tested
 	public double getDistOfAd(Ad ad)
 	{
 		double distance = 0;
@@ -280,7 +304,7 @@ public class MethodServices
 		return distance;	
 	}
 	
-	
+	//tested
 	public double getDistBetweenStops(Stop first, Stop next)
 	{
 		double yNext = next.getY();
@@ -383,6 +407,7 @@ public class MethodServices
 	
 	//AKC-done
 	//true if done false if not done
+	//tested
 	public boolean reserveASeat(Passenger passenger, Ad ad, Stop start, Stop end)
 	{
 		int startIndex = 0;
@@ -403,55 +428,55 @@ public class MethodServices
 		
 		//check if there's place
 		Stop curStop;
-		for(int j = startIndex; j < endIndex; j++)
+		for(int j = startIndex; j <= endIndex; j++)
 		{
 			curStop = ad.getStop(j);
 			
 			int nbOfAvailableSeats = curStop.getNbOfAvailableSeat();
 			if(nbOfAvailableSeats < 1)
 			{
-				return false;
+				throw new IllegalArgumentException("Not enough place in the car!");
 			}
 		}
 		
-		//enough place, add passenger and reduce seating
-		for(int j = startIndex; j < endIndex; j++)
+		//enough place, add passenger to stop and reduce seating
+		for(int j = startIndex; j <= endIndex; j++)
 		{
 			curStop = ad.getStop(j);
 			
 			curStop.addPassenger(passenger);
 			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()-1);
 		}
-		
+		ad.addPassenger(passenger);
 		return true;
 	}
 	
 	//AKC-done
-	public void cancelReservation(Passenger passenger, Ad ad, Stop start, Stop end)
+	public void cancelReservation(Passenger passenger, Ad ad)
 	{
-		int startIndex = 0;
-		int endIndex = 0;
 		
-		//get index of start and end stop
-		for(int i = 0; i < ad.getStops().size(); i++)
+		List<Stop> adStop = ad.getStops();
+		List<Stop> passengerStop = new ArrayList<Stop>();
+		
+		for(Stop curStop: adStop)
 		{
-			if(ad.getStop(i).getId() == start.getId())
+			for(Passenger curPassenger: curStop.getPassengers())
 			{
-				startIndex = i;
-			}
-			if(ad.getStop(i).getId() == end.getId())
-			{
-				endIndex = i;
+				if(curPassenger.getUser().getId() == passenger.getUser().getId())
+				{
+					passengerStop.add(curStop);
+				}
 			}
 		}
-		//for all stops remove passenger and increase seating
-		Stop curStop;
-		for(int j = startIndex; j < endIndex; j++)
+		
+		for(Stop curStop: passengerStop)
 		{
-			curStop = ad.getStop(j);
 			curStop.removePassenger(passenger);
 			curStop.setNbOfAvailableSeat(curStop.getNbOfAvailableSeat()+1);
 		}
+		
+		ad.removePassenger(passenger);
+		
 		return;
 	}
 	
