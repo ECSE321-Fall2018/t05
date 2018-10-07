@@ -457,7 +457,6 @@ class CarPoolTest
 		assertEquals(passenger2, activePassengers.get(1));
 		
 	}
-	
     
     @Test
     void getTopDrivers()
@@ -512,6 +511,7 @@ class CarPoolTest
     void listAdsByStops() {
         
     }
+
 	
 	
 }
