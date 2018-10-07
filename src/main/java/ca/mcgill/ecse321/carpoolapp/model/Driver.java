@@ -26,16 +26,14 @@ public class Driver extends UserRole
   //------------------------
 
   //Driver Attributes
-  @Column(name="average_cost_per_km")
-  private int averageCostPerKm;
-  @Column(name="total_distance")
-  private int totalDistance;
-  
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
-  private int id;
-  
+  private int id;	
+  @Column(name="average_cost_per_km")
+  private int averageCostPerKm;
+  @Column(name="total_distance")
+  private int totalDistance; 
   @Column(name="name")
   private String name;
 
