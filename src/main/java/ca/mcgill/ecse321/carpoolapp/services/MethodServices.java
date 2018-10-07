@@ -203,73 +203,99 @@ public class MethodServices
 	}
 	
 	//distance AHB-done
-	public List<Driver> getTopDrivers(){
-		List<Driver> allDrivers = cm.getDrivers();
-		
-		allDrivers.sort(Comparator.comparing(Driver::getTotalDistance).reversed());
-		
-		return allDrivers;
-	}
+    public ArrayList<Driver> getTopDrivers(){
+        ArrayList<Driver> sortedList = new ArrayList<Driver>();
+        
+        for (int i = 0; i < cm.numberOfDrivers(); i++) {
+            sortedList.add(cm.getDriver(i));
+        }
+        
+        
+        Driver temp = null;
+        int max = 0;
+        int minIndex = 0;
+    
+    //sortedList.size()-1 because else j will be out of bounds
+        for (int i = 0; i < sortedList.size() -1; i++) {
+            //will compare current element with next elements
+            max = sortedList.get(i).getTotalDistance();
+            for (int j = i+1; j < sortedList.size(); j++) {
+                if (max < sortedList.get(j).getTotalDistance()) {
+                    max = sortedList.get(j).getTotalDistance(); //set the new max distance
+                    minIndex = j; //set the index in list of driver with most distance
+                }
+            }
+            //swap elements
+            temp = sortedList.get(i);
+            sortedList.set(i, sortedList.get(minIndex));
+            sortedList.set(minIndex, temp);
+        }
+        return sortedList;
+    }
 	
-	//distance AHB-done
-	public ArrayList<Passenger> getTopPassengers()
-	{
-		ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
-		sortedList = (ArrayList<Passenger>) cm.getPassengers();
-		
-		Passenger temp;
-		int max = 0;
-		int minIndex = 0;
-		
-		//sortedList.size()-1 because else j will be out of bounds
-		for (int i = 0; i < sortedList.size() -1; i++) {
-			//will compare current element with next elements
-			max = sortedList.get(i).getTotalDistance();
-			for (int j = i+1; j < sortedList.size(); j++) {
-				if (max < sortedList.get(j).getTotalDistance()) {
-					max = sortedList.get(j).getTotalDistance(); //set the new min
-					minIndex = j; //set the index in list of smallest value up to now
-				}
-			}
-			//swap elements
-			temp = sortedList.get(i);
-			sortedList.set(i, sortedList.get(minIndex));
-			sortedList.set(minIndex, temp);
-		}
-		return sortedList;
-	}
+  //distance AHB-done
+    public ArrayList<Passenger> getTopPassengers()
+    {
+        ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
+        
+        for (int i = 0; i < cm.numberOfPassengers(); i++) {
+            sortedList.add(cm.getPassenger(i));
+        }
+        
+        Passenger temp = null;
+        int max = 0;
+        int minIndex = 0;
+        
+        //sortedList.size()-1 because else j will be out of bounds
+        for (int i = 0; i < sortedList.size() -1; i++) {
+            //will compare current element with next elements
+            max = sortedList.get(i).getTotalDistance();
+            for (int j = i+1; j < sortedList.size(); j++) {
+                if (max < sortedList.get(j).getTotalDistance()) {
+                    max = sortedList.get(j).getTotalDistance(); //set the new max distance
+                    minIndex = j; //set the index in list of passenger with most distance
+                }
+            }
+            //swap elements
+            temp = sortedList.get(i);
+            sortedList.set(i, sortedList.get(minIndex));
+            sortedList.set(minIndex, temp);
+        }
+        return sortedList;
+    }
 	
-	//AHB-done
-	public ArrayList<Ad> listAds(Stop start, Stop end)
-	{
-		//Put all existing adds inside list
-		ArrayList<Ad> list = new ArrayList<Ad>();
-		list = (ArrayList<Ad>) cm.getAds();
-		
-		//Create a sorted list
-		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		
-		int startIndex = 0;
-		int endIndex = 0;
-		
-		//for each ad
-		for (int i = 0; i < list.size(); i++) {
-			//for each stop of the current ad
-			for (int j = 0; j < list.get(i).getStops().size(); j++) {
-				//if the current stop equals the desired starting stop of the customer, register its index in the itinerary
-				if (list.get(i).getStop(j).equals(start))
-					startIndex = j;
-				//if the current stop equals the desired ending stop of the customer, register its index in the itinerary
-				if (list.get(i).getStop(j).equals(end))
-					endIndex = j;
-			}
-			//make sure start stop is before end stop
-			if (startIndex < endIndex)
-				sortedList.add(list.get(i));
-		}
-		return sortedList;
-		
-	}
+    //AHB-done
+    public ArrayList<Ad> listAdsByStops(Stop start, Stop end)
+    {
+        //Put all active adds inside list
+        ArrayList<Ad> list = new ArrayList<Ad>();
+        list = getActiveAds();
+        
+        
+        //Create a sorted list
+        ArrayList<Ad> sortedList = new ArrayList<Ad>();
+        
+        int startIndex = 0;
+        int endIndex = 0;
+        
+        //for each ad
+        for (int i = 0; i < list.size(); i++) {
+            //for each stop of the current ad
+            for (int j = 0; j < list.get(i).getStops().size(); j++) {
+                //if the current stop equals the desired starting stop of the customer, register its index in the itinerary
+                if (list.get(i).getStop(j).equals(start))
+                    startIndex = j;
+                //if the current stop equals the desired ending stop of the customer, register its index in the itinerary
+                if (list.get(i).getStop(j).equals(end))
+                    endIndex = j;
+            }
+            //make sure start stop is before end stop
+            if (startIndex < endIndex)
+                sortedList.add(list.get(i));
+        }
+        return sortedList;
+        
+    }
 	
 	//AKC-done
 	//tested
