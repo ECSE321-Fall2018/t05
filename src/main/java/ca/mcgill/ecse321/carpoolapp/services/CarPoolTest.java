@@ -152,7 +152,7 @@ class CarPoolTest
 		Driver driver1 = service.createDriver(user1);
 		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
 		
-		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
+		Ad ad1 = service.createAd(driver1, 101, 5, vehicle1);
 		
 		Time time = new Time(3, 3, 3);
 		Date date = new Date(4, 4, 4);
@@ -180,9 +180,11 @@ class CarPoolTest
 	{
 		User user1 = service.createUser(101, "user1");
 		User user2 = service.createUser(102, "user2");
+		User user3 = service.createUser(103, "user3");
 		
 		Driver driver1 = service.createDriver(user1);
 		Driver driver2 = service.createDriver(user2);
+		Driver driver3 = service.createDriver(user3);
 		
 		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
 		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "b2c3d4", 4, driver2);
@@ -217,7 +219,16 @@ class CarPoolTest
 		
 		assertEquals(2, activeAds.size());
 		assertEquals(ad1, activeAds.get(0));
-		assertEquals(ad2, activeAds.get(1));	
+		assertEquals(ad2, activeAds.get(1));
+		
+		ad2.setIsActive(false);
+		ad2.setIsCompleted(true);
+		
+		activeAds = service.getActiveAds();
+		
+		assertEquals(1, activeAds.size());
+		assertEquals(ad1, activeAds.get(0));
+		
 	}
 	
 	@Test
@@ -235,8 +246,11 @@ class CarPoolTest
 		
 		Stop stop1 = service.createStop(ad1, time, date, 0, 0, 101);
 		Stop stop2 = service.createStop(ad1, time, date, 3, 4, 102);
+		Stop stop3 = service.createStop(ad1, time, date, 3, 4, 103);
 		
 		assertEquals(5, service.getDistBetweenStops(stop1, stop2));
+		assertEquals(0, service.getDistBetweenStops(stop3, stop2));
+		
 	}
 	
 	@Test
@@ -259,68 +273,6 @@ class CarPoolTest
 		assertEquals(15, service.getDistOfAd(ad1));
 	}
 	
-	
-//	@Test
-//	void sortAdsDisance() 
-//	{
-//		User user1 = service.createUser(101, "user1");
-//		User user2 = service.createUser(102, "user2");
-//		
-//		Driver driver1 = service.createDriver(user1);
-//		Driver driver2 = service.createDriver(user2);
-//		
-//		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
-//		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
-//		
-//		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
-//		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
-//		Ad ad3 = service.createAd(driver2, 123, 5, vehicle2);
-//		
-//		Time time = new Time(3, 3, 3);
-//		Date date = new Date(4, 4, 4);
-//		
-//		Stop stop1 = service.createStop(ad1, time, date, 0, 0, 321);
-//		Stop stop2 = service.createStop(ad1, time, date, -4, -5, 321);
-//		Stop stop3 = service.createStop(ad2, time, date, 0, 0, 321);
-//		Stop stop4 = service.createStop(ad2, time, date, -3, -4, 321);
-//		Stop stop5 = service.createStop(ad3, time, date, 0, 0, 321);
-//		Stop stop6 = service.createStop(ad3, time, date, 1, -1, 321);
-//		
-//		ArrayList<Ad> activeAds = service.getActiveAds();
-//		
-//		ArrayList<Ad> sortedAds = service.sortAdsDistance(activeAds);
-//		
-//		assertEquals(3, sortedAds.size());
-//		assertEquals(ad3, sortedAds.get(0));
-//		assertEquals(ad2, sortedAds.get(1));
-//		assertEquals(ad1, sortedAds.get(2));	
-//	}
-	
-//	@Test
-//	void sortAdsPrice() 
-//	{
-//		User user1 = service.createUser(101, "user1");
-//		User user2 = service.createUser(102, "user2");
-//		
-//		Driver driver1 = service.createDriver(user1);
-//		Driver driver2 = service.createDriver(user2);
-//		
-//		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
-//		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
-//		
-//		Ad ad1 = service.createAd(driver1, 123, 7, vehicle1);
-//		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
-//		Ad ad3 = service.createAd(driver2, 123, 3, vehicle2);
-//		
-//		ArrayList<Ad> activeAds = service.getActiveAds();
-//		
-//		ArrayList<Ad> sortedAds = service.sortAdsPrice(activeAds);
-//		
-//		assertEquals(3, sortedAds.size());
-//		assertEquals(ad1, sortedAds.get(2));
-//		assertEquals(ad2, sortedAds.get(1));
-//		assertEquals(ad3, sortedAds.get(0));	
-//	}
 
 	@Test
 	void reserveASeat() 
@@ -459,60 +411,79 @@ class CarPoolTest
 	}
     
     @Test
-    void getTopDrivers()
+    void listAdsByStops() 
     {
-        User user1 = service.createUser(101, "user1");
-        User user2 = service.createUser(102, "user2");
-        User user3 = service.createUser(103, "user3");
-        
-        Driver driver1 = service.createDriver(user1);
-        Driver driver2 = service.createDriver(user2);
-        Driver driver3 = service.createDriver(user3);
-        
-        driver1.setTotalDistance(50);
-        driver2.setTotalDistance(100);
-        driver3.setTotalDistance(10);
-        
-        ArrayList<Driver> sortedList = service.getTopDrivers();
-
-        
-        assertEquals(3, sortedList.size());
-        assertEquals(driver1, sortedList.get(1));
-        assertEquals(driver2, sortedList.get(0));    
-        assertEquals(driver3, sortedList.get(2));    
+    	User user1 = service.createUser(101, "user1");
+		
+		Driver driver1 = service.createDriver(user1);
+		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
+		
+		Ad ad1 = service.createAd(driver1, 101, 5, vehicle1);
+		Ad ad2 = service.createAd(driver1, 102, 5, vehicle1);
+		
+		Time time = new Time(3, 3, 3);
+		Date date = new Date(4, 4, 4);
+		
+		Stop stop1 = service.createStop(ad1, time, date, 1, 2, 101);
+		Stop stop2 = service.createStop(ad1, time, date, 3, 4, 102);
+		Stop stop3 = service.createStop(ad1, time, date, 5, 6, 103);
+		
+		Stop stop4 = service.createStop(ad2, time, date, 3, 4, 104);
+		Stop stop5 = service.createStop(ad2, time, date, 1, 2, 105);
+		Stop stop6 = service.createStop(ad2, time, date, 5, 6, 106);
+		
+		List<Ad> goodAds = service.listAdsByStops(1, 2, 5, 6);
+		
+		assertEquals(2, goodAds.size());
+		assertEquals(ad1, goodAds.get(0));
+		assertEquals(ad2, goodAds.get(1));
+		
+		goodAds = service.listAdsByStops(1, 2, 3, 4);
+		
+		assertEquals(1, goodAds.size());
+		assertEquals(ad1, goodAds.get(0));
+		
+		goodAds = service.listAdsByStops(5, 6, 1, 2);
+		
+		assertEquals(0, goodAds.size());
     }
-    
-    
 
     @Test
-    void getTopPassengers()
-    {
-        User user1 = service.createUser(101, "user1");
-        User user2 = service.createUser(102, "user2");
-        User user3 = service.createUser(103, "user3");
-        
-        Passenger passenger1 = service.createPassenger(user1);
-        Passenger passenger2 = service.createPassenger(user2);
-        Passenger passenger3 = service.createPassenger(user3);
-        
-        passenger1.setTotalDistance(50);
-        passenger2.setTotalDistance(100);
-        passenger3.setTotalDistance(10);
-        
-        ArrayList<Passenger> sortedList = service.getTopPassengers();
-        
-        assertEquals(3, sortedList.size());
-        assertEquals(passenger1, sortedList.get(1));
-        assertEquals(passenger2, sortedList.get(0));    
-        assertEquals(passenger3, sortedList.get(2));    
-    }
-    
-    @Test
-    void listAdsByStops() {
-        
-    }
-
+	void completeAd() 
+	{
+		User user1 = service.createUser(101, "user1");
+		User user2 = service.createUser(102, "user2");
+		User user3 = service.createUser(103, "user3");
+		
+		Driver driver1 = service.createDriver(user1);
+		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
 	
+		Passenger passenger1 = service.createPassenger(user2);
+		Passenger passenger2 = service.createPassenger(user3);
+		
+		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
+		
+		Time time = new Time(3, 3, 3);
+		Date date = new Date(4, 4, 4);
+		
+		Stop stop1 = service.createStop(ad1, time, date, 0, 0, 101);
+		Stop stop2 = service.createStop(ad1, time, date, 3, 4, 102);
+		Stop stop3 = service.createStop(ad1, time, date, 0, 0, 103);
+		
+		service.reserveASeat(passenger1, ad1, stop1, stop3);
+		service.reserveASeat(passenger2, ad1, stop1, stop2);
+		
+		service.completeAd(ad1);
+		
+		assertEquals(false, ad1.getIsActive());
+		assertEquals(true, ad1.getIsCompleted());
+		
+		assertEquals(10, driver1.getTotalDistance());
+		assertEquals(5, driver1.getAverageCostPerKm());
+		
+		assertEquals(10, passenger1.getTotalDistance());
+		assertEquals(5, passenger2.getTotalDistance());
+	}
 	
 	
 }
