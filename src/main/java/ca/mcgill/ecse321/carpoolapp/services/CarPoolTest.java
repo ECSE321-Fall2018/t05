@@ -260,68 +260,6 @@ class CarPoolTest
 		assertEquals(15, service.getDistOfAd(ad1));
 	}
 	
-	
-//	@Test
-//	void sortAdsDisance() 
-//	{
-//		User user1 = service.createUser(101, "user1");
-//		User user2 = service.createUser(102, "user2");
-//		
-//		Driver driver1 = service.createDriver(user1);
-//		Driver driver2 = service.createDriver(user2);
-//		
-//		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
-//		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
-//		
-//		Ad ad1 = service.createAd(driver1, 123, 5, vehicle1);
-//		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
-//		Ad ad3 = service.createAd(driver2, 123, 5, vehicle2);
-//		
-//		Time time = new Time(3, 3, 3);
-//		Date date = new Date(4, 4, 4);
-//		
-//		Stop stop1 = service.createStop(ad1, time, date, 0, 0, 321);
-//		Stop stop2 = service.createStop(ad1, time, date, -4, -5, 321);
-//		Stop stop3 = service.createStop(ad2, time, date, 0, 0, 321);
-//		Stop stop4 = service.createStop(ad2, time, date, -3, -4, 321);
-//		Stop stop5 = service.createStop(ad3, time, date, 0, 0, 321);
-//		Stop stop6 = service.createStop(ad3, time, date, 1, -1, 321);
-//		
-//		ArrayList<Ad> activeAds = service.getActiveAds();
-//		
-//		ArrayList<Ad> sortedAds = service.sortAdsDistance(activeAds);
-//		
-//		assertEquals(3, sortedAds.size());
-//		assertEquals(ad3, sortedAds.get(0));
-//		assertEquals(ad2, sortedAds.get(1));
-//		assertEquals(ad1, sortedAds.get(2));	
-//	}
-	
-//	@Test
-//	void sortAdsPrice() 
-//	{
-//		User user1 = service.createUser(101, "user1");
-//		User user2 = service.createUser(102, "user2");
-//		
-//		Driver driver1 = service.createDriver(user1);
-//		Driver driver2 = service.createDriver(user2);
-//		
-//		Vehicle vehicle1 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver1);
-//		Vehicle vehicle2 = service.createVehicle(2000, "bmw", "a1b2c3", 4, driver2);
-//		
-//		Ad ad1 = service.createAd(driver1, 123, 7, vehicle1);
-//		Ad ad2 = service.createAd(driver2, 123, 5, vehicle2);
-//		Ad ad3 = service.createAd(driver2, 123, 3, vehicle2);
-//		
-//		ArrayList<Ad> activeAds = service.getActiveAds();
-//		
-//		ArrayList<Ad> sortedAds = service.sortAdsPrice(activeAds);
-//		
-//		assertEquals(3, sortedAds.size());
-//		assertEquals(ad1, sortedAds.get(2));
-//		assertEquals(ad2, sortedAds.get(1));
-//		assertEquals(ad3, sortedAds.get(0));	
-//	}
 
 	@Test
 	void reserveASeat() 
@@ -508,10 +446,6 @@ class CarPoolTest
         assertEquals(passenger3, sortedList.get(1));    
     }
     
-    @Test
-    void listAdsByStops() {
-    	
-    }
     
     @Test
     void sortAdsByPrice() {
