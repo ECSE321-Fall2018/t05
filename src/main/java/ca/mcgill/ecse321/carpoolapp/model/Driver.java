@@ -38,6 +38,9 @@ public class Driver extends UserRole
   private int averageCostPerKm;
   private int totalDistance; 
   private String name;
+  private int carpool_manager_id;
+  private String[] vehicle_plate_number;
+  private int[] ad_ids;
 
   //Driver Associations
   @Transient
@@ -398,31 +401,32 @@ public class Driver extends UserRole
 	
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   @Column(name="vehicle_plate_number")
   public String[] getVehiclePlateNbs() {
 	  int nbOfVehicles = this.vehicles.size();
-	  String[] arrayOfVehicles = new String[nbOfVehicles];
+	  vehicle_plate_number = new String[nbOfVehicles];
 	  
 	  for(int i = 0; i < nbOfVehicles; i++) {
-		 arrayOfVehicles[i] = this.vehicles.get(i).getPlateNumber();
+		 vehicle_plate_number[i] = this.vehicles.get(i).getPlateNumber();
 	  }
 	  
-	  return arrayOfVehicles;
+	  return vehicle_plate_number;
   }
   
   @Column(name="ad_ids")
   public int[] getAdIds() {
 	  int nbOfAds = this.ads.size();
-	  int[] arrayOfAdIds = new int[nbOfAds];
+	  ad_ids = new int[nbOfAds];
 	  
 	  for(int i = 0; i < nbOfAds; i++) {
-		  arrayOfAdIds[i] = this.ads.get(i).getId();
+		  ad_ids[i] = this.ads.get(i).getId();
 	  }
 	  
-	  return arrayOfAdIds;
+	  return ad_ids;
   }
   
   

@@ -35,6 +35,8 @@ public class Vehicle
   private int year;
   private String brand;
   private int availableSeat;
+  private int carpool_manager_id;
+  private int[] driver_ids;
 
   //Vehicle Associations
   @Transient
@@ -344,18 +346,19 @@ public class Vehicle
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
-  @Column(name="drivers")
+  @Column(name="driver_ids")
   public int[] getDriverIds() {
 	  int nbOfDrivers = this.drivers.size();
-	  int[] arrayOfDriverIds = new int[nbOfDrivers];
+	  driver_ids = new int[nbOfDrivers];
 	  
 	  for(int i = 0; i < nbOfDrivers; i++) {
-		  arrayOfDriverIds[i] = this.drivers.get(i).getUser().getId();
+		  driver_ids[i] = this.drivers.get(i).getUser().getId();
 	  }
 	  
-	  return arrayOfDriverIds;
+	  return driver_ids;
   }
 }

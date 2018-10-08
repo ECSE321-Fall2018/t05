@@ -41,6 +41,9 @@ public class Stop
   private int x;
   private int y;
   private int nbOfAvailableSeat;
+  private int carpool_manager_id;
+  private int ad_id;
+  private int[] passenger_ids;
 
 
 
@@ -356,23 +359,25 @@ public class Stop
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   @Column(name="ad_id")
   public int getAdId() {
-	  return this.getAd().getId();
+	  ad_id = this.getAd().getId();
+	  return ad_id;
   }
   
   @Column(name="passenger_ids")
   public int[] getPassengerIds() {
 	  int nbOfPassengers = this.passengers.size();
-	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  passenger_ids = new int[nbOfPassengers];
 	  
 	  for(int i = 0; i < nbOfPassengers; i++) {
-		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+		  passenger_ids[i] = this.passengers.get(i).getUser().getId();
 	  }
 	  
-	  return arrayOfPassengerIds;
+	  return passenger_ids;
   }
 }

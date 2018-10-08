@@ -36,6 +36,8 @@ public class Admin extends UserRole
   @Column(name="id")
   private int id;
   private String name;
+  private int carpool_manager_id;
+  private int[] ads_id;
 	
   //Admin Associations
   
@@ -219,20 +221,21 @@ public class Admin extends UserRole
 
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   
   @Column(name="ads_id")
   public int[] getAdIds() {
 	  int nbOfAds = this.ads.size();
-	  int[] arrayOfAdIds = new int[nbOfAds];
+	  ads_id = new int[nbOfAds];
 	  
 	  for(int i = 0; i < nbOfAds; i++) {
-		  arrayOfAdIds[i] = this.ads.get(i).getId();
+		  ads_id[i] = this.ads.get(i).getId();
 	  }
 	  
-	  return arrayOfAdIds;
+	  return ads_id;
   }
 
 }
