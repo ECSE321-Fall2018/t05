@@ -356,7 +356,7 @@ public class MethodServices
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
 		sortedList = getActiveAds();
 		
-		Ad temp;
+		Ad temp = null;
 		double min = 0;
 		int minIndex = 0;
 		
@@ -383,8 +383,9 @@ public class MethodServices
 	public ArrayList<Ad> sortAdsPrice(){
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
 		sortedList = getActiveAds();
+
 		
-		Ad temp;
+		Ad temp = null;
 		double min = 0;
 		int minIndex = 0;
 		
@@ -392,10 +393,10 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size()-1; i++) {
 			//will compare current element with next elements
 			min = sortedList.get(i).getPrice();
-			minIndex = i;
+			minIndex = i; //reset index
 			for (int j = i+1; j < sortedList.size(); j++) {
 				if (min > sortedList.get(j).getPrice()) {
-					min = sortedList.get(j).getPrice(); //set the new min
+					min = sortedList.get(j).getPrice(); //set the new minimum value
 					minIndex = j; //set the index in list of smallest value up to now
 				}
 			}
@@ -408,13 +409,15 @@ public class MethodServices
 	}
 	
 	
+	
 	//AHB-done
 	public ArrayList<Ad> sortAdsCarType()
 	{
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
 		sortedList = getActiveAds();
 		
-		Ad temp;
+		
+		Ad temp = null;
 		String name = "";
 		int minIndex = 0;
 		
@@ -422,10 +425,11 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size()-1; i++) {
 			//will compare current element with next elements
 			name = sortedList.get(i).getVehicle().getBrand();
+			minIndex = i;
 			for (int j = i+1; j < sortedList.size(); j++) {
 				//if negative, then sortedList.get(i).getVehicle().getBrand() is lexicographically smaller than name 
-				if (name.compareTo(sortedList.get(i).getVehicle().getBrand()) < 0) {
-					name = sortedList.get(i).getVehicle().getBrand(); //set the new min
+				if (name.compareTo(sortedList.get(j).getVehicle().getBrand()) > 0) {
+					name = sortedList.get(j).getVehicle().getBrand(); //set the new min
 					minIndex = j; //set the index in list of smallest value up to now
 				}
 			}
