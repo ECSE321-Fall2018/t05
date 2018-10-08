@@ -8,17 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 38 "../../../../../../../ump/tmp788046/model.ump"
 // line 107 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="ad")
+@Access(AccessType.FIELD)
 public class Ad
 {
 
@@ -31,18 +35,24 @@ public class Ad
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
   private int id;
-  @Column(name="price")
   private double price;
-  @Column(name="is_active")
   private boolean isActive;
-  @Column(name="is_completed")
   private boolean isCompleted;
+  private String vehicleId;
+  private int carpool_manager_id;
+  private int[] stop_ids;
+  private int[] passenger_ids;
 
   //Ad Associations
+  @Transient
   private List<Stop> stops;
+  @Transient
   private Driver driver;
+  @Transient
   private List<Passenger> passengers;
+  @Transient
   private Vehicle vehicle;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -109,21 +119,24 @@ public class Ad
     return wasSet;
   }
 
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
   public int getId()
   {
     return id;
   }
-
+  @Column(name="price")
   public double getPrice()
   {
     return price;
   }
-
+  @Column(name="is_active")
   public boolean getIsActive()
   {
     return isActive;
   }
-
+  @Column(name="is_completed")
   public boolean getIsCompleted()
   {
     return isCompleted;
@@ -454,43 +467,41 @@ public class Ad
   //Methods for data base
   //Added by Roger Zhang
   //----------------
-  
-  @Column(name="driver_id")
-  public int getDriverId() {
-	  return this.driver.getUser().getId();
-  }
+
   
   @Column(name="vehicle_plate_number")
   public String getVehicleId() {
-	  return this.getVehicle().getPlateNumber();
+	  vehicleId = this.getVehicle().getPlateNumber();
+	  return vehicleId;
   }
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   @Column(name="stop_ids")
   public int[] getStopIds() {
 	  int nbOfStops = this.stops.size();
-	  int[] arrayOfStopIds = new int[nbOfStops];
+	  stop_ids = new int[nbOfStops];
 	  
 	  for(int i = 0; i < nbOfStops; i++) {
-		  arrayOfStopIds[i] = this.stops.get(i).getId();
+		  stop_ids[i] = this.stops.get(i).getId();
 	  }
 	  
-	  return arrayOfStopIds;
+	  return stop_ids;
   }
   
-  @Column(name="stop_ids")
+  @Column(name="passenger_ids")
   public int[] getPassengerIds() {
 	  int nbOfPassengers = this.passengers.size();
-	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  passenger_ids = new int[nbOfPassengers];
 	  
 	  for(int i = 0; i < nbOfPassengers; i++) {
-		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+		  passenger_ids[i] = this.passengers.get(i).getUser().getId();
 	  }
 	  
-	  return arrayOfPassengerIds;
+	  return passenger_ids;
   }
 }

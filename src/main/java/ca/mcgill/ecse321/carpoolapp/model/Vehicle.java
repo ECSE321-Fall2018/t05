@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 47 "../../../../../../../ump/tmp788046/model.ump"
 // line 113 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="vehicle")
+@Access(AccessType.FIELD)
 public class Vehicle
 {
 
@@ -25,21 +29,19 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
-  @Column(name="year")
-  private int year;
-  @Column(name="brand")
-  private String brand;
-  
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="plate_number")
   private String plateNumber;
-  
-  @Column(name="available_seats")
+  private int year;
+  private String brand;
   private int availableSeat;
+  private int carpool_manager_id;
+  private int[] driver_ids;
 
   //Vehicle Associations
+  @Transient
   private List<Driver> drivers;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -100,22 +102,23 @@ public class Vehicle
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="year")
   public int getYear()
   {
     return year;
   }
-
+  @Column(name="brand")
   public String getBrand()
   {
     return brand;
   }
 
+
   public String getPlateNumber()
   {
     return plateNumber;
   }
-
+  @Column(name="available_seats")
   public int getAvailableSeat()
   {
     return availableSeat;
@@ -343,18 +346,19 @@ public class Vehicle
   
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
-  @Column(name="drivers")
+  @Column(name="driver_ids")
   public int[] getDriverIds() {
 	  int nbOfDrivers = this.drivers.size();
-	  int[] arrayOfDriverIds = new int[nbOfDrivers];
+	  driver_ids = new int[nbOfDrivers];
 	  
 	  for(int i = 0; i < nbOfDrivers; i++) {
-		  arrayOfDriverIds[i] = this.drivers.get(i).getUser().getId();
+		  driver_ids[i] = this.drivers.get(i).getUser().getId();
 	  }
 	  
-	  return arrayOfDriverIds;
+	  return driver_ids;
   }
 }

@@ -6,18 +6,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 15 "../../../../../../../ump/tmp788046/model.ump"
 // line 89 "../../../../../../../ump/tmp788046/model.ump"
 
 @Entity
 @Table(name="driver")
+@Access(AccessType.FIELD)
 public class Driver extends UserRole
 {
 
@@ -26,22 +30,25 @@ public class Driver extends UserRole
   //------------------------
 
   //Driver Attributes
-  @Column(name="average_cost_per_km")
-  private int averageCostPerKm;
-  @Column(name="total_distance")
-  private int totalDistance;
-  
+
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
-  private int id;
-  
-  @Column(name="name")
+  private int id;	
+  private int averageCostPerKm;
+  private int totalDistance; 
   private String name;
+  private int carpool_manager_id;
+  private String[] vehicle_plate_number;
+  private int[] ad_ids;
 
   //Driver Associations
+  @Transient
   private List<Vehicle> vehicles;
+  
+  @Transient
   private List<Ad> ads;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -83,12 +90,12 @@ public class Driver extends UserRole
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="average_cost_per_km")
   public int getAverageCostPerKm()
   {
     return averageCostPerKm;
   }
-
+  @Column(name="total_distance")
   public int getTotalDistance()
   {
     return totalDistance;
@@ -376,33 +383,50 @@ public class Driver extends UserRole
   //Added by Roger Zhang
   //----------------
   
+  public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	@Column(name="name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   @Column(name="vehicle_plate_number")
   public String[] getVehiclePlateNbs() {
 	  int nbOfVehicles = this.vehicles.size();
-	  String[] arrayOfVehicles = new String[nbOfVehicles];
+	  vehicle_plate_number = new String[nbOfVehicles];
 	  
 	  for(int i = 0; i < nbOfVehicles; i++) {
-		 arrayOfVehicles[i] = this.vehicles.get(i).getPlateNumber();
+		 vehicle_plate_number[i] = this.vehicles.get(i).getPlateNumber();
 	  }
 	  
-	  return arrayOfVehicles;
+	  return vehicle_plate_number;
   }
   
   @Column(name="ad_ids")
   public int[] getAdIds() {
 	  int nbOfAds = this.ads.size();
-	  int[] arrayOfAdIds = new int[nbOfAds];
+	  ad_ids = new int[nbOfAds];
 	  
 	  for(int i = 0; i < nbOfAds; i++) {
-		  arrayOfAdIds[i] = this.ads.get(i).getId();
+		  ad_ids[i] = this.ads.get(i).getId();
 	  }
 	  
-	  return arrayOfAdIds;
+	  return ad_ids;
   }
   
   

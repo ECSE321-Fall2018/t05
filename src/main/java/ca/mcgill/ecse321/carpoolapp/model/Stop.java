@@ -8,15 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 // line 57 "../../../../../../../ump/tmp788046/model.ump"
 // line 119 "../../../../../../../ump/tmp788046/model.ump"
 @Entity
 @Table(name="stop")
+@Access(AccessType.FIELD)
 public class Stop
 {
 
@@ -25,32 +31,28 @@ public class Stop
   //------------------------
 
   //Stop Attributes
-  @Column(name="time")
-  private Time time;
-  @Column(name="date")
-  private Date date;
-  @Column(name="x_coordinate")
-  private int x;
-  @Column(name="y_coordinate")
-  private int y;
-  @Column(name="nb_available_seat")
-  private int nbOfAvailableSeat;
+
   @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="id")
   private int id;
+  private Time time;
+  private Date date;
+  private int x;
+  private int y;
+  private int nbOfAvailableSeat;
+  private int carpool_manager_id;
+  private int ad_id;
+  private int[] passenger_ids;
 
-  public int getId() {
-	return id;
-}
-
-  public void setId(int id) {
-	this.id = id;
-}
 
 
 //Stop Associations
+  @Transient
   private List<Passenger> passengers;
+  @Transient
   private Ad ad;
+  @Transient
   private CarPoolManager carPoolManager;
 
   //------------------------
@@ -121,27 +123,27 @@ public class Stop
     wasSet = true;
     return wasSet;
   }
-
+  @Column(name="time")
   public Time getTime()
   {
     return time;
   }
-
+  @Column(name="date")
   public Date getDate()
   {
     return date;
   }
-
+  @Column(name="x_coordinate")
   public int getX()
   {
     return x;
   }
-
+  @Column(name="y_coordinate")
   public int getY()
   {
     return y;
   }
-
+  @Column(name="nb_available_seat")
   public int getNbOfAvailableSeat()
   {
     return nbOfAvailableSeat;
@@ -347,25 +349,35 @@ public class Stop
   //Added by Roger Zhang
   //----------------
   
+  public int getId() {
+	return id;
+}
+
+  public void setId(int id) {
+	this.id = id;
+}
+  
   @Column(name="carpool_manager_id")
   public int getCarpoolManagerId() {
-	  return this.getCarPoolManager().getId();
+	  carpool_manager_id = this.getCarPoolManager().getId();
+	  return carpool_manager_id;
   }
   
   @Column(name="ad_id")
   public int getAdId() {
-	  return this.getAd().getId();
+	  ad_id = this.getAd().getId();
+	  return ad_id;
   }
   
   @Column(name="passenger_ids")
   public int[] getPassengerIds() {
 	  int nbOfPassengers = this.passengers.size();
-	  int[] arrayOfPassengerIds = new int[nbOfPassengers];
+	  passenger_ids = new int[nbOfPassengers];
 	  
 	  for(int i = 0; i < nbOfPassengers; i++) {
-		  arrayOfPassengerIds[i] = this.passengers.get(i).getUser().getId();
+		  passenger_ids[i] = this.passengers.get(i).getUser().getId();
 	  }
 	  
-	  return arrayOfPassengerIds;
+	  return passenger_ids;
   }
 }
