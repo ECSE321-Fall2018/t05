@@ -219,7 +219,9 @@ public class MethodServices
         for (int i = 0; i < sortedList.size() -1; i++) {
             //will compare current element with next elements
             max = sortedList.get(i).getTotalDistance();
+            minIndex = i;
             for (int j = i+1; j < sortedList.size(); j++) {
+            	
                 if (max < sortedList.get(j).getTotalDistance()) {
                     max = sortedList.get(j).getTotalDistance(); //set the new max distance
                     minIndex = j; //set the index in list of driver with most distance
@@ -250,6 +252,7 @@ public class MethodServices
         for (int i = 0; i < sortedList.size() -1; i++) {
             //will compare current element with next elements
             max = sortedList.get(i).getTotalDistance();
+            minIndex = i;
             for (int j = i+1; j < sortedList.size(); j++) {
                 if (max < sortedList.get(j).getTotalDistance()) {
                     max = sortedList.get(j).getTotalDistance(); //set the new max distance
@@ -352,12 +355,12 @@ public class MethodServices
 	}
 	
 	//AHB-done
-	public ArrayList<Ad> sortAdsDistance(ArrayList<Ad> activeAds)
+	public ArrayList<Ad> sortAdsDistance()
 	{
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
 		
-		Ad temp;
+		Ad temp = null;
 		double min = 0;
 		int minIndex = 0;
 		
@@ -365,6 +368,7 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size() -1; i++) {
 			//will compare current element with next elements
 			min = getDistOfAd(sortedList.get(i));
+			minIndex = i;
 			for (int j = i+1; j < sortedList.size(); j++) {
 				if (min > getDistOfAd(sortedList.get(j))) {
 					min = getDistOfAd(sortedList.get(j)); //set the new min
@@ -380,11 +384,12 @@ public class MethodServices
 	}
 	
 	//AHB-done
-	public ArrayList<Ad> sortAdsPrice(ArrayList<Ad> activeAds){
+	public ArrayList<Ad> sortAdsPrice(){
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
+
 		
-		Ad temp;
+		Ad temp = null;
 		double min = 0;
 		int minIndex = 0;
 		
@@ -392,9 +397,10 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size()-1; i++) {
 			//will compare current element with next elements
 			min = sortedList.get(i).getPrice();
+			minIndex = i; //reset index
 			for (int j = i+1; j < sortedList.size(); j++) {
 				if (min > sortedList.get(j).getPrice()) {
-					min = sortedList.get(j).getPrice(); //set the new min
+					min = sortedList.get(j).getPrice(); //set the new minimum value
 					minIndex = j; //set the index in list of smallest value up to now
 				}
 			}
@@ -407,13 +413,15 @@ public class MethodServices
 	}
 	
 	
+	
 	//AHB-done
-	public ArrayList<Ad> sortAdsCarType(ArrayList<Ad> activeAds)
+	public ArrayList<Ad> sortAdsCarType()
 	{
 		ArrayList<Ad> sortedList = new ArrayList<Ad>();
-		sortedList = activeAds;
+		sortedList = getActiveAds();
 		
-		Ad temp;
+		
+		Ad temp = null;
 		String name = "";
 		int minIndex = 0;
 		
@@ -421,10 +429,11 @@ public class MethodServices
 		for (int i = 0; i < sortedList.size()-1; i++) {
 			//will compare current element with next elements
 			name = sortedList.get(i).getVehicle().getBrand();
+			minIndex = i;
 			for (int j = i+1; j < sortedList.size(); j++) {
 				//if negative, then sortedList.get(i).getVehicle().getBrand() is lexicographically smaller than name 
-				if (name.compareTo(sortedList.get(i).getVehicle().getBrand()) < 0) {
-					name = sortedList.get(i).getVehicle().getBrand(); //set the new min
+				if (name.compareTo(sortedList.get(j).getVehicle().getBrand()) > 0) {
+					name = sortedList.get(j).getVehicle().getBrand(); //set the new min
 					minIndex = j; //set the index in list of smallest value up to now
 				}
 			}
@@ -513,7 +522,6 @@ public class MethodServices
 	}
 	
 	//AKC-done
-	//tested
 	public void completeAd(Ad ad)
 	{
 		Driver driver = ad.getDriver();
