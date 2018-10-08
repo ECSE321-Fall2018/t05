@@ -268,35 +268,39 @@ public class MethodServices
     }
 	
     //AHB-done
-    public ArrayList<Ad> listAdsByStops(Stop start, Stop end)
+    public ArrayList<Ad> listAdsByStops(int startX, int startY, int endX, int endY)
     {
         //Put all active adds inside list
-        ArrayList<Ad> list = new ArrayList<Ad>();
-        list = getActiveAds();
+        ArrayList<Ad> activeAds = new ArrayList<Ad>();
+        activeAds = getActiveAds();
         
         
         //Create a sorted list
         ArrayList<Ad> sortedList = new ArrayList<Ad>();
         
-        int startIndex;
-        int endIndex;
+        int startIndex = 0;
+        int endIndex = 0;
         
         //for each ad
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < activeAds.size(); i++) {
             //for each stop of the current ad
-        	startIndex = i;
-        	endIndex = i;
-            for (int j = 0; j < list.get(i).getStops().size(); j++) {
+            for (int j = 0; j < activeAds.get(i).getStops().size(); j++) 
+            {
                 //if the current stop equals the desired starting stop of the customer, register its index in the itinerary
-                if (list.get(i).getStop(j).equals(start))
+                if (activeAds.get(i).getStop(j).getX() == startX && activeAds.get(i).getStop(j).getY() == startY)
+                {
                     startIndex = j;
+                }
                 //if the current stop equals the desired ending stop of the customer, register its index in the itinerary
-                if (list.get(i).getStop(j).equals(end))
+                if (activeAds.get(i).getStop(j).getX() == endX && activeAds.get(i).getStop(j).getY() == endY)
+                {
                     endIndex = j;
+                }
+                
             }
             //make sure start stop is before end stop
             if (startIndex < endIndex)
-                sortedList.add(list.get(i));
+                sortedList.add(activeAds.get(i));
         }
         return sortedList;
         
@@ -533,14 +537,17 @@ public class MethodServices
 		driver.setTotalDistance((int) (adDistance+driver.getTotalDistance()));
 		
 		//Create an arraylist of passengers for each stop
-		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		List<Passenger> passengers = new ArrayList<Passenger>();
 		
 		//update totalDistance of passengers
 		for (int i = 0; i < ad.numberOfStops() - 1; i++) {
-			passengers = (ArrayList<Passenger>) ad.getStop(i).getPassengers(); //get passengers for current stop
+			passengers = ad.getStop(i).getPassengers(); //get passengers for current stop
 			for (int j = 0; j < passengers.size(); j++) {
-				//add distance between current stop and next stop to each passengers
-				passengers.get(j).setTotalDistance((int)(passengers.get(j).getTotalDistance() + getDistBetweenStops(ad.getStop(i), ad.getStop(i+1))));
+				if (ad.getStop(i+1).getPassengers().contains(passengers.get(j))) {
+					//add distance between current stop and next stop to each passengers
+					passengers.get(j).setTotalDistance((int) (passengers.get(j).getTotalDistance()
+							+ getDistBetweenStops(ad.getStop(i), ad.getStop(i + 1))));
+				}
 			}
 		}
 		//turn off activity of ad
