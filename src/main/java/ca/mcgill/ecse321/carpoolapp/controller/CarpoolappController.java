@@ -24,6 +24,11 @@ public class CarpoolappController {
 	@Autowired
 	CarpoolappRepository repository;
 
+	@RequestMapping("/")
+	public String greeting() {
+		return "Hello carpool!";
+	}
+	
 	@PostMapping("/admin/{id}")
 	public String createAdmin(@PathVariable("id") int id, String name) 
 	{
