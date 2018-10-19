@@ -29,8 +29,8 @@ public class CarpoolappController {
 		return "Hello carpool!";
 	}
 	
-	@PostMapping("/admin/{id}")
-	public String createAdmin(@PathVariable("id") int id, String name) 
+	@PostMapping("/admin/{id}/{name}")
+	public String createAdmin(@PathVariable("id") int id,@PathVariable("name") String name) 
 	{
 		Admin admin = repository.createAdmin(id, name);
 		return admin.getUser().getName();
