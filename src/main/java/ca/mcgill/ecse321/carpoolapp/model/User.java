@@ -1,11 +1,20 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-// line 4 "../../../../../../../ump/tmp788046/model.ump"
-// line 79 "../../../../../../../ump/tmp788046/model.ump"
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+// line 4 "../../../../../../../../ump/18102077559/model.ump"
+// line 84 "../../../../../../../../ump/18102077559/model.ump"
+// line 89 "../../../../../../../../ump/18102077559/model.ump"
+@Entity
 public class User
 {
 
@@ -19,7 +28,7 @@ public class User
 
   //User Associations
   private List<UserRole> userRoles;
-  private CarPoolManager CarPoolManager;
+  private CarPoolManager carPoolManager;
 
   //------------------------
   // CONSTRUCTOR
@@ -33,7 +42,7 @@ public class User
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
     if (!didAddCarPoolManager)
     {
-      throw new RuntimeException("Unable to create user due to CarPoolManager");
+      throw new RuntimeException("Unable to create user due to carPoolManager");
     }
   }
 
@@ -56,7 +65,7 @@ public class User
     wasSet = true;
     return wasSet;
   }
-
+  @Id
   public int getId()
   {
     return id;
@@ -72,7 +81,7 @@ public class User
     UserRole aUserRole = userRoles.get(index);
     return aUserRole;
   }
-
+  @Transient
   public List<UserRole> getUserRoles()
   {
     List<UserRole> newUserRoles = Collections.unmodifiableList(userRoles);
@@ -97,9 +106,10 @@ public class User
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
-    return CarPoolManager;
+    return carPoolManager;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfUserRoles()
@@ -189,13 +199,13 @@ public class User
       return wasSet;
     }
 
-    CarPoolManager existingCarPoolManager = CarPoolManager;
-    CarPoolManager = aCarPoolManager;
+    CarPoolManager existingCarPoolManager = carPoolManager;
+    carPoolManager = aCarPoolManager;
     if (existingCarPoolManager != null && !existingCarPoolManager.equals(aCarPoolManager))
     {
       existingCarPoolManager.removeUser(this);
     }
-    CarPoolManager.addUser(this);
+    carPoolManager.addUser(this);
     wasSet = true;
     return wasSet;
   }
@@ -207,8 +217,8 @@ public class User
       UserRole aUserRole = userRoles.get(i - 1);
       aUserRole.delete();
     }
-    CarPoolManager placeholderCarPoolManager = CarPoolManager;
-    this.CarPoolManager = null;
+    CarPoolManager placeholderCarPoolManager = carPoolManager;
+    this.carPoolManager = null;
     if(placeholderCarPoolManager != null)
     {
       placeholderCarPoolManager.removeUser(this);
@@ -221,6 +231,6 @@ public class User
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
             "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "CarPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
+            "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
 }

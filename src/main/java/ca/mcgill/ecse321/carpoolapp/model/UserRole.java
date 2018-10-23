@@ -1,10 +1,10 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 
-// line 11 "../../../../../../../ump/tmp788046/model.ump"
-// line 84 "../../../../../../../ump/tmp788046/model.ump"
+// line 11 "../../../../../../../../ump/18102077559/model.ump"
+// line 94 "../../../../../../../../ump/18102077559/model.ump"
 public abstract class UserRole
 {
 

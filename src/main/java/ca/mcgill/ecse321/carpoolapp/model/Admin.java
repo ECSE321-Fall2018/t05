@@ -1,63 +1,59 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.*;
-import javax.persistence.Access;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-// line 33 "../../../../../../../ump/tmp788046/model.ump"
-// line 102 "../../../../../../../ump/tmp788046/model.ump"
+// line 33 "../../../../../../../../ump/18102077559/model.ump"
+// line 109 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
-@Table(name="admin")
-@Access(AccessType.FIELD)
 public class Admin extends UserRole
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
+
+  //Admin Associations
+  private List<Ad> ads;
+  private CarPoolManager carPoolManager;
   
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
-  private int id;
-  private String name;
-  private int carpool_manager_id;
-  private int[] ads_id;
-	
-  //Admin Associations
+  public int getId() {
+	  return this.getUser().getId();
+  }
   
-  //@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
-  @Transient
-  private List<Ad> ads;
-  @Transient
-  private CarPoolManager carPoolManager;
+  public boolean setId(int aId) {
+	  return this.getUser().setId(aId);
+  }
+  
+  public void setAds(List<Ad> ads) {
+	this.ads = ads;
+}
+  
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Admin(User aUser, CarPoolManager aCarPoolManager)
+
+
+public Admin(User aUser, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     ads = new ArrayList<Ad>();
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
-    this.id = aUser.getId();
-    this.name = aUser.getName();
     if (!didAddCarPoolManager)
     {
       throw new RuntimeException("Unable to create admin due to carPoolManager");
@@ -68,14 +64,14 @@ public class Admin extends UserRole
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
-  @Transient
   public Ad getAd(int index)
   {
     Ad aAd = ads.get(index);
     return aAd;
   }
-
-  @Transient
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name="admin_ad", joinColumns=@JoinColumn(name="admin_id"), inverseJoinColumns=
+  @JoinColumn(name="ad_id"))
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);
@@ -100,7 +96,7 @@ public class Admin extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
-  @Transient
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -194,48 +190,6 @@ public class Admin extends UserRole
     super.delete();
   }
   
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
   
-  
-  public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	@Column(name="name")
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-  
-
-
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  
-  @Column(name="ads_id")
-  public int[] getAdIds() {
-	  int nbOfAds = this.ads.size();
-	  ads_id = new int[nbOfAds];
-	  
-	  for(int i = 0; i < nbOfAds; i++) {
-		  ads_id[i] = this.ads.get(i).getId();
-	  }
-	  
-	  return ads_id;
-  }
 
 }
