@@ -3,7 +3,6 @@
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.sql.Date;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -181,7 +180,7 @@ public class Ad
   public Passenger getPassenger(int index)
   {
     Passenger aPassenger = passengers.get(index);
-    return aPassenger; 
+    return aPassenger;
   }
 
   public List<Passenger> getPassengers()
