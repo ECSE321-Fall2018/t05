@@ -9,12 +9,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 // line 4 "../../../../../../../../ump/18102077559/model.ump"
 // line 84 "../../../../../../../../ump/18102077559/model.ump"
 // line 89 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="user")
 public class User
 {
 
@@ -44,6 +46,10 @@ public class User
     {
       throw new RuntimeException("Unable to create user due to carPoolManager");
     }
+  }
+  
+  public User()
+  {
   }
 
   //------------------------

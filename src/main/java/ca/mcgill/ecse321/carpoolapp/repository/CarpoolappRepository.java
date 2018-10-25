@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
 import ca.mcgill.ecse321.carpoolapp.model.Admin;
 import ca.mcgill.ecse321.carpoolapp.model.CarPoolManager;

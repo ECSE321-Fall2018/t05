@@ -16,10 +16,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 // line 38 "../../../../../../../../ump/18102077559/model.ump"
 // line 114 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="ad")
 public class Ad
 {
 
@@ -75,6 +77,10 @@ public Ad(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Drive
       throw new RuntimeException("Unable to create ad due to carPoolManager");
     }
   }
+
+public Ad() {
+	
+}
 
   //------------------------
   // INTERFACE
@@ -174,7 +180,7 @@ public Ad(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Drive
     return aPassenger;
   }
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="ad_passenger", joinColumns=@JoinColumn(name="ad_id"), inverseJoinColumns=
+  @JoinTable(name="ad_passenger", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=
   @JoinColumn(name="passenger_id"))
   public List<Passenger> getPassengers()
   {

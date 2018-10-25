@@ -28,6 +28,11 @@ public abstract class UserRole
     }
   }
 
+  public UserRole()
+  {
+ 
+  }
+  
   //------------------------
   // INTERFACE
   //------------------------

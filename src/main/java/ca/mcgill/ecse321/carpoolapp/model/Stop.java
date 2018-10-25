@@ -15,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 // line 57 "../../../../../../../../ump/18102077559/model.ump"
 // line 126 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="stop")
 public class Stop
 {
 
@@ -69,6 +71,11 @@ public Stop(Time aTime, Date aDate, int aNbOfAvailableSeat, int aX, int aY, int 
       throw new RuntimeException("Unable to create stop due to carPoolManager");
     }
   }
+
+public Stop()
+{
+  
+}
 
   //------------------------
   // INTERFACE
@@ -158,7 +165,7 @@ public Stop(Time aTime, Date aDate, int aNbOfAvailableSeat, int aX, int aY, int 
     return aPassenger;
   }
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="stop_passenger", joinColumns=@JoinColumn(name="stop_id"), inverseJoinColumns=
+  @JoinTable(name="stop_passenger", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=
   @JoinColumn(name="passenger_id"))
   public List<Passenger> getPassengers()
   {

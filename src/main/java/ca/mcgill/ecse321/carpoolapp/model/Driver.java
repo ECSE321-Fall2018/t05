@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 // line 15 "../../../../../../../../ump/18102077559/model.ump"
 // line 99 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="driver")
 public class Driver extends UserRole
 {
 
@@ -26,6 +28,7 @@ public class Driver extends UserRole
   //Driver Attributes
   private int averageCostPerKm;
   private int totalDistance;
+  private int driver_id;
 
   //Driver Associations
   private List<Vehicle> vehicles;
@@ -34,10 +37,12 @@ public class Driver extends UserRole
   
   @Id
   public int getId() {
-	  return this.getUser().getId();
+	  this.driver_id = this.getUser().getId();
+	  return driver_id;
   }
   
   public boolean setId(int aId) {
+	  this.driver_id = aId;
 	  return this.getUser().setId(aId);
   }
   
@@ -70,6 +75,11 @@ public Driver(User aUser, int aAverageCostPerKm, int aTotalDistance, CarPoolMana
     }
   }
 
+
+public Driver()
+{
+
+}
   //------------------------
   // INTERFACE
   //------------------------

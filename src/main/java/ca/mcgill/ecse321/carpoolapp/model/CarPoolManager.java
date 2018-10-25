@@ -12,10 +12,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 // line 68 "../../../../../../../../ump/18102077559/model.ump"
 // line 131 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="carpoolmanager")
 public class CarPoolManager
 {
 
@@ -83,6 +85,10 @@ public CarPoolManager(int aId)
     vehicles = new ArrayList<Vehicle>();
     stops = new ArrayList<Stop>();
   }
+
+public CarPoolManager()
+{
+}
 
   //------------------------
   // INTERFACE

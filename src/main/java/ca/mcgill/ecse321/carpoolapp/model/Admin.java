@@ -18,6 +18,7 @@ import javax.persistence.Table;
 // line 33 "../../../../../../../../ump/18102077559/model.ump"
 // line 109 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="admin")
 public class Admin extends UserRole
 {
 
@@ -28,13 +29,16 @@ public class Admin extends UserRole
   //Admin Associations
   private List<Ad> ads;
   private CarPoolManager carPoolManager;
+  private int admin_id;
   
   @Id
   public int getId() {
-	  return this.getUser().getId();
+	  this.admin_id = this.getUser().getId();
+	  return this.admin_id;
   }
   
   public boolean setId(int aId) {
+	  this.admin_id = aId;
 	  return this.getUser().setId(aId);
   }
   
@@ -60,6 +64,10 @@ public Admin(User aUser, CarPoolManager aCarPoolManager)
     }
   }
 
+public Admin()
+{
+
+}
   //------------------------
   // INTERFACE
   //------------------------
@@ -70,8 +78,7 @@ public Admin(User aUser, CarPoolManager aCarPoolManager)
     return aAd;
   }
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="admin_ad", joinColumns=@JoinColumn(name="admin_id"), inverseJoinColumns=
-  @JoinColumn(name="ad_id"))
+  @JoinTable(name="admin_ad", joinColumns=@JoinColumn(name="admin_id"), inverseJoinColumns=@JoinColumn(name="id"))
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);

@@ -11,10 +11,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 // line 25 "../../../../../../../../ump/18102077559/model.ump"
 // line 104 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="passenger")
 public class Passenger extends UserRole
 {
 
@@ -25,6 +27,7 @@ public class Passenger extends UserRole
   //Passenger Attributes
   private int averagePaidPerKm;
   private int totalDistance;
+  private int passenger_id;
 
   //Passenger Associations
   private List<Ad> ads;
@@ -33,10 +36,12 @@ public class Passenger extends UserRole
   
   @Id
   public int getId() {
-	  return this.getUser().getId();
+	  this.passenger_id = this.getUser().getId();
+	  return this.passenger_id;
   }
   
   public boolean setId(int aId) {
+	  this.passenger_id = aId;
 	  return this.getUser().setId(aId);
   }
   
@@ -68,6 +73,11 @@ public Passenger(User aUser, int aAveragePaidPerKm, int aTotalDistance, CarPoolM
       throw new RuntimeException("Unable to create passenger due to carPoolManager");
     }
   }
+
+public Passenger()
+{
+
+}
 
   //------------------------
   // INTERFACE

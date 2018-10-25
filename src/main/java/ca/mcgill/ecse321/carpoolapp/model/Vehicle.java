@@ -13,11 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 // line 47 "../../../../../../../../ump/18102077559/model.ump"
 // line 120 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
+@Table(name="vehicle")
 public class Vehicle
 {
 
@@ -62,6 +64,11 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
       throw new RuntimeException("Unable to create vehicle due to carPoolManager");
     }
   }
+
+	public Vehicle()
+	{
+	 
+	}
 
   //------------------------
   // INTERFACE
@@ -125,7 +132,7 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
     return aDriver;
   }
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="vehicle_driver", joinColumns=@JoinColumn(name="vehicle_id"), inverseJoinColumns=
+  @JoinTable(name="vehicle_driver", joinColumns=@JoinColumn(name="plateNumber"), inverseJoinColumns=
   @JoinColumn(name="driver_id"))
   public List<Driver> getDrivers()
   {
