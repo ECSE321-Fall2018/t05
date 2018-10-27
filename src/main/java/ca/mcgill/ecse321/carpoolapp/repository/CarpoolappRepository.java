@@ -21,7 +21,8 @@ import ca.mcgill.ecse321.carpoolapp.services.MethodServices;
 
 @Repository
 public class CarpoolappRepository {
-
+	
+	private CarPoolManager carpoolManager;
 	private MethodServices methodservices;
 	
 	@Autowired
@@ -31,14 +32,21 @@ public class CarpoolappRepository {
 	@Transactional
 	public Admin createAdmin(int id, String name)
 	{
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		}
+		this.carpoolManager = cm;
+		methodservices = new MethodServices(carpoolManager);
+		
 		User newUser = methodservices.createUser(id, name);
-		
-		//TODO make sure createAdmin returns Admin not NULL
+		entityManager.persist(newUser);
 		Admin newAdmin = methodservices.createAdmin(newUser);
-		
 		entityManager.persist(newAdmin);
-		return newAdmin;
 		
+		return newAdmin;
 	}
 	
 	@Transactional
