@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Android-Driver</string>
     <string name="action_settings">Settings</string>
+    <string name="Login_button">LOGIN</string>
+    <string name="username_ID">Enter User ID</string>
+    <string name="signUp_button">SIGN UP</string>
+    <string name="journeyPrice">Enter Price Here</string>
 </resources>
