@@ -27,6 +27,17 @@ public class CarpoolappRepository {
 	
 	@Autowired
 	EntityManager entityManager;
+	
+	@Transactional
+	public User createUser(int id, String name) {
+		
+		User usr = new User();
+		
+		usr.setId(12);
+		usr.setName("Roger");
+		entityManager.persist(usr);
+		return usr;
+	}
 
 	
 	@Transactional

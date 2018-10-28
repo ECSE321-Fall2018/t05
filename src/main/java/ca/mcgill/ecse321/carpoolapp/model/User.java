@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 // line 84 "../../../../../../../../ump/18102077559/model.ump"
 // line 89 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
-@Table(name="user")
+@Table(name="carpool_user")
 public class User
 {
 
