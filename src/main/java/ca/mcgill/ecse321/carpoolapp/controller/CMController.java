@@ -17,11 +17,11 @@ public class CMController {
 	@Autowired
 	CarpoolappRepository repository;
 	
-	@PostMapping
-	public int createCM() 
-	{
-		CarPoolManager cm = repository.createCM(1);
-		return cm.getId();
-	}
-	
+//	@PostMapping
+//	public int createCM() 
+//	{
+//		CarPoolManager cm = repository.createCM(1);
+//		return cm.getId();
+//	}
+//	
 }

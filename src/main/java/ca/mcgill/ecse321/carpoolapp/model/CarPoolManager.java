@@ -146,7 +146,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Driver> getDrivers()
   {
-    List<Driver> newDrivers = Collections.unmodifiableList(drivers);
+//  List<Driver> newDrivers = Collections.unmodifiableList(drivers);
+	List<Driver> newDrivers = this.drivers;
     return newDrivers;
   }
 
@@ -176,7 +177,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Passenger> getPassengers()
   {
-    List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
+//  List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
+	List<Passenger> newPassengers = this.passengers;
     return newPassengers;
   }
 
@@ -237,7 +239,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Ad> getAds()
   {
-    List<Ad> newAds = Collections.unmodifiableList(ads);
+//  List<Ad> newAds = Collections.unmodifiableList(ads);
+	List<Ad> newAds = this.ads;
     return newAds;
   }
 
@@ -267,7 +270,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Vehicle> getVehicles()
   {
-    List<Vehicle> newVehicles = Collections.unmodifiableList(vehicles);
+//  List<Vehicle> newVehicles = Collections.unmodifiableList(vehicles);
+	  List<Vehicle> newVehicles = this.vehicles;
     return newVehicles;
   }
 
@@ -297,7 +301,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Stop> getStops()
   {
-    List<Stop> newStops = Collections.unmodifiableList(stops);
+//  List<Stop> newStops = Collections.unmodifiableList(stops);
+	List<Stop> newStops = this.stops;
     return newStops;
   }
 
