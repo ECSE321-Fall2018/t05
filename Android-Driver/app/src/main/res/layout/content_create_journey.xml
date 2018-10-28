@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".createJourney"
+    tools:showIn="@layout/activity_create_journey">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Create a Trip"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:paddingTop="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:paddingRight="50dp"
+                android:text="Price" />
+
+            <EditText
+                android:id="@+id/journeyPrice"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Price Here" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="18dp"
+                    android:text="Start Point" />
+
+                <EditText
+                    android:id="@+id/startingPoint"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Start Point Here" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="20dp"
+                        android:text="Add Stops"
+                        />
+                    <EditText
+                        android:id="@+id/stop1"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 1" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="110dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/stop2"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 2" />
+
+                    <EditText
+                        android:id="@+id/stop3"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 3" />
+
+                    <EditText
+                        android:id="@+id/stop4"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 4" />
+
+                    <EditText
+                        android:id="@+id/stop5"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 5" />
+
+                    <EditText
+                        android:id="@+id/stop6"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 6" />
+
+                    <EditText
+                        android:id="@+id/stop7"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 7" />
+
+                    <EditText
+                        android:id="@+id/stop8"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 8" />
+
+                    <EditText
+                        android:id="@+id/stop9"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 9" />
+
+                    <EditText
+                        android:id="@+id/stop10"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Stop 10" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="13dp"
+                    android:paddingBottom="5dp"
+                    android:text="Destination" />
+
+                <EditText
+                    android:id="@+id/destination"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Destination Here" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:text="POST TRIP"
+                android:id="@+id/postTrip"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>
