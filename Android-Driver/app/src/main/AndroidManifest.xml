@@ -26,9 +26,10 @@
         <activity
             android:name=".ModifyJourneyActivity"
             android:label="@string/title_activity_scrolling"></activity>
+
         <activity
             android:name=".createJourneyActivity"
-            android:label="@string/title_activity_create_journey"
+            android:label="createJourney"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

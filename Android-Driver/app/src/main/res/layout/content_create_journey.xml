@@ -210,7 +210,7 @@
                 android:paddingRight="4dp"
                 android:paddingLeft="4dp"
                 android:text="POST TRIP"
-                android:id="@+id/postTrip"
+                android:id="@+id/postTrip_button"
                 />
 
         </LinearLayout>
