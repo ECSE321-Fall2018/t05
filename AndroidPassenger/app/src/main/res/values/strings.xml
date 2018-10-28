@@ -3,4 +3,7 @@
     <string name="title_activity_login">loginActivity</string>
     <string name="Login_button">LOGIN</string>
     <string name="signUp_button">SIGN UP</string>
+    <string name="title_activity_passenger_homepage">passengerHomepage</string>
+    <string name="viewRides_button">VIEW MY RIDES</string>
+    <string name="search_button">SEARCH A RIDE</string>
 </resources>
