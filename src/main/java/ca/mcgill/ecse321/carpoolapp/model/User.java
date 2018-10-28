@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -112,7 +114,8 @@ public class User
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
