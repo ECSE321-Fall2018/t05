@@ -16,7 +16,7 @@
     <string name="number_of_stop_label">Number of stops</string>
     <!--//hint-->
     <string name="max_stop_hint">Max 20 stops</string>
-<<<<<<< HEAD
+
     <string name="newdriverName_hint">Name?</string>
     <string name="newdriverModel_hint">Vehicle model?</string>
     <string name="newdriverYear_hint">Vehicle year?</string>
@@ -36,8 +36,7 @@
     <string name="modifyjourneyStop9_hint">Stop 9 (x,y)?</string>
     <string name="modifyjourneyStop10_hint">Stop 10 (x,y)?</string>
     <string name="modifyJourney_submit">Submit</string>
-=======
     <string name="title_activity_create_journey">createJourney</string>
 
->>>>>>> issue16
+
 </resources>

@@ -22,12 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".createJourneyActivity" />
         <activity android:name=".SignupActivity" />
         <activity
             android:name=".ModifyJourneyActivity"
-            android:label="@string/title_activity_scrolling"
-
+            android:label="@string/title_activity_scrolling"></activity>
         <activity
             android:name=".createJourneyActivity"
             android:label="@string/title_activity_create_journey"
