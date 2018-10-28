@@ -5,6 +5,7 @@
     <string name="username_ID">Enter User ID</string>
     <string name="signUp_button">SIGN UP</string>
     <string name="journeyPrice">Enter Price Here</string>
+    <string name="startingPoint">Enter Starting Point Here</string>
     <!--//Button String-->
     <string name="create_ad_button">Create Ad</string>
     <string name="modify_ad_button">Modify Ad</string>
