@@ -169,6 +169,7 @@ public Ad() {
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "ad_driver")
   public Driver getDriver()
   {
     return driver;
@@ -207,12 +208,14 @@ public Ad() {
   }
   /* Code from template association_GetOne */
   @ManyToOne(cascade = CascadeType.ALL)
+  @JoinTable(name = "ad_vehicle")
   public Vehicle getVehicle()
   {
     return vehicle;
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "ad_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

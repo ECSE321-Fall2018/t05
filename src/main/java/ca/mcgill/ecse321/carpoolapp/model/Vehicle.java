@@ -157,8 +157,10 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
     int index = drivers.indexOf(aDriver);
     return index;
   }
-  /* Code from template association_GetOne */
+  /* Code from temp
+   * late association_GetOne */
   @ManyToOne
+  @JoinTable(name = "vehicle_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

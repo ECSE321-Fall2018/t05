@@ -104,6 +104,7 @@ public Admin()
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "admin_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -170,6 +171,7 @@ public Passenger()
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "passenger_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

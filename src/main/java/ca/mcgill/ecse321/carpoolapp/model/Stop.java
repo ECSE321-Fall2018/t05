@@ -192,12 +192,14 @@ public Stop()
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "stop_ad")
   public Ad getAd()
   {
     return ad;
   }
   /* Code from template association_GetOne */
   @ManyToOne
+  @JoinTable(name = "ad_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
