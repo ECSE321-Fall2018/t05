@@ -1,26 +1,25 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-// line 47 "../../../../../../../ump/tmp788046/model.ump"
-// line 113 "../../../../../../../ump/tmp788046/model.ump"
+// line 47 "../../../../../../../../ump/18102077559/model.ump"
+// line 120 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="vehicle")
-@Access(AccessType.FIELD)
 public class Vehicle
 {
 
@@ -29,26 +28,25 @@ public class Vehicle
   //------------------------
 
   //Vehicle Attributes
-  @Id
-  @Column(name="plate_number")
-  private String plateNumber;
   private int year;
   private String brand;
+  private String plateNumber;
   private int availableSeat;
-  private int carpool_manager_id;
-  private int[] driver_ids;
 
   //Vehicle Associations
-  @Transient
   private List<Driver> drivers;
-  @Transient
   private CarPoolManager carPoolManager;
+  
+	public void setDrivers(List<Driver> drivers) {
+		this.drivers = drivers;
+	}
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat, CarPoolManager aCarPoolManager, Driver... allDrivers)
+
+public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat, CarPoolManager aCarPoolManager, Driver... allDrivers)
   {
     year = aYear;
     brand = aBrand;
@@ -66,6 +64,11 @@ public class Vehicle
       throw new RuntimeException("Unable to create vehicle due to carPoolManager");
     }
   }
+
+	public Vehicle()
+	{
+	 
+	}
 
   //------------------------
   // INTERFACE
@@ -102,23 +105,22 @@ public class Vehicle
     wasSet = true;
     return wasSet;
   }
-  @Column(name="year")
+
   public int getYear()
   {
     return year;
   }
-  @Column(name="brand")
+
   public String getBrand()
   {
     return brand;
   }
-
-
+  @Id
   public String getPlateNumber()
   {
     return plateNumber;
   }
-  @Column(name="available_seats")
+
   public int getAvailableSeat()
   {
     return availableSeat;
@@ -129,7 +131,9 @@ public class Vehicle
     Driver aDriver = drivers.get(index);
     return aDriver;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name="vehicle_driver", joinColumns=@JoinColumn(name="plateNumber"), inverseJoinColumns=
+  @JoinColumn(name="driver_id"))
   public List<Driver> getDrivers()
   {
     List<Driver> newDrivers = Collections.unmodifiableList(drivers);
@@ -154,11 +158,13 @@ public class Vehicle
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
   }
   /* Code from template association_IsNumberOfValidMethod */
+  @Transient
   public boolean isNumberOfDriversValid()
   {
     boolean isValid = numberOfDrivers() >= minimumNumberOfDrivers();
@@ -337,28 +343,5 @@ public class Vehicle
             "plateNumber" + ":" + getPlateNumber()+ "," +
             "availableSeat" + ":" + getAvailableSeat()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
-  }
-  
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
-  
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  @Column(name="driver_ids")
-  public int[] getDriverIds() {
-	  int nbOfDrivers = this.drivers.size();
-	  driver_ids = new int[nbOfDrivers];
-	  
-	  for(int i = 0; i < nbOfDrivers; i++) {
-		  driver_ids[i] = this.drivers.get(i).getUser().getId();
-	  }
-	  
-	  return driver_ids;
   }
 }

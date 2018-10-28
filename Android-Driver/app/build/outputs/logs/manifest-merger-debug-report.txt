@@ -1,0 +1,184 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+MERGED from [com.android.support:design:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\55d0017b6dccfbb62d4269c90a2e3c08\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\d6add39440c298e41b82c3cb954e99c1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd38efc410da006ed20fab514d592d23\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f9857447cf42e7b58bf952f65b45fc0a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\51a87de0f83b4ca0c4bd7a521841f406\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\fc1a4698ff1810b2020fbecedb710d5d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\51cdeee6d9fe4ef10da607e312e92bbc\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\36eadacc896df9d61419ff03f91860f5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2736e7f5bc7e6bcce1e6af84a305c843\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\263288e24750289c1535b4526b10714c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\a35a53bb3d6fab27eaef0a19a1f95fc4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\4d771fa39106642c7feaf01bc9023c87\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\cb787d6432db451fa51fa344b675ca70\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\35bc255c8963f7feb003d05596730602\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7a321b1a62a5aeb75d5bf3c567fd49c5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\5250f1e6593fc78a1f19144a82ffda36\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\77d0fe4dd0ba30030076dd6b78b0c4f4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\96fa0325d8738638476a008964d13e91\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\1ef120cd4652dafb1cb94d4c646af5f3\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\12236a614aa1d6b77c3efe9f853c7692\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\5cd46c3043c0f53249ce661763a45287\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6d5596afb20f51a5ab62b6be6549b1a8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\3b6af9eedbe656367a7180f506da0414\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\dfde7ea1ee7ab4810a11956e9ee9d239\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\4595847d243504cb39736c1bee19aa45\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\5146227f6292388ae98063c3c3809534\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\55476e6645c6b9bf1613ee636a1a65ce\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\0cb45496cca66de14c63b2bb5ddac6f2\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\482520c62d64511f0fa1f37a894a3e28\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a73555cd04e2687ebdd0b4cafd50b813\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:3:5-47
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:1-28:12
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:7:5-26:19
+MERGED from [com.android.support:design:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\55d0017b6dccfbb62d4269c90a2e3c08\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\55d0017b6dccfbb62d4269c90a2e3c08\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd38efc410da006ed20fab514d592d23\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd38efc410da006ed20fab514d592d23\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\1ef120cd4652dafb1cb94d4c646af5f3\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\1ef120cd4652dafb1cb94d4c646af5f3\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:10:9-41
+	android:roundIcon
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:11:9-54
+	android:icon
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:9:9-43
+	android:allowBackup
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:13:9-40
+activity#ca.mcgill.ecse321.android_driver.MainActivity
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:14:9-23:20
+	android:label
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:16:13-45
+	android:theme
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:17:13-56
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:15:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:21:27-74
+activity#ca.mcgill.ecse321.android_driver.LoginActivity
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:24:9-51
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:24:19-48
+activity#ca.mcgill.ecse321.android_driver.CreateJourneyActivity
+ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:25:9-68
+	android:name
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml:25:19-56
+uses-sdk
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\55d0017b6dccfbb62d4269c90a2e3c08\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\55d0017b6dccfbb62d4269c90a2e3c08\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\d6add39440c298e41b82c3cb954e99c1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\d6add39440c298e41b82c3cb954e99c1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd38efc410da006ed20fab514d592d23\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd38efc410da006ed20fab514d592d23\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f9857447cf42e7b58bf952f65b45fc0a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f9857447cf42e7b58bf952f65b45fc0a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\51a87de0f83b4ca0c4bd7a521841f406\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\51a87de0f83b4ca0c4bd7a521841f406\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\fc1a4698ff1810b2020fbecedb710d5d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\fc1a4698ff1810b2020fbecedb710d5d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\51cdeee6d9fe4ef10da607e312e92bbc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\51cdeee6d9fe4ef10da607e312e92bbc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\36eadacc896df9d61419ff03f91860f5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\36eadacc896df9d61419ff03f91860f5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2736e7f5bc7e6bcce1e6af84a305c843\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2736e7f5bc7e6bcce1e6af84a305c843\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\263288e24750289c1535b4526b10714c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\263288e24750289c1535b4526b10714c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\a35a53bb3d6fab27eaef0a19a1f95fc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\a35a53bb3d6fab27eaef0a19a1f95fc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\4d771fa39106642c7feaf01bc9023c87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\4d771fa39106642c7feaf01bc9023c87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\cb787d6432db451fa51fa344b675ca70\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\cb787d6432db451fa51fa344b675ca70\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\35bc255c8963f7feb003d05596730602\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\35bc255c8963f7feb003d05596730602\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7a321b1a62a5aeb75d5bf3c567fd49c5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\7a321b1a62a5aeb75d5bf3c567fd49c5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\5250f1e6593fc78a1f19144a82ffda36\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\5250f1e6593fc78a1f19144a82ffda36\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\77d0fe4dd0ba30030076dd6b78b0c4f4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\77d0fe4dd0ba30030076dd6b78b0c4f4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\96fa0325d8738638476a008964d13e91\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\96fa0325d8738638476a008964d13e91\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\7a6b3afeb3955260552b26134f25b725\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\1ef120cd4652dafb1cb94d4c646af5f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\1ef120cd4652dafb1cb94d4c646af5f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\12236a614aa1d6b77c3efe9f853c7692\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\12236a614aa1d6b77c3efe9f853c7692\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\5cd46c3043c0f53249ce661763a45287\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\5cd46c3043c0f53249ce661763a45287\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6d5596afb20f51a5ab62b6be6549b1a8\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6d5596afb20f51a5ab62b6be6549b1a8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\3b6af9eedbe656367a7180f506da0414\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\3b6af9eedbe656367a7180f506da0414\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\dfde7ea1ee7ab4810a11956e9ee9d239\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\dfde7ea1ee7ab4810a11956e9ee9d239\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\4595847d243504cb39736c1bee19aa45\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\4595847d243504cb39736c1bee19aa45\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\5146227f6292388ae98063c3c3809534\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\5146227f6292388ae98063c3c3809534\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\55476e6645c6b9bf1613ee636a1a65ce\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\55476e6645c6b9bf1613ee636a1a65ce\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\0cb45496cca66de14c63b2bb5ddac6f2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\0cb45496cca66de14c63b2bb5ddac6f2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\482520c62d64511f0fa1f37a894a3e28\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\482520c62d64511f0fa1f37a894a3e28\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a73555cd04e2687ebdd0b4cafd50b813\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\rog22\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a73555cd04e2687ebdd0b4cafd50b813\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\rog22\Desktop\Universite\U2\ECSE321\CarpoolApp\CarpoolApp-backend-maven\Carpoolapp-backend-maven\Android-Driver\app\src\main\AndroidManifest.xml

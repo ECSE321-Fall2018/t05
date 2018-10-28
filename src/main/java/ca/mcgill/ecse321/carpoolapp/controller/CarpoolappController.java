@@ -80,7 +80,7 @@ public class CarpoolappController {
 		return passenger.getUser().getName();
 	}
 	
-	@PostMapping("/ad/{id}")
+	@PostMapping("/ad/{id}/{price}/{}")
 	public int createAd(Driver driver, @PathVariable("id") int id, int price, Vehicle vehicle) {
 		
 		Ad ad = repository.createAd(driver, id, price, vehicle);

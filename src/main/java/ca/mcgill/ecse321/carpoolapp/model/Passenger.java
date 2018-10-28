@@ -1,26 +1,22 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-// line 25 "../../../../../../../ump/tmp788046/model.ump"
-// line 96 "../../../../../../../ump/tmp788046/model.ump"
+// line 25 "../../../../../../../../ump/18102077559/model.ump"
+// line 104 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="passenger")
-@Access(AccessType.FIELD)
 public class Passenger extends UserRole
 {
 
@@ -29,29 +25,42 @@ public class Passenger extends UserRole
   //------------------------
 
   //Passenger Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
-  private int id;
-  private String name;
   private int averagePaidPerKm;
   private int totalDistance;
-  private int carpool_manager_id;
-  private int[] ads_id;
+  private int passenger_id;
 
   //Passenger Associations
-  @Transient
   private List<Ad> ads;
-  @Transient
   private List<Stop> stops;
-  @Transient
   private CarPoolManager carPoolManager;
+  
+  @Id
+  public int getId() {
+	  this.passenger_id = this.getUser().getId();
+	  return this.passenger_id;
+  }
+  
+  public boolean setId(int aId) {
+	  this.passenger_id = aId;
+	  return this.getUser().setId(aId);
+  }
+  
+  public void setAds(List<Ad> ads) {
+	  this.ads = ads;
+  }
+	
+  public void setStops(List<Stop> stops) {
+	  this.stops = stops;
+  }
+
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Passenger(User aUser, int aAveragePaidPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
+
+
+public Passenger(User aUser, int aAveragePaidPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     averagePaidPerKm = aAveragePaidPerKm;
@@ -59,13 +68,16 @@ public class Passenger extends UserRole
     ads = new ArrayList<Ad>();
     stops = new ArrayList<Stop>();
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
-    this.id = aUser.getId();
-    this.name = aUser.getName();
     if (!didAddCarPoolManager)
     {
       throw new RuntimeException("Unable to create passenger due to carPoolManager");
     }
   }
+
+public Passenger()
+{
+
+}
 
   //------------------------
   // INTERFACE
@@ -86,12 +98,12 @@ public class Passenger extends UserRole
     wasSet = true;
     return wasSet;
   }
-  @Column(name="average_paid_per_km")
+
   public int getAveragePaidPerKm()
   {
     return averagePaidPerKm;
   }
-  @Column(name="total_distance")
+
   public int getTotalDistance()
   {
     return totalDistance;
@@ -102,7 +114,7 @@ public class Passenger extends UserRole
     Ad aAd = ads.get(index);
     return aAd;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "passengers")
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);
@@ -132,7 +144,7 @@ public class Passenger extends UserRole
     Stop aStop = stops.get(index);
     return aStop;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "passengers")
   public List<Stop> getStops()
   {
     List<Stop> newStops = Collections.unmodifiableList(stops);
@@ -157,6 +169,7 @@ public class Passenger extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -376,44 +389,4 @@ public class Passenger extends UserRole
             "totalDistance" + ":" + getTotalDistance()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
-  
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
-
-  public int getId() {
-	return id;
-}
-
-public void setId(int id) {
-	this.id = id;
-}
-@Column(name="name")
-public String getName() {
-	return name;
-}
-
-public void setName(String name) {
-	this.name = name;
-}
-  
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  @Column(name="ads_id")
-  public int[] getAdIds() {
-	  int nbOfAds = this.ads.size();
-	  ads_id = new int[nbOfAds];
-	  
-	  for(int i = 0; i < nbOfAds; i++) {
-		  ads_id[i] = this.ads.get(i).getId();
-	  }
-	  
-	  return ads_id;
-  }
-  
 }

@@ -98,7 +98,7 @@ public class MethodServices
 		}
 
 		int nbOfAvailableSeat = ad.getVehicle().getAvailableSeat();
-		Stop newStop = cm.addStop(time, date, x, y, nbOfAvailableSeat, ad, id);
+		Stop newStop = cm.addStop(time, date, nbOfAvailableSeat, x, y,  id, ad);
 		return newStop;
 	}
 	

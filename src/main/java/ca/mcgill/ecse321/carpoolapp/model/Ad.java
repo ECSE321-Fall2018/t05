@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.sql.Date;
@@ -8,21 +8,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-// line 38 "../../../../../../../ump/tmp788046/model.ump"
-// line 107 "../../../../../../../ump/tmp788046/model.ump"
+// line 38 "../../../../../../../../ump/18102077559/model.ump"
+// line 114 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="ad")
-@Access(AccessType.FIELD)
 public class Ad
 {
 
@@ -31,35 +30,31 @@ public class Ad
   //------------------------
 
   //Ad Attributes
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
   private int id;
   private double price;
   private boolean isActive;
   private boolean isCompleted;
-  private String vehicleId;
-  private int carpool_manager_id;
-  private int[] stop_ids;
-  private int[] passenger_ids;
 
   //Ad Associations
-  @Transient
   private List<Stop> stops;
-  @Transient
   private Driver driver;
-  @Transient
   private List<Passenger> passengers;
-  @Transient
   private Vehicle vehicle;
-  @Transient
   private CarPoolManager carPoolManager;
+  
+	public void setStops(List<Stop> stops) {
+		this.stops = stops;
+	}
+
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Ad(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Driver aDriver, Vehicle aVehicle, CarPoolManager aCarPoolManager)
+public Ad(int aId, double aPrice, boolean aIsActive, boolean aIsCompleted, Driver aDriver, Vehicle aVehicle, CarPoolManager aCarPoolManager)
   {
     id = aId;
     price = aPrice;
@@ -82,6 +77,10 @@ public class Ad
       throw new RuntimeException("Unable to create ad due to carPoolManager");
     }
   }
+
+public Ad() {
+	
+}
 
   //------------------------
   // INTERFACE
@@ -118,25 +117,22 @@ public class Ad
     wasSet = true;
     return wasSet;
   }
-
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
   public int getId()
   {
     return id;
   }
-  @Column(name="price")
+
   public double getPrice()
   {
     return price;
   }
-  @Column(name="is_active")
+
   public boolean getIsActive()
   {
     return isActive;
   }
-  @Column(name="is_completed")
+
   public boolean getIsCompleted()
   {
     return isCompleted;
@@ -147,7 +143,7 @@ public class Ad
     Stop aStop = stops.get(index);
     return aStop;
   }
-
+  @OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
   public List<Stop> getStops()
   {
     List<Stop> newStops = Collections.unmodifiableList(stops);
@@ -172,6 +168,7 @@ public class Ad
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Driver getDriver()
   {
     return driver;
@@ -182,7 +179,9 @@ public class Ad
     Passenger aPassenger = passengers.get(index);
     return aPassenger;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name="ad_passenger", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=
+  @JoinColumn(name="passenger_id"))
   public List<Passenger> getPassengers()
   {
     List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
@@ -207,11 +206,13 @@ public class Ad
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne(cascade = CascadeType.ALL)
   public Vehicle getVehicle()
   {
     return vehicle;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -222,9 +223,9 @@ public class Ad
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, CarPoolManager aCarPoolManager, int aId)
+  public Stop addStop(Time aTime, Date aDate, int aNbOfAvailableSeat, int aX, int aY, int aId, CarPoolManager aCarPoolManager)
   {
-    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, this, aCarPoolManager, aId);
+    return new Stop(aTime, aDate, aNbOfAvailableSeat, aX, aY, aId, this, aCarPoolManager);
   }
 
   public boolean addStop(Stop aStop)
@@ -461,47 +462,5 @@ public class Ad
             "  " + "driver = "+(getDriver()!=null?Integer.toHexString(System.identityHashCode(getDriver())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "vehicle = "+(getVehicle()!=null?Integer.toHexString(System.identityHashCode(getVehicle())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
-  }
-  
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
-
-  
-  @Column(name="vehicle_plate_number")
-  public String getVehicleId() {
-	  vehicleId = this.getVehicle().getPlateNumber();
-	  return vehicleId;
-  }
-  
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  @Column(name="stop_ids")
-  public int[] getStopIds() {
-	  int nbOfStops = this.stops.size();
-	  stop_ids = new int[nbOfStops];
-	  
-	  for(int i = 0; i < nbOfStops; i++) {
-		  stop_ids[i] = this.stops.get(i).getId();
-	  }
-	  
-	  return stop_ids;
-  }
-  
-  @Column(name="passenger_ids")
-  public int[] getPassengerIds() {
-	  int nbOfPassengers = this.passengers.size();
-	  passenger_ids = new int[nbOfPassengers];
-	  
-	  for(int i = 0; i < nbOfPassengers; i++) {
-		  passenger_ids[i] = this.passengers.get(i).getUser().getId();
-	  }
-	  
-	  return passenger_ids;
   }
 }

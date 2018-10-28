@@ -1,13 +1,23 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
-import java.util.*;
-import java.sql.Time;
 import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-// line 67 "../../../../../../../ump/tmp788046/model.ump"
-// line 125 "../../../../../../../ump/tmp788046/model.ump"
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+// line 68 "../../../../../../../../ump/18102077559/model.ump"
+// line 131 "../../../../../../../../ump/18102077559/model.ump"
+@Entity
+@Table(name="carpoolmanager")
 public class CarPoolManager
 {
 
@@ -22,26 +32,63 @@ public class CarPoolManager
   private List<User> users;
   private List<Driver> drivers;
   private List<Passenger> passengers;
+  private List<Admin> admins;
   private List<Ad> ads;
   private List<Vehicle> vehicles;
-  private List<Admin> admins;
   private List<Stop> stops;
+  
+  //------------------------
+  // SETTERS
+  //------------------------
+  
+  public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setDrivers(List<Driver> drivers) {
+		this.drivers = drivers;
+	}
+
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
+
+	public void setAdmins(List<Admin> admins) {
+		this.admins = admins;
+	}
+
+	public void setAds(List<Ad> ads) {
+		this.ads = ads;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public void setStops(List<Stop> stops) {
+		this.stops = stops;
+	}
+  
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public CarPoolManager(int aId)
+public CarPoolManager(int aId)
   {
     id = aId;
     users = new ArrayList<User>();
     drivers = new ArrayList<Driver>();
     passengers = new ArrayList<Passenger>();
+    admins = new ArrayList<Admin>();
     ads = new ArrayList<Ad>();
     vehicles = new ArrayList<Vehicle>();
-    admins = new ArrayList<Admin>();
     stops = new ArrayList<Stop>();
   }
+
+public CarPoolManager()
+{
+}
 
   //------------------------
   // INTERFACE
@@ -54,7 +101,7 @@ public class CarPoolManager
     wasSet = true;
     return wasSet;
   }
-
+  @Id
   public int getId()
   {
     return id;
@@ -65,7 +112,7 @@ public class CarPoolManager
     User aUser = users.get(index);
     return aUser;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<User> getUsers()
   {
     List<User> newUsers = Collections.unmodifiableList(users);
@@ -95,7 +142,7 @@ public class CarPoolManager
     Driver aDriver = drivers.get(index);
     return aDriver;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Driver> getDrivers()
   {
     List<Driver> newDrivers = Collections.unmodifiableList(drivers);
@@ -125,7 +172,7 @@ public class CarPoolManager
     Passenger aPassenger = passengers.get(index);
     return aPassenger;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Passenger> getPassengers()
   {
     List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
@@ -150,12 +197,42 @@ public class CarPoolManager
     return index;
   }
   /* Code from template association_GetMany */
+  public Admin getAdmin(int index)
+  {
+    Admin aAdmin = admins.get(index);
+    return aAdmin;
+  }
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
+  public List<Admin> getAdmins()
+  {
+    List<Admin> newAdmins = Collections.unmodifiableList(admins);
+    return newAdmins;
+  }
+
+  public int numberOfAdmins()
+  {
+    int number = admins.size();
+    return number;
+  }
+
+  public boolean hasAdmins()
+  {
+    boolean has = admins.size() > 0;
+    return has;
+  }
+
+  public int indexOfAdmin(Admin aAdmin)
+  {
+    int index = admins.indexOf(aAdmin);
+    return index;
+  }
+  /* Code from template association_GetMany */
   public Ad getAd(int index)
   {
     Ad aAd = ads.get(index);
     return aAd;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);
@@ -185,7 +262,7 @@ public class CarPoolManager
     Vehicle aVehicle = vehicles.get(index);
     return aVehicle;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Vehicle> getVehicles()
   {
     List<Vehicle> newVehicles = Collections.unmodifiableList(vehicles);
@@ -210,42 +287,12 @@ public class CarPoolManager
     return index;
   }
   /* Code from template association_GetMany */
-  public Admin getAdmin(int index)
-  {
-    Admin aAdmin = admins.get(index);
-    return aAdmin;
-  }
-
-  public List<Admin> getAdmins()
-  {
-    List<Admin> newAdmins = Collections.unmodifiableList(admins);
-    return newAdmins;
-  }
-
-  public int numberOfAdmins()
-  {
-    int number = admins.size();
-    return number;
-  }
-
-  public boolean hasAdmins()
-  {
-    boolean has = admins.size() > 0;
-    return has;
-  }
-
-  public int indexOfAdmin(Admin aAdmin)
-  {
-    int index = admins.indexOf(aAdmin);
-    return index;
-  }
-  /* Code from template association_GetMany */
   public Stop getStop(int index)
   {
     Stop aStop = stops.get(index);
     return aStop;
   }
-
+  @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Stop> getStops()
   {
     List<Stop> newStops = Collections.unmodifiableList(stops);
@@ -301,7 +348,7 @@ public class CarPoolManager
   public boolean removeUser(User aUser)
   {
     boolean wasRemoved = false;
-    //Unable to remove aUser, as it must always have a CarPoolManager
+    //Unable to remove aUser, as it must always have a carPoolManager
     if (!this.equals(aUser.getCarPoolManager()))
     {
       users.remove(aUser);
@@ -373,7 +420,7 @@ public class CarPoolManager
   public boolean removeDriver(Driver aDriver)
   {
     boolean wasRemoved = false;
-    //Unable to remove aDriver, as it must always have a CarPoolManager
+    //Unable to remove aDriver, as it must always have a carPoolManager
     if (!this.equals(aDriver.getCarPoolManager()))
     {
       drivers.remove(aDriver);
@@ -445,7 +492,7 @@ public class CarPoolManager
   public boolean removePassenger(Passenger aPassenger)
   {
     boolean wasRemoved = false;
-    //Unable to remove aPassenger, as it must always have a CarPoolManager
+    //Unable to remove aPassenger, as it must always have a carPoolManager
     if (!this.equals(aPassenger.getCarPoolManager()))
     {
       passengers.remove(aPassenger);
@@ -486,6 +533,78 @@ public class CarPoolManager
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfAdmins()
+  {
+    return 0;
+  }
+  /* Code from template association_AddManyToOne */
+  public Admin addAdmin(User aUser)
+  {
+    return new Admin(aUser, this);
+  }
+
+  public boolean addAdmin(Admin aAdmin)
+  {
+    boolean wasAdded = false;
+    if (admins.contains(aAdmin)) { return false; }
+    CarPoolManager existingCarPoolManager = aAdmin.getCarPoolManager();
+    boolean isNewCarPoolManager = existingCarPoolManager != null && !this.equals(existingCarPoolManager);
+    if (isNewCarPoolManager)
+    {
+      aAdmin.setCarPoolManager(this);
+    }
+    else
+    {
+      admins.add(aAdmin);
+    }
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeAdmin(Admin aAdmin)
+  {
+    boolean wasRemoved = false;
+    //Unable to remove aAdmin, as it must always have a carPoolManager
+    if (!this.equals(aAdmin.getCarPoolManager()))
+    {
+      admins.remove(aAdmin);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addAdminAt(Admin aAdmin, int index)
+  {  
+    boolean wasAdded = false;
+    if(addAdmin(aAdmin))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
+      admins.remove(aAdmin);
+      admins.add(index, aAdmin);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveAdminAt(Admin aAdmin, int index)
+  {
+    boolean wasAdded = false;
+    if(admins.contains(aAdmin))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
+      admins.remove(aAdmin);
+      admins.add(index, aAdmin);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addAdminAt(aAdmin, index);
+    }
+    return wasAdded;
+  }
+  /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfAds()
   {
     return 0;
@@ -517,7 +636,7 @@ public class CarPoolManager
   public boolean removeAd(Ad aAd)
   {
     boolean wasRemoved = false;
-    //Unable to remove aAd, as it must always have a CarPoolManager
+    //Unable to remove aAd, as it must always have a carPoolManager
     if (!this.equals(aAd.getCarPoolManager()))
     {
       ads.remove(aAd);
@@ -589,7 +708,7 @@ public class CarPoolManager
   public boolean removeVehicle(Vehicle aVehicle)
   {
     boolean wasRemoved = false;
-    //Unable to remove aVehicle, as it must always have a CarPoolManager
+    //Unable to remove aVehicle, as it must always have a carPoolManager
     if (!this.equals(aVehicle.getCarPoolManager()))
     {
       vehicles.remove(aVehicle);
@@ -630,86 +749,14 @@ public class CarPoolManager
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfAdmins()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToOne */
-  public Admin addAdmin(User aUser)
-  {
-    return new Admin(aUser, this);
-  }
-
-  public boolean addAdmin(Admin aAdmin)
-  {
-    boolean wasAdded = false;
-    if (admins.contains(aAdmin)) { return false; }
-    CarPoolManager existingCarPoolManager = aAdmin.getCarPoolManager();
-    boolean isNewCarPoolManager = existingCarPoolManager != null && !this.equals(existingCarPoolManager);
-    if (isNewCarPoolManager)
-    {
-      aAdmin.setCarPoolManager(this);
-    }
-    else
-    {
-      admins.add(aAdmin);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeAdmin(Admin aAdmin)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aAdmin, as it must always have a CarPoolManager
-    if (!this.equals(aAdmin.getCarPoolManager()))
-    {
-      admins.remove(aAdmin);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addAdminAt(Admin aAdmin, int index)
-  {  
-    boolean wasAdded = false;
-    if(addAdmin(aAdmin))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
-      admins.remove(aAdmin);
-      admins.add(index, aAdmin);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveAdminAt(Admin aAdmin, int index)
-  {
-    boolean wasAdded = false;
-    if(admins.contains(aAdmin))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
-      admins.remove(aAdmin);
-      admins.add(index, aAdmin);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addAdminAt(aAdmin, index);
-    }
-    return wasAdded;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfStops()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Stop addStop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, int aId)
+  public Stop addStop(Time aTime, Date aDate, int aNbOfAvailableSeat, int aX, int aY, int aId, Ad aAd)
   {
-    return new Stop(aTime, aDate, aX, aY, aNbOfAvailableSeat, aAd, this, aId);
+    return new Stop(aTime, aDate, aNbOfAvailableSeat, aX, aY, aId, aAd, this);
   }
 
   public boolean addStop(Stop aStop)
@@ -733,7 +780,7 @@ public class CarPoolManager
   public boolean removeStop(Stop aStop)
   {
     boolean wasRemoved = false;
-    //Unable to remove aStop, as it must always have a CarPoolManager
+    //Unable to remove aStop, as it must always have a carPoolManager
     if (!this.equals(aStop.getCarPoolManager()))
     {
       stops.remove(aStop);
@@ -791,6 +838,11 @@ public class CarPoolManager
       Passenger aPassenger = passengers.get(i - 1);
       aPassenger.delete();
     }
+    for(int i=admins.size(); i > 0; i--)
+    {
+      Admin aAdmin = admins.get(i - 1);
+      aAdmin.delete();
+    }
     for(int i=ads.size(); i > 0; i--)
     {
       Ad aAd = ads.get(i - 1);
@@ -800,11 +852,6 @@ public class CarPoolManager
     {
       Vehicle aVehicle = vehicles.get(i - 1);
       aVehicle.delete();
-    }
-    for(int i=admins.size(); i > 0; i--)
-    {
-      Admin aAdmin = admins.get(i - 1);
-      aAdmin.delete();
     }
     for(int i=stops.size(); i > 0; i--)
     {

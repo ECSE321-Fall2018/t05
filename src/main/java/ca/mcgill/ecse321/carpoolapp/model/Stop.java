@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.sql.Date;
@@ -8,21 +8,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-// line 57 "../../../../../../../ump/tmp788046/model.ump"
-// line 119 "../../../../../../../ump/tmp788046/model.ump"
+// line 57 "../../../../../../../../ump/18102077559/model.ump"
+// line 126 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="stop")
-@Access(AccessType.FIELD)
 public class Stop
 {
 
@@ -31,42 +29,36 @@ public class Stop
   //------------------------
 
   //Stop Attributes
-
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
-  private int id;
   private Time time;
   private Date date;
+  private int nbOfAvailableSeat;
   private int x;
   private int y;
-  private int nbOfAvailableSeat;
-  private int carpool_manager_id;
-  private int ad_id;
-  private int[] passenger_ids;
+  private int id;
 
-
-
-//Stop Associations
-  @Transient
+  //Stop Associations
   private List<Passenger> passengers;
-  @Transient
   private Ad ad;
-  @Transient
   private CarPoolManager carPoolManager;
+  
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Stop(Time aTime, Date aDate, int aX, int aY, int aNbOfAvailableSeat, Ad aAd, CarPoolManager aCarPoolManager, int aId)
+
+
+public Stop(Time aTime, Date aDate, int aNbOfAvailableSeat, int aX, int aY, int aId, Ad aAd, CarPoolManager aCarPoolManager)
   {
-	id  = aId;
     time = aTime;
     date = aDate;
+    nbOfAvailableSeat = aNbOfAvailableSeat;
     x = aX;
     y = aY;
-    nbOfAvailableSeat = aNbOfAvailableSeat;
+    id = aId;
     passengers = new ArrayList<Passenger>();
     boolean didAddAd = setAd(aAd);
     if (!didAddAd)
@@ -79,6 +71,11 @@ public class Stop
       throw new RuntimeException("Unable to create stop due to carPoolManager");
     }
   }
+
+public Stop()
+{
+  
+}
 
   //------------------------
   // INTERFACE
@@ -100,6 +97,14 @@ public class Stop
     return wasSet;
   }
 
+  public boolean setNbOfAvailableSeat(int aNbOfAvailableSeat)
+  {
+    boolean wasSet = false;
+    nbOfAvailableSeat = aNbOfAvailableSeat;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setX(int aX)
   {
     boolean wasSet = false;
@@ -116,37 +121,42 @@ public class Stop
     return wasSet;
   }
 
-  public boolean setNbOfAvailableSeat(int aNbOfAvailableSeat)
+  public boolean setId(int aId)
   {
     boolean wasSet = false;
-    nbOfAvailableSeat = aNbOfAvailableSeat;
+    id = aId;
     wasSet = true;
     return wasSet;
   }
-  @Column(name="time")
+
   public Time getTime()
   {
     return time;
   }
-  @Column(name="date")
+
   public Date getDate()
   {
     return date;
   }
-  @Column(name="x_coordinate")
+
+  public int getNbOfAvailableSeat()
+  {
+    return nbOfAvailableSeat;
+  }
+
   public int getX()
   {
     return x;
   }
-  @Column(name="y_coordinate")
+
   public int getY()
   {
     return y;
   }
-  @Column(name="nb_available_seat")
-  public int getNbOfAvailableSeat()
+  @Id
+  public int getId()
   {
-    return nbOfAvailableSeat;
+    return id;
   }
   /* Code from template association_GetMany */
   public Passenger getPassenger(int index)
@@ -154,7 +164,9 @@ public class Stop
     Passenger aPassenger = passengers.get(index);
     return aPassenger;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name="stop_passenger", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=
+  @JoinColumn(name="passenger_id"))
   public List<Passenger> getPassengers()
   {
     List<Passenger> newPassengers = Collections.unmodifiableList(passengers);
@@ -179,11 +191,13 @@ public class Stop
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Ad getAd()
   {
     return ad;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -335,49 +349,13 @@ public class Stop
   public String toString()
   {
     return super.toString() + "["+
+            "nbOfAvailableSeat" + ":" + getNbOfAvailableSeat()+ "," +
             "x" + ":" + getX()+ "," +
             "y" + ":" + getY()+ "," +
-            "nbOfAvailableSeat" + ":" + getNbOfAvailableSeat()+ "]" + System.getProperties().getProperty("line.separator") +
+            "id" + ":" + getId()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "time" + "=" + (getTime() != null ? !getTime().equals(this)  ? getTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "ad = "+(getAd()!=null?Integer.toHexString(System.identityHashCode(getAd())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
-  }
-  
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
-  
-  public int getId() {
-	return id;
-}
-
-  public void setId(int id) {
-	this.id = id;
-}
-  
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  @Column(name="ad_id")
-  public int getAdId() {
-	  ad_id = this.getAd().getId();
-	  return ad_id;
-  }
-  
-  @Column(name="passenger_ids")
-  public int[] getPassengerIds() {
-	  int nbOfPassengers = this.passengers.size();
-	  passenger_ids = new int[nbOfPassengers];
-	  
-	  for(int i = 0; i < nbOfPassengers; i++) {
-		  passenger_ids[i] = this.passengers.get(i).getUser().getId();
-	  }
-	  
-	  return passenger_ids;
   }
 }

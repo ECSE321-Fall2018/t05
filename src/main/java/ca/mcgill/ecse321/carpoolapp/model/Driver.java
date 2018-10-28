@@ -1,27 +1,23 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4262.30c9ffc7c modeling language!*/
+/*This code was generated using the UMPLE 1.29.1.4295.41a59b8ce modeling language!*/
 
 package ca.mcgill.ecse321.carpoolapp.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-// line 15 "../../../../../../../ump/tmp788046/model.ump"
-// line 89 "../../../../../../../ump/tmp788046/model.ump"
-
+// line 15 "../../../../../../../../ump/18102077559/model.ump"
+// line 99 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="driver")
-@Access(AccessType.FIELD)
 public class Driver extends UserRole
 {
 
@@ -30,32 +26,42 @@ public class Driver extends UserRole
   //------------------------
 
   //Driver Attributes
-
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id")
-  private int id;	
   private int averageCostPerKm;
-  private int totalDistance; 
-  private String name;
-  private int carpool_manager_id;
-  private String[] vehicle_plate_number;
-  private int[] ad_ids;
+  private int totalDistance;
+  private int driver_id;
 
   //Driver Associations
-  @Transient
   private List<Vehicle> vehicles;
-  
-  @Transient
   private List<Ad> ads;
-  @Transient
   private CarPoolManager carPoolManager;
+  
+  @Id
+  public int getId() {
+	  this.driver_id = this.getUser().getId();
+	  return driver_id;
+  }
+  
+  public boolean setId(int aId) {
+	  this.driver_id = aId;
+	  return this.getUser().setId(aId);
+  }
+  
+  public void setVehicles(List<Vehicle> vehicles) {
+	this.vehicles = vehicles;
+  }
+
+  public void setAds(List<Ad> ads) {
+		this.ads = ads;
+  }
+
+
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Driver(User aUser, int aAverageCostPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
+
+public Driver(User aUser, int aAverageCostPerKm, int aTotalDistance, CarPoolManager aCarPoolManager)
   {
     super(aUser);
     averageCostPerKm = aAverageCostPerKm;
@@ -63,14 +69,17 @@ public class Driver extends UserRole
     vehicles = new ArrayList<Vehicle>();
     ads = new ArrayList<Ad>();
     boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
-    this.id = aUser.getId();
-    this.name = aUser.getName();
     if (!didAddCarPoolManager)
     {
       throw new RuntimeException("Unable to create driver due to carPoolManager");
     }
   }
 
+
+public Driver()
+{
+
+}
   //------------------------
   // INTERFACE
   //------------------------
@@ -90,12 +99,12 @@ public class Driver extends UserRole
     wasSet = true;
     return wasSet;
   }
-  @Column(name="average_cost_per_km")
+
   public int getAverageCostPerKm()
   {
     return averageCostPerKm;
   }
-  @Column(name="total_distance")
+
   public int getTotalDistance()
   {
     return totalDistance;
@@ -106,7 +115,7 @@ public class Driver extends UserRole
     Vehicle aVehicle = vehicles.get(index);
     return aVehicle;
   }
-
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "drivers")
   public List<Vehicle> getVehicles()
   {
     List<Vehicle> newVehicles = Collections.unmodifiableList(vehicles);
@@ -136,7 +145,7 @@ public class Driver extends UserRole
     Ad aAd = ads.get(index);
     return aAd;
   }
-
+  @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
   public List<Ad> getAds()
   {
     List<Ad> newAds = Collections.unmodifiableList(ads);
@@ -161,6 +170,7 @@ public class Driver extends UserRole
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne 
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
@@ -370,6 +380,7 @@ public class Driver extends UserRole
     super.delete();
   }
 
+
   public String toString()
   {
     return super.toString() + "["+
@@ -377,58 +388,4 @@ public class Driver extends UserRole
             "totalDistance" + ":" + getTotalDistance()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "carPoolManager = "+(getCarPoolManager()!=null?Integer.toHexString(System.identityHashCode(getCarPoolManager())):"null");
   }
-  
-  //----------------
-  //Methods for data base
-  //Added by Roger Zhang
-  //----------------
-  
-  public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	@Column(name="name")
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-  @Column(name="carpool_manager_id")
-  public int getCarpoolManagerId() {
-	  carpool_manager_id = this.getCarPoolManager().getId();
-	  return carpool_manager_id;
-  }
-  
-  @Column(name="vehicle_plate_number")
-  public String[] getVehiclePlateNbs() {
-	  int nbOfVehicles = this.vehicles.size();
-	  vehicle_plate_number = new String[nbOfVehicles];
-	  
-	  for(int i = 0; i < nbOfVehicles; i++) {
-		 vehicle_plate_number[i] = this.vehicles.get(i).getPlateNumber();
-	  }
-	  
-	  return vehicle_plate_number;
-  }
-  
-  @Column(name="ad_ids")
-  public int[] getAdIds() {
-	  int nbOfAds = this.ads.size();
-	  ad_ids = new int[nbOfAds];
-	  
-	  for(int i = 0; i < nbOfAds; i++) {
-		  ad_ids[i] = this.ads.get(i).getId();
-	  }
-	  
-	  return ad_ids;
-  }
-  
-  
-  
 }
