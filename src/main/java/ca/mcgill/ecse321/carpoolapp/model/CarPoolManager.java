@@ -115,7 +115,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<User> getUsers()
   {
-    List<User> newUsers = Collections.unmodifiableList(users);
+//    List<User> newUsers = Collections.unmodifiableList(users);
+	  List<User> newUsers = this.users;
     return newUsers;
   }
 
@@ -205,7 +206,8 @@ public CarPoolManager()
   @OneToMany(mappedBy="carPoolManager", cascade= {CascadeType.ALL})
   public List<Admin> getAdmins()
   {
-    List<Admin> newAdmins = Collections.unmodifiableList(admins);
+//    List<Admin> newAdmins = Collections.unmodifiableList(admins);
+	  List<Admin> newAdmins = this.admins;
     return newAdmins;
   }
 

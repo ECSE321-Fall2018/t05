@@ -43,21 +43,31 @@ public class CarpoolappRepository {
 	@Transactional
 	public Admin createAdmin(int id, String name)
 	{
-		int cmId = 1;
-		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
-		if(cm == null) {
-			cm = new CarPoolManager(cmId);
-			entityManager.persist(cm);
-		}
-		this.carpoolManager = cm;
-		methodservices = new MethodServices(carpoolManager);
+//		int cmId = 1;
+//		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+//		if(cm == null) {
+//			cm = new CarPoolManager(cmId);
+//			entityManager.persist(cm);
+//		}
+//		this.carpoolManager = cm;
+//		methodservices = new MethodServices(carpoolManager);
+//		
+//		User newUser = methodservices.createUser(id, name);
+//		entityManager.persist(newUser);
+//		Admin newAdmin = methodservices.createAdmin(newUser);
+//		entityManager.persist(newAdmin);
+//		
+//		return newAdmin;
 		
-		User newUser = methodservices.createUser(id, name);
-		entityManager.persist(newUser);
-		Admin newAdmin = methodservices.createAdmin(newUser);
-		entityManager.persist(newAdmin);
+		CarPoolManager cm = new CarPoolManager(1);
+		entityManager.persist(cm);
 		
-		return newAdmin;
+		User usr = new User(id, name, cm);
+		entityManager.persist(usr);
+		
+		Admin adm = new Admin(usr, cm);
+		entityManager.persist(adm);
+		return adm;
 	}
 	
 	@Transactional
