@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="41dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/username_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter User ID"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/login_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="login"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/Login_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                tools:layout_editor_absoluteY="278dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/signUp_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="signUp"
+                android:text="@string/signUp_button" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
