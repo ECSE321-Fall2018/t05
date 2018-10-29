@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -41,6 +42,7 @@ public class Admin extends UserRole
 	  this.admin_id = aId;
 	  return this.getUser().setId(aId);
   }
+
   
   public void setAds(List<Ad> ads) {
 	this.ads = ads;
@@ -103,7 +105,7 @@ public Admin()
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "admin_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {

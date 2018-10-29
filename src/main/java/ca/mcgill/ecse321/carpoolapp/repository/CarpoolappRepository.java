@@ -43,13 +43,14 @@ public class CarpoolappRepository {
 	@Transactional
 	public Admin createAdmin(int id, String name)
 	{
-//		int cmId = 1;
-//		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
-//		if(cm == null) {
-//			cm = new CarPoolManager(cmId);
-//			entityManager.persist(cm);
-//		}
-//		this.carpoolManager = cm;
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		} 
+		this.carpoolManager = cm;
+		
 //		methodservices = new MethodServices(carpoolManager);
 //		
 //		User newUser = methodservices.createUser(id, name);
@@ -59,8 +60,8 @@ public class CarpoolappRepository {
 //		
 //		return newAdmin;
 		
-		CarPoolManager cm = new CarPoolManager(1);
-		entityManager.persist(cm);
+//		CarPoolManager cm = new CarPoolManager(1);
+//		entityManager.persist(cm);
 		
 		User usr = new User(id, name, cm);
 		entityManager.persist(usr);
