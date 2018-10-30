@@ -17,10 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 // line 47 "../../../../../../../../ump/18102077559/model.ump"
 // line 120 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="vehicle")
+@JsonIgnoreProperties(value = {"drivers", "carPoolManager"}, allowSetters = true )
 public class Vehicle
 {
 
