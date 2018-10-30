@@ -30,6 +30,7 @@ public class Driver extends UserRole
   private int averageCostPerKm;
   private int totalDistance;
   private int driver_id;
+  private String driver_name;
 
   //Driver Associations
   private List<Vehicle> vehicles;
@@ -52,6 +53,24 @@ public class Driver extends UserRole
 	  } else
 		  return this.getUser().setId(aId);
   }
+  
+	public String getName() {
+		if(this.getUser() == null) {
+			return this.driver_name;
+		} else {
+			this.driver_name = this.getUser().getName();
+		}
+		return this.driver_name;
+	}
+	
+	public boolean setName(String name) {
+		if(this.getUser() == null) {
+			this.driver_name = name;
+			return true;
+		} else {
+			return this.getUser().setName(name);
+		}
+	}
   
   public void setVehicles(List<Vehicle> vehicles) {
 	this.vehicles = vehicles;

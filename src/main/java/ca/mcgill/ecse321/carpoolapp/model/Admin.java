@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // line 33 "../../../../../../../../ump/18102077559/model.ump"
 // line 109 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
@@ -31,12 +33,13 @@ public class Admin extends UserRole
   private List<Ad> ads;
   private CarPoolManager carPoolManager;
   private int admin_id;
+  private String admin_name;
   
   @Id
 	public int getId() {
-		System.out.println("========== GET ADMIN ID =======");
+//		System.out.println("========== GET ADMIN ID =======");
 		if (this.getUser() == null) {
-			System.out.println("========================= USER NULL ==========================");
+//			System.out.println("========================= USER NULL ==========================");
 			return this.admin_id;
 		} else
 			this.admin_id = this.getUser().getId();
@@ -44,13 +47,31 @@ public class Admin extends UserRole
 	}
 
 	public boolean setId(int aId) {
-		System.out.println("========= SET ADMIN ID ============");
+//		System.out.println("========= SET ADMIN ID ============");
 		this.admin_id = aId;
 		if (this.getUser() == null) {
-			System.out.println("====================== USER NULL ====================");
+//			System.out.println("====================== USER NULL ====================");
 			return true;
 		} else
 			return this.getUser().setId(aId);
+	}
+	
+	public String getName() {
+		if(this.getUser() == null) {
+			return this.admin_name;
+		} else {
+			this.admin_name = this.getUser().getName();
+		}
+		return this.admin_name;
+	}
+	
+	public boolean setName(String name) {
+		if(this.getUser() == null) {
+			this.admin_name = name;
+			return true;
+		} else {
+			return this.getUser().setName(name);
+		}
 	}
 
 	public void setAds(List<Ad> ads) {
@@ -66,7 +87,7 @@ public class Admin extends UserRole
 		super(aUser);
 		ads = new ArrayList<Ad>();
 		boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
-		System.out.println("*************************** CREATING A USER ***********************************");
+//		System.out.println("*************************** CREATING A USER ***********************************");
 		if (!didAddCarPoolManager) {
 			throw new RuntimeException("Unable to create admin due to carPoolManager");
 		}
@@ -114,6 +135,7 @@ public class Admin extends UserRole
   /* Code from template association_GetOne */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "admin_carpoolManager")
+  @JsonIgnore
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

@@ -3,6 +3,11 @@
 
 package ca.mcgill.ecse321.carpoolapp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+
 // line 11 "../../../../../../../../ump/18102077559/model.ump"
 // line 94 "../../../../../../../../ump/18102077559/model.ump"
 public abstract class UserRole
@@ -37,6 +42,7 @@ public abstract class UserRole
   // INTERFACE
   //------------------------
   /* Code from template association_GetOne */
+
   public User getUser()
   {
     return user;

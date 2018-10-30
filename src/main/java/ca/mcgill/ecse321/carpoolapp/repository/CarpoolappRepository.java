@@ -69,22 +69,23 @@ public class CarpoolappRepository {
 		entityManager.persist(usr);
 		
 		Admin adm = new Admin(usr, cm);
+		adm.setName(usr.getName());
 		entityManager.persist(adm);
 		return adm;
 	}
 	
 	@Transactional
-	public User getAdmin(int id)
+	public Admin getAdmin(int id)
 	{
-		User foundAdmin = entityManager.find(User.class, id);
+		Admin foundAdmin = entityManager.find(Admin.class, id);
 		return foundAdmin;
 	}
 	
 	@Transactional
-	public List<User> getAdmins(){
-		List<User> users = new ArrayList<>(); 
-		users = entityManager.createQuery("SELECT u FROM User u").getResultList();
-		return users;
+	public List<Admin> getAdmins(){
+		List<Admin> admins = new ArrayList<>(); 
+		admins = entityManager.createQuery("SELECT a FROM Admin a").getResultList();
+		return admins;
 	}
 	
 	// TODO Edit, Delete Admin

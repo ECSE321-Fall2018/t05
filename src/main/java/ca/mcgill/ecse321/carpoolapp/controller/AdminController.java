@@ -25,21 +25,21 @@ public class AdminController {
 		
 		@GetMapping(produces = {
 				MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<List<User>>getAdmins()
+		public ResponseEntity<List<Admin>>getAdmins()
 		{
-			List<User> admins = repository.getAdmins();
-			return new ResponseEntity<List<User>>(admins, HttpStatus.OK);
+			List<Admin> admins = repository.getAdmins();
+			return new ResponseEntity<List<Admin>>(admins, HttpStatus.OK);
 		}
 		
 		@GetMapping(path="/{id}", produces = {
 				MediaType.APPLICATION_JSON_VALUE
 				})
-		public ResponseEntity<User> getAdmin(@PathVariable int id)
+		public ResponseEntity<Admin> getAdmin(@PathVariable int id)
 		{	
-			User adm = repository.getAdmin(id);
+			Admin adm = repository.getAdmin(id);
 			if(adm == null)
-				return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<User>(adm, HttpStatus.OK);
+				return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Admin>(adm, HttpStatus.OK);
 		}
 		
 		@PostMapping(path="/{id}/{name}")

@@ -34,6 +34,7 @@ public class Passenger extends UserRole
   private List<Ad> ads;
   private List<Stop> stops;
   private CarPoolManager carPoolManager;
+  private String passenger_name;
   
   @Id
   public int getId() {
@@ -51,6 +52,24 @@ public class Passenger extends UserRole
 	  } else
 		return this.getUser().setId(aId);
   }
+  
+	public String getName() {
+		if(this.getUser() == null) {
+			return this.passenger_name;
+		} else {
+			this.passenger_name = this.getUser().getName();
+		}
+		return this.passenger_name;
+	}
+	
+	public boolean setName(String name) {
+		if(this.getUser() == null) {
+			this.passenger_name = name;
+			return true;
+		} else {
+			return this.getUser().setName(name);
+		}
+	}
   
   public void setAds(List<Ad> ads) {
 	  this.ads = ads;
