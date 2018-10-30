@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -196,7 +197,7 @@ public Driver()
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne 
+  @ManyToOne(fetch = FetchType.LAZY) 
   @JoinTable(name = "driver_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {

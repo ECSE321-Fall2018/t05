@@ -111,11 +111,21 @@ public class CarpoolappRepository {
 	@Transactional
 	public Passenger createPassenger(int id, String name)
 	{
-		User newUser = methodservices.createUser(id, name);
-		// TODO make sure createPassenger returns Passenger not NULL
-		Passenger newPassenger = methodservices.createPassenger(newUser);
-		entityManager.persist(newPassenger);
-		return newPassenger;
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		} 
+		this.carpoolManager = cm;
+		
+		User usr = new User(id, name, cm);
+		entityManager.persist(usr);
+		
+		Passenger psg = new Passenger(usr, 0, 0, cm);
+		psg.setName(psg.getName());
+		entityManager.persist(psg);
+		return psg;
 	}
 	
 	@Transactional
@@ -125,7 +135,12 @@ public class CarpoolappRepository {
 		return foundPassenger;
 	}
 	
-	// TODO Edit, Delete Passenger
+	@Transactional
+	public List<Passenger> getPassengers(){
+		List<Passenger> passengers = new ArrayList<>(); 
+		passengers = entityManager.createQuery("SELECT p FROM Passenger p").getResultList();
+		return passengers;
+	}
 	
 	@Transactional
 	public Ad createAd(Driver driver, int id, double price, Vehicle vehicle)

@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -168,7 +169,7 @@ public Ad() {
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "ad_driver")
   public Driver getDriver()
   {
@@ -207,14 +208,14 @@ public Ad() {
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinTable(name = "ad_vehicle")
   public Vehicle getVehicle()
   {
     return vehicle;
   }
   /* Code from template association_GetOne */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "ad_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
