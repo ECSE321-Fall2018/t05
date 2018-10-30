@@ -8,12 +8,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // line 15 "../../../../../../../../ump/18102077559/model.ump"
 // line 99 "../../../../../../../../ump/18102077559/model.ump"
@@ -196,8 +199,9 @@ public Driver()
     return index;
   }
   /* Code from template association_GetOne */
-  @ManyToOne 
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "driver_carpoolManager")
+  @JsonIgnore
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;
