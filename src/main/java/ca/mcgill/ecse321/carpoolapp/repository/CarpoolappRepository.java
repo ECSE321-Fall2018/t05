@@ -173,11 +173,22 @@ public class CarpoolappRepository {
 	//TODO Edit, Delete Stop
 	
 	@Transactional
-	public Vehicle createVehicle(int year, String brand, String plateNumber, int availableSeat, Driver driver)
+	public Vehicle createVehicle(int year, String brand, String plateNumber, int availableSeat, int driverID)
 	{
-		Vehicle newVehicle = methodservices.createVehicle(year, brand, plateNumber, availableSeat, driver);
-		entityManager.persist(newVehicle);
-		return newVehicle;
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		} 
+		this.carpoolManager = cm;
+		
+		Driver driver = entityManager.find(Driver.class, driverID);
+		
+		Vehicle vehicle = new Vehicle(year, brand, plateNumber, availableSeat, cm, driver);
+		entityManager.persist(vehicle);
+		
+		return vehicle;
 	}
 	
 	@Transactional
@@ -187,6 +198,13 @@ public class CarpoolappRepository {
 		return foundVehicle;
 	}
 	
+	
+	@Transactional
+	public List<Vehicle> getVehicles(){
+		List<Vehicle> vehicles = new ArrayList<>(); 
+		vehicles = entityManager.createQuery("SELECT v FROM Vehicle v").getResultList();
+		return vehicles;
+	}
 	//TODO Edit, Delete Vehicle
 	
 	

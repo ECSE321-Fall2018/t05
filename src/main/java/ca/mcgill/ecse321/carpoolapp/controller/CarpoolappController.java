@@ -98,23 +98,6 @@ public class CarpoolappController {
 		return "Ad number" + stop.getId();
 	}
 	
-	@PostMapping("/vehicle/{plateNumber}")
-	public String createVehicle(int year, String brand, @PathVariable("plateNumber") String plateNumber, int availableSeat, Driver driver) {
-		
-		Vehicle vehicle = repository.createVehicle(year, brand, plateNumber, availableSeat, driver);
-		return vehicle.getPlateNumber();
-	}
-	
-	@GetMapping("/vehicle/{plateNumber}")
-	public String queryVehicle(@PathVariable("plateNumber") String plateNumber) {
-		
-		Vehicle vehicle = repository.getVehicle(plateNumber);
-		
-		if (vehicle == null) {
-			return "NOT FOUND";
-		}
-		return vehicle.getPlateNumber();
-	}
 	
 //	@PostMapping("/participants/{name}")
 //	public String createParticipant(@PathVariable("name") String name) {
