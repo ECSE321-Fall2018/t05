@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -159,7 +160,7 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
   }
   /* Code from temp
    * late association_GetOne */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "vehicle_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {

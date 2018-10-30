@@ -199,6 +199,7 @@ public Driver()
     return index;
   }
   /* Code from template association_GetOne */
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "driver_carpoolManager")
   @JsonIgnore
