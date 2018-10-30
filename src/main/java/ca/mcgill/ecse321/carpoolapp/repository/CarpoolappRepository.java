@@ -53,18 +53,6 @@ public class CarpoolappRepository {
 		} 
 		this.carpoolManager = cm;
 		
-//		methodservices = new MethodServices(carpoolManager);
-//		
-//		User newUser = methodservices.createUser(id, name);
-//		entityManager.persist(newUser);
-//		Admin newAdmin = methodservices.createAdmin(newUser);
-//		entityManager.persist(newAdmin);
-//		
-//		return newAdmin;
-		
-//		CarPoolManager cm = new CarPoolManager(1);
-//		entityManager.persist(cm);
-		
 		User usr = new User(id, name, cm);
 		entityManager.persist(usr);
 		
@@ -90,13 +78,26 @@ public class CarpoolappRepository {
 	
 	// TODO Edit, Delete Admin
 	
+	
+	
 	@Transactional
 	public Driver createDriver(int id, String name)
 	{
-		User newUser = methodservices.createUser(id, name);
-		Driver newDriver = methodservices.createDriver(newUser);
-		entityManager.persist(newDriver);
-		return newDriver;
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		} 
+		this.carpoolManager = cm;
+		
+		User usr = new User(id, name, cm);
+		entityManager.persist(usr);
+		
+		Driver driver = new Driver(usr, 0, 0, cm);
+		driver.setName(usr.getName());
+		entityManager.persist(driver);
+		return driver;
 	}
 	
 	@Transactional
@@ -106,6 +107,16 @@ public class CarpoolappRepository {
 		return foundDriver;
 	}
 	
+	@Transactional
+	public List<Driver> getDrivers(){
+		List<Driver> drivers = new ArrayList<>(); 
+		drivers = entityManager.createQuery("SELECT d FROM Driver d").getResultList();
+		return drivers;
+	}
+	
+	
+	
+
 	// TODO Edit, Delete Driver
 	
 	@Transactional
