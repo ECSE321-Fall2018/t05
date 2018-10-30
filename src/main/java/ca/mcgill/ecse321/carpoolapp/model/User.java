@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // line 4 "../../../../../../../../ump/18102077559/model.ump"
 // line 84 "../../../../../../../../ump/18102077559/model.ump"
 // line 89 "../../../../../../../../ump/18102077559/model.ump"
@@ -90,6 +92,7 @@ public class User
     return aUserRole;
   }
   @Transient
+  @JsonIgnore
   public List<UserRole> getUserRoles()
   {
     List<UserRole> newUserRoles = Collections.unmodifiableList(userRoles);
@@ -116,6 +119,7 @@ public class User
   /* Code from template association_GetOne */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "user_carpoolManager")
+  @JsonIgnore
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

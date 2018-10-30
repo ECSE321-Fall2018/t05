@@ -33,47 +33,54 @@ public class Admin extends UserRole
   private int admin_id;
   
   @Id
-  public int getId() {
-	  this.admin_id = this.getUser().getId();
-	  return this.admin_id;
-  }
-  
-  public boolean setId(int aId) {
-	  this.admin_id = aId;
-	  return this.getUser().setId(aId);
-  }
+	public int getId() {
+		System.out.println("========== GET ADMIN ID =======");
+		if (this.getUser() == null) {
+			System.out.println("========================= USER NULL ==========================");
+			return this.admin_id;
+		} else
+			this.admin_id = this.getUser().getId();
+		return this.admin_id;
+	}
 
-  
-  public void setAds(List<Ad> ads) {
-	this.ads = ads;
-}
-  
+	public boolean setId(int aId) {
+		System.out.println("========= SET ADMIN ID ============");
+		this.admin_id = aId;
+		if (this.getUser() == null) {
+			System.out.println("====================== USER NULL ====================");
+			return true;
+		} else
+			return this.getUser().setId(aId);
+	}
+
+	public void setAds(List<Ad> ads) {
+		this.ads = ads;
+	}
+																																				
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
+	public Admin(User aUser, CarPoolManager aCarPoolManager) {
+		super(aUser);
+		ads = new ArrayList<Ad>();
+		boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
+		System.out.println("*************************** CREATING A USER ***********************************");
+		if (!didAddCarPoolManager) {
+			throw new RuntimeException("Unable to create admin due to carPoolManager");
+		}
+	}
 
+	public Admin() {
 
-public Admin(User aUser, CarPoolManager aCarPoolManager)
-  {
-    super(aUser);
-    ads = new ArrayList<Ad>();
-    boolean didAddCarPoolManager = setCarPoolManager(aCarPoolManager);
-    if (!didAddCarPoolManager)
-    {
-      throw new RuntimeException("Unable to create admin due to carPoolManager");
-    }
-  }
-
-public Admin()
-{
-
-}
+	}
   //------------------------
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
+
+
   public Ad getAd(int index)
   {
     Ad aAd = ads.get(index);

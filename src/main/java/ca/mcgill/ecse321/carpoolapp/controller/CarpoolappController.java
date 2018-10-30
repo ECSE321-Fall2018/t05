@@ -28,23 +28,7 @@ public class CarpoolappController {
 	public String greeting() {
 		return "Hello carpool!";
 	}
-	
-	@PostMapping("/admin/{id}/{name}")
-	public String createAdmin(@PathVariable("id") int id,@PathVariable("name") String name) 
-	{
-		Admin admin = repository.createAdmin(id, name);
-		return admin.getUser().getName();
-	}
 
-	@GetMapping("/admin/{id}")
-	public String queryAdmin(@PathVariable("id") int id)
-	{
-		Admin admin = repository.getAdmin(id);
-		if (admin == null) {
-			return "NOT FOUND";
-		}
-		return admin.getUser().getName();
-	}
 	
 	@PostMapping("/driver/{id}")
 	public String createDriver(@PathVariable("id") int id, String name)

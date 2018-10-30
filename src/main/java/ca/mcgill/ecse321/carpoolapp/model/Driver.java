@@ -38,13 +38,19 @@ public class Driver extends UserRole
   
   @Id
   public int getId() {
-	  this.driver_id = this.getUser().getId();
+	  if(this.getUser() == null) {
+		  return this.driver_id;
+	  } else
+		  this.driver_id = this.getUser().getId();
 	  return driver_id;
   }
   
   public boolean setId(int aId) {
 	  this.driver_id = aId;
-	  return this.getUser().setId(aId);
+	  if(this.getUser() == null) {
+		  return true;
+	  } else
+		  return this.getUser().setId(aId);
   }
   
   public void setVehicles(List<Vehicle> vehicles) {

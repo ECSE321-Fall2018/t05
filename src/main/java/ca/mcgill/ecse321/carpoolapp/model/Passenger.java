@@ -37,13 +37,19 @@ public class Passenger extends UserRole
   
   @Id
   public int getId() {
-	  this.passenger_id = this.getUser().getId();
+	  if(this.getUser() == null) {
+		  return this.passenger_id;
+	  } else
+		  this.passenger_id = this.getUser().getId();
 	  return this.passenger_id;
   }
   
   public boolean setId(int aId) {
 	  this.passenger_id = aId;
-	  return this.getUser().setId(aId);
+	  if(this.getUser() == null) {
+		return true;  
+	  } else
+		return this.getUser().setId(aId);
   }
   
   public void setAds(List<Ad> ads) {

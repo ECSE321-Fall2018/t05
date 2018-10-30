@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.carpoolapp.repository;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -72,10 +74,17 @@ public class CarpoolappRepository {
 	}
 	
 	@Transactional
-	public Admin getAdmin(int id)
+	public User getAdmin(int id)
 	{
-		Admin foundAdmin = entityManager.find(Admin.class, id);
+		User foundAdmin = entityManager.find(User.class, id);
 		return foundAdmin;
+	}
+	
+	@Transactional
+	public List<User> getAdmins(){
+		List<User> users = new ArrayList<>(); 
+		users = entityManager.createQuery("SELECT u FROM User u").getResultList();
+		return users;
 	}
 	
 	// TODO Edit, Delete Admin
