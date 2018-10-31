@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class homePageActivity extends AppCompatActivity {
@@ -50,8 +51,38 @@ public class homePageActivity extends AppCompatActivity {
 
     public void createAd(View view){
 
-        Intent intent = new Intent(this, createJourneyActivity.class);
-        startActivity(intent);
+        error = "";
+        int finalValue;
+        final EditText editText = (EditText) findViewById(R.id.number_of_stops);
+
+        String value = editText.getText().toString();
+
+        if(!(value.toString().equals(""))) {
+
+            finalValue = Integer.parseInt(value);
+
+            if (finalValue < 0 || finalValue > 10){
+                error = "Invalid number of stops entered";
+                refreshErrorMessage();
+            }
+
+            else{
+                //PUT NUMBER OF STOPS SOMEWHERE
+                Intent intent = new Intent(this, createJourneyActivity.class);
+                startActivity(intent);
+
+                editText.setText("");
+            }
+        }
+
+        else{
+
+            error = "Must enter number";
+        }
+        refreshErrorMessage();
+
+        /*Intent intent = new Intent(this, createJourneyActivity.class);
+        startActivity(intent);*/
 
     }
 
