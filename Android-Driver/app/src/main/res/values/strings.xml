@@ -14,9 +14,11 @@
     <!--//Label String-->
 
 
+
     <string name="number_of_stop_label">Number of stops</string>
 
     <string name="all_active_ad_label">Active Ads</string>
+
 
     <!--//hint-->
     <string name="max_stop_hint">Enter number of stops here</string>
