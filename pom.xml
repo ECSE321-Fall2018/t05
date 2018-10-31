@@ -35,53 +35,43 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		
-  	<dependency>
-  		<groupId>org.junit.jupiter</groupId>
-  		<artifactId>junit-jupiter-api</artifactId>
-  		<version>5.1.0</version>
-  		<scope>test</scope>
-  	</dependency>
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+	</dependency>
 
-		<dependency>
-			  <groupId>org.postgresql</groupId>
-			  <artifactId>postgresql</artifactId>
-			  <version>42.2.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-api</artifactId>
+		<version>5.3.1</version>
+	</dependency>
 
-		
-		
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.3.1</version>
-		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-params</artifactId>
+		<version>5.3.1</version>
+	</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>5.3.1</version>
-		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-engine</artifactId>
+		<version>5.3.1</version>
+	</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.3.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>2.23.0</version>
-		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+	<dependency>
+		<groupId>org.mockito</groupId>
+		<artifactId>mockito-core</artifactId>
+		<version>2.23.0</version>
+	</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
@@ -144,7 +134,7 @@
 					<configuration>
 						<archive>
 							<manifest>
-								<mainClass>com.roufid.tutorials.AppTest</mainClass>
+								<mainClass>ca.mcgill.ecse321.carpoolapp.CarpoolappApplication</mainClass>
 							</manifest>
 						</archive>
 					</configuration>
