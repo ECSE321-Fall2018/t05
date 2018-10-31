@@ -5,6 +5,8 @@
     <string name="username_ID">Enter User ID</string>
     <string name="signUp_button">SIGN UP</string>
     <string name="journeyPrice">Enter Price Here</string>
+    <string name="destinattion">Enter Destination Here</string>
+    <string name="startingPoint">Enter Starting Point Here</string>
     <!--//Button String-->
     <string name="create_ad_button">Create Ad</string>
     <string name="modify_ad_button">Modify Ad</string>
@@ -14,4 +16,39 @@
     <string name="number_of_stop_label">Number of stops</string>
     <!--//hint-->
     <string name="max_stop_hint">Max 20 stops</string>
+
+    <string name="newdriverName_hint">Name?</string>
+    <string name="newdriverModel_hint">Vehicle model?</string>
+    <string name="newdriverYear_hint">Vehicle year?</string>
+    <string name="newdriverPlatenumber_hint">Plate number?</string>
+    <string name="newdriverNumberseats_hint">Number of seats?</string>
+    <string name="newdriver_submit">Submit</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="modifyjourneyPrice_hint">Price per km?</string>
+    <string name="modifyjourneyStop1_hint">Stop 1 (x,y)?</string>
+    <string name="modifyjourneyStop2_hint">Stop 2 (x,y)?</string>
+    <string name="modifyjourneyStop3_hint">Stop 3 (x,y)?</string>
+    <string name="modifyjourneyStop4_hint">Stop 4 (x,y)?</string>
+    <string name="modifyjourneyStop5_hint">Stop 5 (x,y)?</string>
+    <string name="modifyjourneyStop6_hint">Stop 6 (x,y)?</string>
+    <string name="modifyjourneyStop7_hint">Stop 7 (x,y)?</string>
+    <string name="modifyjourneyStop8_hint">Stop 8 (x,y)?</string>
+    <string name="modifyjourneyStop9_hint">Stop 9 (x,y)?</string>
+    <string name="modifyjourneyStop10_hint">Stop 10 (x,y)?</string>
+    <string name="modifyJourney_submit">Submit</string>
+
+    <string name="stop1">Enter Stop 1</string>
+    <string name="stop2">Enter Stop 2</string>
+    <string name="stop3">Enter Stop 3</string>
+    <string name="stop4">Enter Stop 4</string>
+    <string name="stop5">Enter Stop 5</string>
+    <string name="stop6">Enter Stop 6</string>
+    <string name="stop7">Enter Stop 7</string>
+    <string name="stop8">Enter Stop 8</string>
+    <string name="stop9">Enter Stop 9</string>
+    <string name="stop10">Enter Stop 10</string>
+    <string name="postTrip_button">POST TRIP</string>
+    <string name="title_activity_create_journey">createJourney</string>
+
 </resources>
+
