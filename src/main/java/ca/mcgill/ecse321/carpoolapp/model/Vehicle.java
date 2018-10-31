@@ -17,13 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 // line 47 "../../../../../../../../ump/18102077559/model.ump"
 // line 120 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
 @Table(name="vehicle")
-@JsonIgnoreProperties(value = {"drivers", "carPoolManager"}, allowSetters = true )
 public class Vehicle
 {
 
@@ -110,21 +110,25 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
     return wasSet;
   }
 
+  @JsonView(View.Summary.class)
   public int getYear()
   {
     return year;
   }
 
+  @JsonView(View.Summary.class)
   public String getBrand()
   {
     return brand;
   }
   @Id
+  @JsonView(View.Summary.class)
   public String getPlateNumber()
   {
     return plateNumber;
   }
 
+  @JsonView(View.Summary.class)
   public int getAvailableSeat()
   {
     return availableSeat;
@@ -135,6 +139,7 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
     Driver aDriver = drivers.get(index);
     return aDriver;
   }
+ 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name="vehicle_driver", joinColumns=@JoinColumn(name="plateNumber"), inverseJoinColumns=
   @JoinColumn(name="driver_id"))
@@ -163,6 +168,7 @@ public Vehicle(int aYear, String aBrand, String aPlateNumber, int aAvailableSeat
   }
   /* Code from temp
    * late association_GetOne */
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "vehicle_carpoolManager")
   public CarPoolManager getCarPoolManager()

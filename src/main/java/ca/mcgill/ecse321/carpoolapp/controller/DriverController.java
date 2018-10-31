@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import ca.mcgill.ecse321.carpoolapp.model.Driver;
+import ca.mcgill.ecse321.carpoolapp.model.View;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
 @RestController
@@ -22,6 +25,7 @@ public class DriverController {
 	@Autowired
 	CarpoolappRepository repository;
 	
+	@JsonView(View.Summary.class)
 	@GetMapping(produces = {
 			MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Driver>>getDrivers()
@@ -30,6 +34,7 @@ public class DriverController {
 		return new ResponseEntity<List<Driver>>(Drivers, HttpStatus.OK);
 	}
 	
+	@JsonView(View.Summary.class)
 	@GetMapping(path="/{id}", produces = {
 			MediaType.APPLICATION_JSON_VALUE
 			})

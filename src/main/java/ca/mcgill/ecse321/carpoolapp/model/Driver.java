@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 // line 15 "../../../../../../../../ump/18102077559/model.ump"
 // line 99 "../../../../../../../../ump/18102077559/model.ump"
@@ -41,6 +42,7 @@ public class Driver extends UserRole
   private CarPoolManager carPoolManager;
   
   @Id
+  @JsonView(View.Summary.class)
   public int getId() {
 	  if(this.getUser() == null) {
 		  return this.driver_id;
@@ -48,6 +50,7 @@ public class Driver extends UserRole
 		  this.driver_id = this.getUser().getId();
 	  return driver_id;
   }
+  
   
   public boolean setId(int aId) {
 	  this.driver_id = aId;
@@ -57,6 +60,7 @@ public class Driver extends UserRole
 		  return this.getUser().setId(aId);
   }
   
+  @JsonView(View.Summary.class)
 	public String getName() {
 		if(this.getUser() == null) {
 			return this.driver_name;
@@ -129,11 +133,13 @@ public Driver()
     return wasSet;
   }
 
+  @JsonView(View.Summary.class)
   public int getAverageCostPerKm()
   {
     return averageCostPerKm;
   }
 
+  @JsonView(View.Summary.class)
   public int getTotalDistance()
   {
     return totalDistance;
@@ -144,6 +150,7 @@ public Driver()
     Vehicle aVehicle = vehicles.get(index);
     return aVehicle;
   }
+  @JsonView(View.Summary.class)
   @ManyToMany(cascade = CascadeType.ALL, mappedBy = "drivers")
   public List<Vehicle> getVehicles()
   {
@@ -174,6 +181,7 @@ public Driver()
     Ad aAd = ads.get(index);
     return aAd;
   }
+  @JsonView(View.Summary.class)
   @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
   public List<Ad> getAds()
   {
