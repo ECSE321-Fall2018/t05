@@ -200,7 +200,7 @@ public Stop()
   }
   /* Code from template association_GetOne */
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinTable(name = "ad_carpoolManager")
+  @JoinTable(name = "stop_carpoolManager")
   public CarPoolManager getCarPoolManager()
   {
     return carPoolManager;

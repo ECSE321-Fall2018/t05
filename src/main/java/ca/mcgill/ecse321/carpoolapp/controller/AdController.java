@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import ca.mcgill.ecse321.carpoolapp.model.Ad;
+import ca.mcgill.ecse321.carpoolapp.model.View;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
 
@@ -23,6 +26,7 @@ public class AdController {
 	@Autowired
 	CarpoolappRepository repository;
 	
+	@JsonView(View.Summary.class)
 	@GetMapping(produces = {
 			MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Ad>>getAds()
@@ -31,6 +35,7 @@ public class AdController {
 		return new ResponseEntity<List<Ad>>(Ads, HttpStatus.OK);
 	}
 	
+	@JsonView(View.Summary.class)
 	@GetMapping(path="/{id}", produces = {
 			MediaType.APPLICATION_JSON_VALUE
 			})
@@ -43,7 +48,7 @@ public class AdController {
 	}
 	
 	@PostMapping(path="/{id}/{price}/{driverID}/{vehiclePlate}")
-	public int createAd(@PathVariable int id, @PathVariable int price, @PathVariable int driverID, @PathVariable int seating, @PathVariable String vehiclePlate) 
+	public int createAd(@PathVariable int id, @PathVariable int price, @PathVariable int driverID, @PathVariable String vehiclePlate) 
 	{
 		Ad Ad = repository.createAd(id, price, driverID, vehiclePlate);
 		return Ad.getId();

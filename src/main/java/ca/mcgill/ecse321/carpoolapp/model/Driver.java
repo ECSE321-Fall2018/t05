@@ -181,7 +181,7 @@ public Driver()
     Ad aAd = ads.get(index);
     return aAd;
   }
-  @JsonView(View.Summary.class)
+  
   @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
   public List<Ad> getAds()
   {

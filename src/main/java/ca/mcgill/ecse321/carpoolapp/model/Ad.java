@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 // line 38 "../../../../../../../../ump/18102077559/model.ump"
 // line 114 "../../../../../../../../ump/18102077559/model.ump"
 @Entity
@@ -119,21 +121,25 @@ public Ad() {
     return wasSet;
   }
   @Id
+  @JsonView(View.Summary.class)
   public int getId()
   {
     return id;
   }
 
+  @JsonView(View.Summary.class)
   public double getPrice()
   {
     return price;
   }
 
+  @JsonView(View.Summary.class)
   public boolean getIsActive()
   {
     return isActive;
   }
 
+  @JsonView(View.Summary.class)
   public boolean getIsCompleted()
   {
     return isCompleted;
@@ -144,6 +150,7 @@ public Ad() {
     Stop aStop = stops.get(index);
     return aStop;
   }
+  @JsonView(View.Summary.class)
   @OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
   public List<Stop> getStops()
   {
@@ -169,6 +176,7 @@ public Ad() {
     return index;
   }
   /* Code from template association_GetOne */
+  @JsonView(View.Summary.class)
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinTable(name = "ad_driver")
   public Driver getDriver()
@@ -181,6 +189,7 @@ public Ad() {
     Passenger aPassenger = passengers.get(index);
     return aPassenger;
   }
+  @JsonView(View.Summary.class)
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name="ad_passenger", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=
   @JoinColumn(name="passenger_id"))
@@ -208,6 +217,7 @@ public Ad() {
     return index;
   }
   /* Code from template association_GetOne */
+  @JsonView(View.Summary.class)
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinTable(name = "ad_vehicle")
   public Vehicle getVehicle()
