@@ -184,19 +184,6 @@
 						</archive>
 					</configuration>
 				</plugin>
-				
-				<plugin>
-            <groupId>com.heroku.sdk</groupId>
-            <artifactId>heroku-maven-plugin</artifactId>
-            <version>2.0.5</version>
-            <configuration>
-                <appName>arcane-meadow-35676</appName>
-                <processTypes>
-                    <web>java $JAVA_OPTS -jar target/dependency/jetty-runner.jar --port $PORT target/*.war</web>
-                </processTypes>
-                <stack>arcane-meadow-35676</stack>
-            </configuration>
-        </plugin>
 
 			</plugins>
 		</pluginManagement>
