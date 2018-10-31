@@ -30,6 +30,15 @@
             android:name=".ListAdsActivity"
             android:label="@string/title_activity_list_ads"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".individualJourneyActivity"
+            android:label="@string/individual_journey_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".signup" />
+        <activity
+            android:name=".MyJourneys"
+            android:label="@string/title_activity_my_journeys"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
