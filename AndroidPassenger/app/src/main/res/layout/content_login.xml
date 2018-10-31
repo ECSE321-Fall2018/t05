@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".loginActivity"
+    tools:context=".MainActivity"
     tools:showIn="@layout/activity_login">
 
     <LinearLayout
@@ -43,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:text="@string/Login_button" />
+                android:text="@string/Login_button"
+                android:onClick="login"/>
 
         </LinearLayout>
 
@@ -70,7 +71,8 @@
                 android:id="@+id/signUp_Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/signUp_button" />
+                android:text="@string/signUp_button"
+                android:onClick="signup"/>
 
         </LinearLayout>
 
