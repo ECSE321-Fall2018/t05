@@ -64,23 +64,6 @@ public class CarpoolappController {
 		return passenger.getUser().getName();
 	}
 	
-	@PostMapping("/ad/{id}/{price}/{}")
-	public int createAd(Driver driver, @PathVariable("id") int id, int price, Vehicle vehicle) {
-		
-		Ad ad = repository.createAd(driver, id, price, vehicle);
-		return ad.getId();
-	}
-	
-	@GetMapping("/ad/{id}")
-	public String queryAd(@PathVariable("id") int id) {
-		
-		Ad ad = repository.getAd(id);
-		if (ad == null) {
-			return "NOT FOUND";
-		}
-		return "Ad number" + ad.getId();
-	}
-	
 	@PostMapping("/stop/{id}")
 	public int createStop(Ad ad, Time time, Date date, int x, int y, @PathVariable("id") int id) {
 		
