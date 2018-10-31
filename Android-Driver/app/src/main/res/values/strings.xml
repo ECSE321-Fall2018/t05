@@ -12,10 +12,15 @@
     <string name="modify_ad_button">Modify Ad</string>
     <string name="end_ad_button">End Ad</string>
     <!--//Label String-->
-    <string name="all_active_ad_label">Active Ads: </string>
+
+
     <string name="number_of_stop_label">Number of stops</string>
+
+    <string name="all_active_ad_label">Active Ads</string>
+
     <!--//hint-->
-    <string name="max_stop_hint">Max 20 stops</string>
+    <string name="max_stop_hint">Enter number of stops here</string>
+    <string name="journeySeats">Enter Number of Seats Here</string>
 
     <string name="newdriverName_hint">Name?</string>
     <string name="newdriverModel_hint">Vehicle model?</string>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -65,31 +66,45 @@ public class MainActivity extends AppCompatActivity {
         //do something in response to button
 
         error = "";
+        int finalValue;
         final EditText editText = (EditText) findViewById(R.id.username_ID);
-        String value= editText.getText().toString();
-        int finalValue=Integer.parseInt(value);
 
-        HttpUtils.get("drivers/" + finalValue, new RequestParams(), new JsonHttpResponseHandler() {
-            @Override
-            public void onFinish() {
-                refreshErrorMessage();
-                editText.setText("");
-                Intent intent = new Intent(MainActivity.this, homePageActivity.class);
-                startActivity(intent);
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
+        String value = editText.getText().toString();
+
+        if(!(value.toString().equals(""))) {
+            finalValue = Integer.parseInt(value);
+            error = "";
+
+            HttpUtils.get("drivers/" + finalValue, new RequestParams(), new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    refreshErrorMessage();
+                    editText.setText("");
+                    Intent intent = new Intent(MainActivity.this, homePageActivity.class);
+                    startActivity(intent);
                 }
-                refreshErrorMessage();
-            }
-        });
 
-        Intent intent = new Intent(this, homePageActivity.class);
-        startActivity(intent);
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        error += errorResponse.get("message").toString();
+                    } catch (JSONException e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+            });
+
+            refreshErrorMessage();
+
+        }
+
+        else{
+
+            error = "Must enter number";
+            refreshErrorMessage();
+
+        }
 
     }
 
