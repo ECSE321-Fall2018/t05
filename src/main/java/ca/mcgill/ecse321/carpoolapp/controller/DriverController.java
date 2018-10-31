@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.carpoolapp.model.Driver;
+import ca.mcgill.ecse321.carpoolapp.model.Passenger;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
 @RestController
@@ -47,5 +49,19 @@ public class DriverController {
 		Driver driver = repository.createDriver(id, name);
 		return driver.getUser().getName();
 	}
+	
+	
+	@PutMapping(path = "updateDriverTotalDistance/{driverID}/{totalDistance}")
+	public int updateDriverTotalDistance(@PathVariable int driverID, @PathVariable int totalDistance) {
+		Driver driver = repository.updateDriverTotalDistance(driverID, totalDistance);
+		return driver.getTotalDistance();
+	}
+	
+	@PutMapping(path = "updateDriverAcpk/{driverID}/{apck}")
+	public int updateDriverAcpk(@PathVariable int driverID, @PathVariable int apck) {
+		Driver driver = repository.updateDriverAcpk(driverID, apck);
+		return driver.getAverageCostPerKm();
+	}
+	
 	
 }

@@ -114,6 +114,21 @@ public class CarpoolappRepository {
 		return drivers;
 	}
 	
+	@Transactional
+	public Driver updateDriverTotalDistance(int passengerID, int totalDistance) {
+		Driver driver = entityManager.find(Driver.class, passengerID);
+		driver.setTotalDistance(totalDistance);
+		entityManager.persist(driver);		
+		return driver;
+	}
+	
+	@Transactional
+	public Driver updateDriverAcpk(int driverID, int apck) {
+		Driver driver = entityManager.find(Driver.class, driverID);
+		driver.setAverageCostPerKm(apck);
+		entityManager.persist(driver);
+		return driver;
+	}
 	
 	
 
@@ -154,11 +169,44 @@ public class CarpoolappRepository {
 	}
 	
 	@Transactional
-	public Ad createAd(Driver driver, int id, double price, Vehicle vehicle)
+	public Passenger updateAppk(int passengerID, int appk) {
+		Passenger psg = entityManager.find(Passenger.class,	passengerID);
+		psg.setAveragePaidPerKm(appk);
+		entityManager.persist(psg);		
+		return psg;
+	}
+	
+	@Transactional
+	public Passenger updatePassengerTotalDistance(int passengerID, int totalDistance) {
+		Passenger psg = entityManager.find(Passenger.class,	passengerID);
+		psg.setTotalDistance(totalDistance);
+		entityManager.persist(psg);		
+		return psg;
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Transactional
+	public Ad createAd(int id, int price, int driverID, String vehiclePlate)
 	{
-		Ad newAd = methodservices.createAd(driver, id, price, vehicle);
-		entityManager.persist(newAd);
-		return newAd;
+		int cmId = 1;
+		CarPoolManager cm = entityManager.find(CarPoolManager.class, cmId);
+		if(cm == null) {
+			cm = new CarPoolManager(cmId);
+			entityManager.persist(cm);
+		} 
+		this.carpoolManager = cm;
+		
+		Driver driver = entityManager.find(Driver.class, driverID);
+		Vehicle vehicle = entityManager.find(Vehicle.class, vehiclePlate);
+		
+		Ad ad = new Ad(id, price, true, false, driver, vehicle, cm);
+		entityManager.persist(ad);
+		return ad;
 	}
 	
 	@Transactional
@@ -166,6 +214,13 @@ public class CarpoolappRepository {
 	{
 		Ad foundAd = entityManager.find(Ad.class, id);
 		return foundAd;
+	}
+	
+	@Transactional
+	public List<Ad> getAds(){
+		List<Ad> ads = new ArrayList<>(); 
+		ads = entityManager.createQuery("SELECT a FROM Ad a").getResultList();
+		return ads;
 	}
 	
 	// TODO Edit, Delete Ad
@@ -220,10 +275,7 @@ public class CarpoolappRepository {
 		vehicles = entityManager.createQuery("SELECT v FROM Vehicle v").getResultList();
 		return vehicles;
 	}
-	//TODO Edit, Delete Vehicle
-	
-	
-	
-	
+	//TODO Edit, Delete Vehicle	
+
 	
 }
