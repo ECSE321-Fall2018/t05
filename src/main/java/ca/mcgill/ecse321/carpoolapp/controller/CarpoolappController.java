@@ -28,41 +28,6 @@ public class CarpoolappController {
 	public String greeting() {
 		return "Hello carpool!";
 	}
-
-	
-	@PostMapping("/driver/{id}")
-	public String createDriver(@PathVariable("id") int id, String name)
-	{
-		Driver driver = repository.createDriver(id, name);
-		return driver.getUser().getName();
-	}
-	
-	@GetMapping("/driver/{id}")
-	public String queryDrvier(@PathVariable("id") int id)
-	{
-		Driver driver = repository.getDriver(id);
-		if (driver == null) {
-			return "NOT FOUND";
-		}
-		return driver.getUser().getName();
-	}
-	
-	@PostMapping("/passenger/{id}")
-	public String createPassenger(@PathVariable("id") int id, String name)
-	{
-		Passenger passenger = repository.createPassenger(id, name);
-		return passenger.getUser().getName();
-	}
-	
-	@GetMapping("/passenger/{id}")
-	public String queryPassenger(@PathVariable("id") int id)
-	{
-		Passenger passenger = repository.getPassenger(id);
-		if (passenger == null) {
-			return "NOT FOUND";
-		}
-		return passenger.getUser().getName();
-	}
 	
 	@PostMapping("/stop/{id}")
 	public int createStop(Ad ad, Time time, Date date, int x, int y, @PathVariable("id") int id) {
@@ -82,19 +47,5 @@ public class CarpoolappController {
 	}
 	
 	
-//	@PostMapping("/participants/{name}")
-//	public String createParticipant(@PathVariable("name") String name) {
-//		Participant participant = repository.createParticipant(name);
-//		return participant.getName();
-//	}
-//
-//	@GetMapping("/participants/{name}")
-//	public String queryParticipant(@PathVariable("name") String name) {
-//		Participant participant = repository.getParticipant(name);
-//		if(participant == null) {
-//			return "NOT FOUND";
-//		}
-//		return participant.getName();
-//	}
 
 }
