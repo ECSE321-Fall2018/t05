@@ -25,7 +25,11 @@
         <activity
             android:name=".passengerHomepage"
             android:label="@string/title_activity_passenger_homepage"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ListAdsActivity"
+            android:label="@string/title_activity_list_ads"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
