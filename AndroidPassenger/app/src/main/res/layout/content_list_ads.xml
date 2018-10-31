@@ -67,20 +67,17 @@
 
         </LinearLayout>
 
-        <LinearLayout
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="100dp"
-                android:text="display all ads 1 by 1 mate this is awesome bruhh"/>
+            android:layout_height="wrap_content">
 
 
 
-        </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
+
+
 
 
     </LinearLayout>
