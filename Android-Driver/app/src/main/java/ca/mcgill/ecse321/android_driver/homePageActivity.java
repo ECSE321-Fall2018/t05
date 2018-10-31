@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.android_driver;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,15 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class homePageActivity extends AppCompatActivity {
+
+    private String error = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.driver_homepage_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        refreshErrorMessage();
 
     }
 
@@ -41,4 +47,38 @@ public class homePageActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void createAd(View view){
+
+        Intent intent = new Intent(this, createJourneyActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void modifyAd(View view){
+
+        Intent intent = new Intent(this, ModifyJourneyActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void endAd(View view){
+
+        //NO DEFINED TASK YET
+
+    }
+
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
+
 }
