@@ -1,1 +1,2 @@
-web: java -jar target/carpoolapp-spring-maven.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar
+
