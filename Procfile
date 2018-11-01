@@ -1,1 +1,1 @@
-web: java -jar target/CarpoolappApplication.jar
+web: java -jar target/ca.mcgill.ecse321.carpoolapp.CarpoolappApplication.jar
