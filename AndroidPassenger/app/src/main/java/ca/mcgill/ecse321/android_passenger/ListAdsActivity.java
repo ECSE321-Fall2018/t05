@@ -60,53 +60,54 @@ public class ListAdsActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-//    public void refreshLists(View view) {
-//        refreshList("ads");
-//
-//
-//    }
-//
-//    private void refreshList(String restFunctionName) {
-//
-//        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-//
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                activeAds.clear();
-//                for( int i = 0; i < response.length(); i++){
-//                    try {
-//                        activeAds.add(response.getJSONObject(i).getString("name"));
-//                    } catch (Exception e) {
-//                        error += e.getMessage();
-//                    }
-//                    refreshErrorMessage();
-//                }
-//                adsAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                try {
-//                    error += errorResponse.get("message").toString();
-//                } catch (JSONException e) {
-//                    error += e.getMessage();
-//                }
-//                refreshErrorMessage();
-//            }
-//        });
-//    }
-//
-//    private void refreshErrorMessage() {
-//        // set the error message
-//        TextView tvError = (TextView) findViewById(R.id.error);
-//        tvError.setText(error);
-//
-//        if (error == null || error.length() == 0) {
-//            tvError.setVisibility(View.GONE);
-//        } else {
-//            tvError.setVisibility(View.VISIBLE);
-//        }
-//
-//    }
+    public void refreshLists(View view) {
+        refreshList("ads");
+
+
+    }
+
+    private void refreshList(String restFunctionName) {
+
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                activeAds.clear();
+                for( int i = 0; i < response.length(); i++){
+                    try {
+                        ListItem adJourney = new ListItem(Double.parseDouble(response.getJSONObject(i).getString("id")), Double.parseDouble(response.getJSONObject(i).getString("Price")), "Rogue");
+                        activeAds.add(adJourney);
+                    } catch (Exception e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+                adsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
 
 }
