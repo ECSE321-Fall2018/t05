@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    tools:context=".homePageActivity"
     tools:showIn="@layout/driver_homepage_activity">
 
 
@@ -15,12 +15,22 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/createAd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:text="@string/create_ad_button" />
+        android:text="@string/create_ad_button"
+            android:onClick="createAd" />
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:text=""
+            android:textColor="@color/colorAccent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +48,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/newparticipant_name"
+                android:id="@+id/number_of_stops"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/max_stop_hint" />
@@ -81,7 +91,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/modify_ad_button" />
+                android:text="@string/modify_ad_button"
+                android:onClick="modifyAd"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +100,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
-                android:text="@string/end_ad_button" />
+                android:text="@string/end_ad_button"
+                android:onClick="endAd"/>
         </LinearLayout>
 
     </LinearLayout>

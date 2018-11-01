@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.carpoolapp.controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ca.mcgill.ecse321.carpoolapp.model.Driver;
 import ca.mcgill.ecse321.carpoolapp.model.View;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ca.mcgill.ecse321.carpoolapp.model.Driver;
+>>>>>>> issue19
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
 @RestController
@@ -26,6 +37,7 @@ public class DriverController {
 	@Autowired
 	CarpoolappRepository repository;
 	
+<<<<<<< HEAD
 	@JsonView(View.Summary.class)
 	@GetMapping(produces = {
 			MediaType.APPLICATION_JSON_VALUE})
@@ -65,6 +77,19 @@ public class DriverController {
 	public int updateDriverAcpk(@PathVariable int driverID, @PathVariable int apck) {
 		Driver driver = repository.updateDriverAcpk(driverID, apck);
 		return driver.getAverageCostPerKm();
+=======
+	@GetMapping
+	public String getDriver()
+	{
+		return "Get driver was called";
+	}
+	
+	@PostMapping(path="/{id}/{name}")
+	public String createDriver(@PathVariable int id, @PathVariable String name)
+	{
+		Driver driver = repository.createDriver(id, name);
+		return driver.toString();
+>>>>>>> issue19
 	}
 	
 	

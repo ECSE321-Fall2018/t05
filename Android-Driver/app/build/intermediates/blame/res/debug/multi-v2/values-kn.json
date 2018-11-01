@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\rog22\\Desktop\\Universite\\U2\\ECSE321\\CarpoolApp\\CarpoolApp-backend-maven\\Carpoolapp-backend-maven\\Android-Driver\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kn\\values-kn.xml",
+            "outputFile": "/Users/antoine/t05/t05/Android-Driver/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rog22\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d6add39440c298e41b82c3cb954e99c1\\res\\values-kn\\values-kn.xml",
+                    "source": "/Users/antoine/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/8e5bf2e4a031189af56a3f9eb3f7405c/res/values-kn/values-kn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rog22\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\7a6b3afeb3955260552b26134f25b725\\res\\values-kn\\values-kn.xml",
+                    "source": "/Users/antoine/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e08939257eb5861fdad2ad85c166ca2d/res/values-kn/values-kn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

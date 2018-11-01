@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\rog22\\Desktop\\Universite\\U2\\ECSE321\\CarpoolApp\\CarpoolApp-backend-maven\\Carpoolapp-backend-maven\\Android-Driver\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+            "outputFile": "/Users/antoine/t05/t05/Android-Driver/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rog22\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\55d0017b6dccfbb62d4269c90a2e3c08\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "/Users/antoine/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/3f26f05be0fe776dbee71621dd8d7586/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rog22\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d6add39440c298e41b82c3cb954e99c1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "/Users/antoine/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/8e5bf2e4a031189af56a3f9eb3f7405c/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

@@ -2029,6 +2029,7 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
@@ -2162,6 +2163,7 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
     <dimen name="tooltip_margin">8dp</dimen>
@@ -2271,23 +2273,57 @@
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="create_ad_button">Create Ad</string>
+    <string name="destinattion">Enter Destination Here</string>
     <string name="end_ad_button">End Ad</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">android.support.design.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">android.support.design.transformation.FabTransformationSheetBehavior</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">android.support.design.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="journeyPrice">Enter Price Here</string>
-    <string name="max_stop_hint">Max 20 stops</string>
+    <string name="journeySeats">Enter Number of Seats Here</string>
+    <string name="max_stop_hint">Enter number of stops here</string>
+    <string name="modifyJourney_submit">Submit</string>
     <string name="modify_ad_button">Modify Ad</string>
+    <string name="modifyjourneyPrice_hint">Price per km?</string>
+    <string name="modifyjourneyStop10_hint">Stop 10 (x,y)?</string>
+    <string name="modifyjourneyStop1_hint">Stop 1 (x,y)?</string>
+    <string name="modifyjourneyStop2_hint">Stop 2 (x,y)?</string>
+    <string name="modifyjourneyStop3_hint">Stop 3 (x,y)?</string>
+    <string name="modifyjourneyStop4_hint">Stop 4 (x,y)?</string>
+    <string name="modifyjourneyStop5_hint">Stop 5 (x,y)?</string>
+    <string name="modifyjourneyStop6_hint">Stop 6 (x,y)?</string>
+    <string name="modifyjourneyStop7_hint">Stop 7 (x,y)?</string>
+    <string name="modifyjourneyStop8_hint">Stop 8 (x,y)?</string>
+    <string name="modifyjourneyStop9_hint">Stop 9 (x,y)?</string>
     <string name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
+    <string name="newdriverModel_hint">Vehicle model?</string>
+    <string name="newdriverName_hint">Name?</string>
+    <string name="newdriverNumberseats_hint">Number of seats?</string>
+    <string name="newdriverPlatenumber_hint">Plate number?</string>
+    <string name="newdriverYear_hint">Vehicle year?</string>
+    <string name="newdriver_submit">Submit</string>
     <string name="number_of_stop_label">Number of stops</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="postTrip_button">POST TRIP</string>
     <string name="search_menu_title">Search</string>
     <string name="signUp_button">SIGN UP</string>
+    <string name="startingPoint">Enter Starting Point Here</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="stop1">Enter Stop 1</string>
+    <string name="stop10">Enter Stop 10</string>
+    <string name="stop2">Enter Stop 2</string>
+    <string name="stop3">Enter Stop 3</string>
+    <string name="stop4">Enter Stop 4</string>
+    <string name="stop5">Enter Stop 5</string>
+    <string name="stop6">Enter Stop 6</string>
+    <string name="stop7">Enter Stop 7</string>
+    <string name="stop8">Enter Stop 8</string>
+    <string name="stop9">Enter Stop 9</string>
+    <string name="title_activity_create_journey">createJourney</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="username_ID">Enter User ID</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
