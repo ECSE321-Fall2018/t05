@@ -28,24 +28,5 @@ public class CarpoolappController {
 	public String greeting() {
 		return "Hello carpool!";
 	}
-	
-	@PostMapping("/stop/{id}")
-	public int createStop(Ad ad, Time time, Date date, int x, int y, @PathVariable("id") int id) {
-		
-		Stop stop = repository.createStop(ad, time, date, x, y, id);
-		return stop.getId();
-	}
-	
-	@GetMapping("/stop/{id}")
-	public String queryStop(@PathVariable("id") int id) {
-		
-		Stop stop = repository.getStop(id);
-		if (stop == null) {
-			return "NOT FOUND";
-		}
-		return "Ad number" + stop.getId();
-	}
-	
-	
 
 }

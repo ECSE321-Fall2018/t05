@@ -1,1 +1,1 @@
-web: java -jar target/ca.mcgill.ecse321.carpoolapp.CarpoolappApplication.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar
