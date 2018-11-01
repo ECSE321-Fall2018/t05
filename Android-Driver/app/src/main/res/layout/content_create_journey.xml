@@ -37,6 +37,7 @@
             android:orientation="horizontal"
             android:paddingTop="50dp">
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,8 +56,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:paddingRight="50dp"
+                android:text="Price" />
+
+            <EditText
+                android:id="@+id/journeySeats"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Number of Seats Here" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="40dp">
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:text=""
+                android:textColor="@color/colorAccent"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,6 +243,7 @@
                 android:paddingLeft="4dp"
                 android:text="POST TRIP"
                 android:id="@+id/postTrip_button"
+                android:onClick="postTrip"
                 />
 
         </LinearLayout>

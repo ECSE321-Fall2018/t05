@@ -9,7 +9,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="ca.mcgill.ecse321.android_driver.SignupActivity">
+    tools:context="MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
