@@ -58,6 +58,7 @@
 
 
     <string name="title_activity_create_journey">createJourney</string>
+    <string name="active_ads_spinner">Active Ads</string>
 
 
 </resources>

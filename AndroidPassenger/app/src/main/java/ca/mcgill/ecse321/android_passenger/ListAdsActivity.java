@@ -96,17 +96,17 @@ public class ListAdsActivity extends AppCompatActivity {
 //        });
 //    }
 //
-//    private void refreshErrorMessage() {
-//        // set the error message
-//        TextView tvError = (TextView) findViewById(R.id.error);
-//        tvError.setText(error);
-//
-//        if (error == null || error.length() == 0) {
-//            tvError.setVisibility(View.GONE);
-//        } else {
-//            tvError.setVisibility(View.VISIBLE);
-//        }
-//
-//    }
+   private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
 
 }

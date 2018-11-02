@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         String value = editText.getText().toString();
 
+
         if(!(value.toString().equals(""))) {
             finalValue = Integer.parseInt(value);
             error = "";
