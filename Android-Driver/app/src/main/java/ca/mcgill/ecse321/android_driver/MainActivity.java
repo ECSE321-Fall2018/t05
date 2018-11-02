@@ -31,11 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        setContentView(R.layout.activity_modify_journey);
-=======
         setContentView(R.layout.activity_login);
->>>>>>> issue19
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         refreshErrorMessage();
@@ -76,10 +72,9 @@ public class MainActivity extends AppCompatActivity {
         String value = editText.getText().toString();
 
         if(!(value.toString().equals(""))) {
-            finalValue = Integer.parseInt(value);
             error = "";
 
-            HttpUtils.get("drivers/" + finalValue, new RequestParams(), new JsonHttpResponseHandler() {
+            HttpUtils.get("drivers/" + value, new RequestParams(), new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     refreshErrorMessage();
