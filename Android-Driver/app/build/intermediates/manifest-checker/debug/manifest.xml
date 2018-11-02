@@ -31,7 +31,16 @@
             </intent-filter>
         </activity>
         <activity android:name="ca.mcgill.ecse321.android_driver.LoginActivity" />
-        <activity android:name="ca.mcgill.ecse321.android_driver.CreateJourneyActivity" />
+        <activity android:name="ca.mcgill.ecse321.android_driver.SignupActivity" />
+        <activity android:name="ca.mcgill.ecse321.android_driver.homePageActivity" >
+        </activity>
+        <activity
+            android:name="ca.mcgill.ecse321.android_driver.ModifyJourneyActivity"
+            android:label="@string/title_activity_scrolling" />
+        <activity
+            android:name="ca.mcgill.ecse321.android_driver.createJourneyActivity"
+            android:label="createJourney"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"
