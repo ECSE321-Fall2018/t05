@@ -9,7 +9,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="MainActivity">
+    tools:context=".SignupActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -81,8 +81,15 @@
             android:layout_width="360dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/newdriver_submit"
+            android:text="Add Driver"
             android:onClick="addDriver"/>
+
+        /*<Button
+            android:layout_width="360dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Add Vehicle"
+            android:onClick="addVehicle"/>
     </LinearLayout>
 
 </RelativeLayout>

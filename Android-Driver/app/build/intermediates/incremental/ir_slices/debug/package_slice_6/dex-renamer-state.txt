@@ -1,4 +1,4 @@
-#Thu Nov 01 23:22:51 EDT 2018
-base.0=/Users/antoine/t05/t05/Android-Driver/app/build/intermediates/transforms/dexMerger/debug/6
+#Thu Nov 01 22:10:32 EDT 2018
+base.0=C\:\\Users\\Admin\\git\\t05\\Android-Driver\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
 path.0=classes.dex
 renamed.0=classes.dex

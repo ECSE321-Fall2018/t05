@@ -9,12 +9,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class homePageActivity extends AppCompatActivity {
 
     private String error = null;
+    private List<String> participantNames = new ArrayList<>();
+    private ArrayAdapter<String> participantAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +39,15 @@ public class homePageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+        Spinner adsSpinner = (Spinner) findViewById(R.id.active_ads_spinner);
+
+        participantAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, participantNames);
+        participantAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adsSpinner.setAdapter(participantAdapter);
+
+        refreshLists(this.getCurrentFocus());
+
         refreshErrorMessage();
 
     }
@@ -110,6 +135,40 @@ public class homePageActivity extends AppCompatActivity {
             tvError.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    public void refreshLists(View view) {
+        refreshList(participantAdapter ,participantNames, "ads");
+    }
+
+    private void refreshList(final ArrayAdapter<String> adapter, final List<String> ads, String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                ads.clear();
+                ads.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    try {
+                        ads.add(response.getJSONObject(i).getString("name"));
+                    } catch (Exception e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
     }
 
 }

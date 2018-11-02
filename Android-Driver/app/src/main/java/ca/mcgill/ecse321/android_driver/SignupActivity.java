@@ -7,6 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
 public class SignupActivity extends AppCompatActivity {
 
     private String error = null;
@@ -18,29 +26,35 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         refreshErrorMessage();
     }
-
     public void addDriver(View view) {
 
         error = "";
         int finalValue;
         final EditText editText = (EditText) findViewById(R.id.newdriver_name);
-        final EditText editText1 = (EditText) findViewById(R.id.newdriver_model);
-        final EditText editText2 = (EditText) findViewById(R.id.newdriver_numberseats);
-        final EditText editText3 = (EditText) findViewById(R.id.newdriver_year);
-        final EditText editText4 = (EditText) findViewById(R.id.newdriver_platenumber);
 
         String value = editText.getText().toString();
-        String value1 = editText1.getText().toString();
-        String value2 = editText2.getText().toString();
-        String value3 = editText3.getText().toString();
-        String value4 = editText4.getText().toString();
 
-        if(!(value.toString().equals("")) && !(value1.toString().equals("")) && !(value2.toString().equals("")) && !(value3.toString().equals("")) && !(value4.toString().equals("")) ) {
+        if(!(value.toString().equals(""))) {
 
             error = "";
 
-            Intent intent = new Intent(this, homePageActivity.class);
-            startActivity(intent);
+            HttpUtils.post("drivers/" + "14" +"/" + value, new RequestParams(), new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    refreshErrorMessage();
+                    Intent intent = new Intent(SignupActivity.this, homePageActivity.class);
+                    startActivity(intent);
+                }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        error += errorResponse.get("message").toString();
+                    } catch (JSONException e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+            });
 
         }
 
@@ -54,7 +68,45 @@ public class SignupActivity extends AppCompatActivity {
         //ADD CODE TO USE DATA ENTERED BY SIGN UP
     }
 
-    private void refreshErrorMessage() {
+    public void addVehicle(View view){
+
+        error = "";
+        final EditText editText1 = (EditText) findViewById(R.id.newdriver_model);
+        final EditText editText2 = (EditText) findViewById(R.id.newdriver_numberseats);
+        final EditText editText3 = (EditText) findViewById(R.id.newdriver_year);
+        final EditText editText4 = (EditText) findViewById(R.id.newdriver_platenumber);
+
+        String value1 = editText1.getText().toString();
+        String value2 = editText2.getText().toString();
+        String value3 = editText3.getText().toString();
+        String value4 = editText4.getText().toString();
+
+        if( !(value1.toString().equals("")) && !(value2.toString().equals("")) && !(value3.toString().equals("")) && !(value4.toString().equals("")) ) {
+
+
+            HttpUtils.post("vehicles/" + value4 + "/" + value3 + "/" + value1 + "/" +
+                    value2 + "/" + "14", new RequestParams(), new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    refreshErrorMessage();
+                    Intent intent = new Intent(SignupActivity.this, homePageActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        error += errorResponse.get("message").toString();
+                    } catch (JSONException e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+            });
+        }
+    }
+
+    private void refreshErrorMessage(){
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.error);
         tvError.setText(error);
