@@ -1,1 +1,1 @@
-web: mvn spring-boot:run
+java -cp target/classes:target/dependency/* CarpoolappApplication
