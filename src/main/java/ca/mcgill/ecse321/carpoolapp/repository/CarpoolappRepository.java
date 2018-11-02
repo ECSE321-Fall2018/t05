@@ -276,6 +276,15 @@ public class CarpoolappRepository {
 		return vehicles;
 	}
 	//TODO Edit, Delete Vehicle	
+	@Transactional
+    public int genPassengerId() {
+        
+        CarPoolManager cm = entityManager.find(CarPoolManager.class, 1);
+        
+        int id = cm.getUsers().size();
+        
+        return id;
+    }
 
 	
 }

@@ -35,6 +35,14 @@ public class PassengerController {
 			return new ResponseEntity<Passenger>(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<Passenger>(psg, HttpStatus.OK);
 	}
+	
+	@GetMapping(path = "/generateID", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public int generateID() {
+        
+        int id = repository.genPassengerId();
+        
+        return id;
+    }
 
 	@PostMapping(path = "/{id}/{name}")
 	public String createAdmin(@PathVariable int id, @PathVariable String name) {
