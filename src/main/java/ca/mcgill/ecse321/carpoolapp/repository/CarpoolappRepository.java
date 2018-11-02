@@ -71,7 +71,7 @@ public class CarpoolappRepository {
 	
 	@Transactional
 	public List<Admin> getAdmins(){
-		List<Admin> admins = new ArrayList<>(); 
+		List<Admin> admins = new ArrayList<Admin>(); 
 		admins = entityManager.createQuery("SELECT a FROM Admin a").getResultList();
 		return admins;
 	}
@@ -109,7 +109,7 @@ public class CarpoolappRepository {
 	
 	@Transactional
 	public List<Driver> getDrivers(){
-		List<Driver> drivers = new ArrayList<>(); 
+		List<Driver> drivers = new ArrayList<Driver>(); 
 		drivers = entityManager.createQuery("SELECT d FROM Driver d").getResultList();
 		return drivers;
 	}
@@ -163,7 +163,7 @@ public class CarpoolappRepository {
 	
 	@Transactional
 	public List<Passenger> getPassengers(){
-		List<Passenger> passengers = new ArrayList<>(); 
+		List<Passenger> passengers = new ArrayList<Passenger>(); 
 		passengers = entityManager.createQuery("SELECT p FROM Passenger p").getResultList();
 		return passengers;
 	}
@@ -218,7 +218,7 @@ public class CarpoolappRepository {
 	
 	@Transactional
 	public List<Ad> getAds(){
-		List<Ad> ads = new ArrayList<>(); 
+		List<Ad> ads = new ArrayList<Ad>(); 
 		ads = entityManager.createQuery("SELECT a FROM Ad a").getResultList();
 		return ads;
 	}
@@ -271,7 +271,7 @@ public class CarpoolappRepository {
 	
 	@Transactional
 	public List<Vehicle> getVehicles(){
-		List<Vehicle> vehicles = new ArrayList<>(); 
+		List<Vehicle> vehicles = new ArrayList<Vehicle>(); 
 		vehicles = entityManager.createQuery("SELECT v FROM Vehicle v").getResultList();
 		return vehicles;
 	}
