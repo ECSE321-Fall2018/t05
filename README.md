@@ -20,3 +20,6 @@ Passenger Application
 1. Login to your app using your user ID. If you don't have one, sign up to make an account by clicking on "Sign Up"
 2. You can view your completed and current journeys by clicking on "View My Rides"
 3. You can search a ride by looking through advertisements by clicking on "Search A Ride"
+
+
+Application domain: https://carpoolapp-spring-maven.herokuapp.com/
