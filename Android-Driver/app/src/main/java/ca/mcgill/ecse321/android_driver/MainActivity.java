@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
    // public static final String EXTRA_MESSAGE = "ca.ecse321.android_driver.userID";
 
     private String error = null;
+    static String value = null;
 
 
     @Override
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         int finalValue;
         final EditText editText = (EditText) findViewById(R.id.username_ID);
 
-        String value = editText.getText().toString();
+        value = editText.getText().toString();
 
         if(!(value.toString().equals(""))) {
             error = "";
@@ -85,17 +86,19 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+                    editText.setError("Inexistant User ID");
                     try {
+                       // editText.setError("Inexistant User ID");
                         error += errorResponse.get("message").toString();
                     } catch (JSONException e) {
                         error += e.getMessage();
                     }
-                    refreshErrorMessage();
+                    //refreshErrorMessage();
                 }
             });
 
             refreshErrorMessage();
-
         }
 
         else{

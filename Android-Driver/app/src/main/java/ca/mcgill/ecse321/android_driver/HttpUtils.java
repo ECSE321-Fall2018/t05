@@ -6,7 +6,7 @@ import com.loopj.android.http.RequestParams;
 
 public class HttpUtils {
 
-    public static final String DEFAULT_BASE_URL = "";
+    public static final String DEFAULT_BASE_URL = "https://carpoolapp-spring-maven.herokuapp.com/";
 
     private static String baseUrl;
     private static AsyncHttpClient client = new AsyncHttpClient();
