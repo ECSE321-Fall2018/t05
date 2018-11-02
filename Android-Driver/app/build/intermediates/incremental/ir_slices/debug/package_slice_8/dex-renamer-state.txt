@@ -1,4 +1,0 @@
-#Fri Nov 02 03:32:05 EDT 2018
-base.0=C\:\\Users\\Admin\\git\\t05\\Android-Driver\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\8
-path.0=classes.dex
-renamed.0=classes.dex
