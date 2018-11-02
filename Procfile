@@ -1,1 +1,1 @@
-java -cp target/classes:target/dependency/* CarpoolappApplication
+web: java -cp target/classes:target/dependency/* CarpoolappApplication
