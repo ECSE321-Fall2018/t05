@@ -20,6 +20,7 @@ import ca.mcgill.ecse321.carpoolapp.model.Driver;
 import ca.mcgill.ecse321.carpoolapp.model.View;
 import ca.mcgill.ecse321.carpoolapp.repository.CarpoolappRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/drivers")
 public class DriverController {
